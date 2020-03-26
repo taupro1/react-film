@@ -1,0 +1,1 @@
+export const actPostUserRegister = "POST-USER-REGISTER"

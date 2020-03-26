@@ -1,0 +1,25 @@
+@mixin Element-a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+@mixin Element-i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@mixin Element-span {
+  color: white;
+  letter-spacing: 1px;
+}
+@mixin flex($value) {
+  display: flex;
+  align-items: center;
+  justify-content: $value;
+}
+@mixin tiltle {
+  text-transform: uppercase;
+  font-weight: 600;
+  color: white;
+  font-size: 180%;
+}

@@ -1,0 +1,153 @@
+#dat-ve-film {
+  position: relative;
+  color: white;
+  display: flex;
+  &::before {
+    content: "";
+    background-image: url(../img/home-movie/movie-details-bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    background-attachment: fixed;
+    background-position: top;
+    width: 100%;
+    height: 100%;
+  }
+  .content-left {
+    width: 70%;
+    padding: 2% 2%;
+    padding-bottom: 6%;
+    .tiltle {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      h3 {
+        color: white;
+        text-transform: uppercase;
+        font-weight: 600;
+      }
+      .count-time {
+        font-size: 17px;
+        text-align: center;
+      }
+    }
+    .chon-ghe {
+      padding-top: 4%;
+      .seat {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10%;
+        .seat-trong,
+        .seat-da-chon,
+        .seat-da-dat,
+        .seat-disable {
+          height: 30px;
+          display: inline-block;
+          width: 15%;
+          background: white;
+          border-radius: 5px;
+        }
+        .seat-da-chon {
+          background: $color-1;
+        }
+        .seat-da-dat {
+          background: $color-3;
+        }
+        .seat-disable {
+          background: $color-2;
+        }
+        .phan-loai {
+          font-size: 17px;
+          padding-left: 10%;
+        }
+      }
+      .select-seat {
+        background: $color-2;
+        padding: 0;
+        .man-hinh {
+          width: 100%;
+          height: 7%;
+          background: black;
+        }
+        .ghe-ngoi {
+          h5 {
+            text-align: center;
+            margin-top: 2%;
+          }
+          .vi-tri-ghe {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 10%;
+            div {
+              height: 30px;
+              width: 7%;
+              background: white;
+              border-radius: 5px;
+              text-align: center;
+              line-height: 30px;
+              span {
+                color: black;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .content-right {
+    width: 30%;
+    height: auto;
+    background: $color-3;
+    position: relative;
+    box-shadow: rgba(0, 0, 0, 0.9) 6px 7px 5px;
+    .thong-tin {
+      width: 90%;
+      margin: 0 auto;
+      .tong-tien {
+        text-align: center;
+        font-size: 3rem;
+        border-bottom: 2px solid;
+      }
+      .detail-film {
+        padding: 5% 0;
+        border-bottom: 2px solid;
+        font-size: 1rem;
+      }
+      .seat-select {
+        display: flex;
+        justify-content: space-between;
+        padding: 5% 0;
+        border-bottom: 2px solid;
+        font-size: 1rem;
+      }
+      .combo {
+        display: flex;
+        justify-content: space-between;
+        padding: 5% 0;
+        border-bottom: 2px solid;
+        font-size: 1rem;
+        cursor: pointer;
+      }
+      .btn-dat-ve {
+        padding: 10% 0;
+        width: 100%;
+        button {
+          width: 100%;
+          border-radius: 5px;
+          border: none;
+          padding: 4% 0px;
+          background: $color-2;
+          &:hover {
+            background: $color-1;
+            transition: all 0.5s;
+          }
+          a {
+            @include Element-a();
+            font-size: 2rem;
+            text-transform: uppercase;
+          }
+        }
+      }
+    }
+  }
+}

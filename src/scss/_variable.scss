@@ -1,0 +1,9 @@
+$color-1: #ec7532;
+$color-2: #141e27;
+$color-3: #241734;
+
+:export {
+  colorOne: $color-1;
+  colorThree: $color-3;
+  colorTwo: $color-2;
+}

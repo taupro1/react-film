@@ -1,0 +1,75 @@
+#dat-ve {
+  display: flex;
+  justify-content: space-around;
+  background-color: $color-2;
+  .content-left {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    h2 {
+      height: 23%;
+      width: 71%;
+      background: $color-3;
+      box-shadow: rgba(0, 0, 0, 0.9) 2px 5px 3px;
+      text-align: center;
+      img {
+        float: left;
+        height: 83%;
+        margin-left: 4%;
+        margin-top: 1%;
+      }
+      span {
+        @include tiltle();
+        line-height: 7rem;
+      }
+    }
+  }
+  .content-right {
+    width: 40%;
+    .select-item {
+      position: relative;
+      .select-tiltle {
+        position: absolute;
+        z-index: 3;
+        color: white;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        padding: 0 4%;
+        font-size: 30px;
+      }
+      .select-group {
+        position: relative;
+        width: 86%;
+
+        .select-dat-ve {
+          background-color: rgb(22, 23, 24);
+          font-size: 188%;
+          color: white;
+          padding: 0 15%;
+          margin: 7% 0;
+          text-transform: capitalize;
+        }
+      }
+    }
+    .center {
+      text-align: center;
+      width: 86%;
+      .btn-dat-ve {
+        padding: 9px 2rem;
+        border: 2px solid $color-1;
+        border-radius: 14px;
+        font-size: 188%;
+        margin: 24px 0;
+        text-transform: uppercase;
+        background-color: black;
+        color: white;
+        &:hover {
+          background-color: $color-1;
+          transition: all 0.3s;
+        }
+      }
+    }
+  }
+}

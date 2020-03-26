@@ -1,0 +1,181 @@
+#home-movie {
+  position: relative;
+  padding-bottom: 2rem;
+  &::before {
+    content: "";
+    background-image: url(../img/home-movie/movie-details-bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    background-attachment: fixed;
+    background-position: top;
+    width: 100%;
+    height: 100%;
+  }
+  .title {
+    position: relative;
+    height: 14rem;
+    @include flex(center);
+    list-style: none;
+    padding-left: 0;
+    padding-top: 3rem;
+    a {
+      @include Element-a();
+      @include tiltle();
+    }
+    li {
+      width: 26%;
+      @include flex(center);
+      height: 50%;
+      box-shadow: rgba(0, 0, 0, 0.9) 6px 7px 5px;
+      position: relative;
+    }
+    .movie-play {
+      margin-right: 3rem;
+      cursor: pointer;
+      // &::after {
+      //   bottom: 0;
+      //   content: "";
+      //   transform: skewX(-15deg);
+      //   background-color: $color-1;
+      //   position: absolute;
+      //   background-image: initial;
+      //   box-shadow: rgba(0, 0, 0, 0.9) 6px 7px 5px;
+      //   top: 0%;
+      //   width: 10%;
+      //   height: 100%;
+      //   right: -6%;
+      // }
+    }
+    .movie-soon {
+      cursor: pointer;
+      // &::before {
+      //   bottom: 0;
+      //   content: "";
+      //   transform: skewX(165deg);
+      //   background-color: $color-3;
+      //   position: absolute;
+      //   background-image: initial;
+      //   box-shadow: rgba(0, 0, 0, 0.9) -3px 7px 3px;
+      //   top: 0%;
+      //   width: 14%;
+      //   left: -6%;
+      //   height: 100%;
+      // }
+    }
+  }
+  .show-movie {
+    .my-movie {
+      width: 90%;
+      margin: 0 auto;
+      .movie {
+        .film-item {
+          position: relative;
+        }
+        img {
+          width: 91%;
+          height: 80%;
+          margin: 0 auto;
+          &:hover {
+            transform: scale(1.1);
+            transition: ease-in-out 0.5s;
+            cursor: pointer;
+          }
+        }
+        .name-movie {
+          @include Element-a();
+          width: 91%;
+          display: flex;
+          justify-content: center;
+          text-transform: uppercase;
+          font-size: 109%;
+          margin: 0 auto;
+          margin-top: 10%;
+          &:hover {
+            color: $color-1;
+            transition: ease-in-out 0.3s;
+            cursor: pointer;
+          }
+        }
+        .mua-ve {
+          text-align: center;
+          width: 91%;
+          color: white;
+          background-color: #ec753273;
+          padding: 5% 0;
+          border-radius: 5px;
+          margin: 0 auto;
+          margin-top: 10%;
+          a {
+            text-decoration: none;
+            color: white;
+            font-size: 130%;
+            font-weight: 700;
+          }
+          &:hover {
+            background-color: $color-1;
+            transition: ease-out 1s;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+  .soon-movie {
+    .my-movie {
+      width: 90%;
+      margin: 0 auto;
+      .movie {
+        .film-item {
+          position: relative;
+        }
+        img {
+          width: 91%;
+          height: 80%;
+          margin: 0 auto;
+          &:hover {
+            transform: scale(1.1);
+            transition: ease-in-out 0.5s;
+            cursor: pointer;
+          }
+        }
+        .name-movie {
+          @include Element-a();
+          width: 91%;
+          display: flex;
+          justify-content: center;
+          text-transform: uppercase;
+          margin: 0 auto;
+          margin-top: 10%;
+          font-size: 109%;
+          &:hover {
+            color: $color-1;
+            transition: ease-in-out 0.3s;
+            cursor: pointer;
+          }
+        }
+        .mua-ve {
+          text-align: center;
+          width: 91%;
+          color: white;
+          background-color: #ec753273;
+          padding: 5% 0;
+          border-radius: 5px;
+          margin: 0 auto;
+          margin-top: 10%;
+          a {
+            text-decoration: none;
+            color: white;
+            font-size: 130%;
+            font-weight: 700;
+          }
+          &:hover {
+            background-color: $color-1;
+            transition: ease-out 1s;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}

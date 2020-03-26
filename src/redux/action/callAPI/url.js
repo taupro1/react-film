@@ -1,0 +1,1 @@
+export const apiQuanLyNguoiDung = "http://5e1a933531118200148f20b2.mockapi.io";
