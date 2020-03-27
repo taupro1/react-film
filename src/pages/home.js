@@ -12,14 +12,12 @@ export default class HomePage extends Component {
     render() {
         return (
             <div>
-                <Header />
                 <Carousel />
                 <TicketBooking />
                 <HomeMovie />
                 <Cinema />
                 <NewsReview />
                 <Promotion />
-                <Footer />
             </div>
         )
     }

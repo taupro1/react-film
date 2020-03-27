@@ -23,39 +23,50 @@ const initalState = {
             href: "https://www.youtube.com/watch?v=UH_67fgOrj0"
         }
     ],
+    // listHomeMovie: [
+    //     {
+    //         "maPhim": 1,
+    //         "hinhAnh": "./img/home-movie/show-movie/HO00001895.jfif",
+    //         tenPhim: "Nắng 3: Lời hứa của cha"
+    //     },
+    //     {
+    //         "maPhim": 2,
+    //         "hinhAnh": "./img/home-movie/show-movie/HO00001903.jfif",
+    //         "tenPhim": "The invisible man"
+    //     },
+    //     {
+    //         "maPhim": 3,
+    //         "hinhAnh": "./img/home-movie/show-movie/HO00001973.jfif",
+    //         "tenPhim": "The protector"
+    //     },
+    //     {
+    //         "maPhim": 4,
+    //         "hinhAnh": "./img/home-movie/show-movie/HO00002012.jfif",
+    //         "tenPhim": "The call of the wild"
+    //     },
+    //     {
+    //         "maPhim": 5,
+    //         "hinhAnh": "./img/home-movie/show-movie/HO00002018.jfif",
+    //         "tenPhim": "Onward"
+    //     },
+    //     {
+    //         "maPhim": 6,
+    //         "hinhAnh": "./img/home-movie/show-movie/HO00002044.jfif",
+    //         "tenPhim": "Bloodshot"
+    //     },
+    //     {
+    //         "maPhim": 7,
+    //         "hinhAnh": "./img/home-movie/show-movie/HO00002053.jfif",
+    //         "tenPhim": "I still believe"
+    //     },
+    //     {
+    //         "maPhim": 8,
+    //         "hinhAnh": "./img/home-movie/show-movie/HO00002055.png",
+    //         "tenPhim": "Heartbeat"
+    //     }
+    // ],
     listHomeMovie: [
-        {
-            img: "./img/home-movie/show-movie/HO00001895.jfif",
-            nameFilm: "Nắng 3: Lời hứa của cha"
-        },
-        {
-            img: "./img/home-movie/show-movie/HO00001903.jfif",
-            nameFilm: "The invisible man"
-        },
-        {
-            img: "./img/home-movie/show-movie/HO00001973.jfif",
-            nameFilm: "The protector"
-        },
-        {
-            img: "./img/home-movie/show-movie/HO00002012.jfif",
-            nameFilm: "The call of the wild"
-        },
-        {
-            img: "./img/home-movie/show-movie/HO00002018.jfif",
-            nameFilm: "Onward"
-        },
-        {
-            img: "./img/home-movie/show-movie/HO00002044.jfif",
-            nameFilm: "Bloodshot"
-        },
-        {
-            img: "./img/home-movie/show-movie/HO00002053.jfif",
-            nameFilm: "I still believe"
-        },
-        {
-            img: "./img/home-movie/show-movie/HO00002055.png",
-            nameFilm: "Heartbeat"
-        }
+
     ],
     listSoonMovie: [
         {
@@ -95,35 +106,67 @@ const initalState = {
         {
             name: "bhd",
             img: "./img/cinema/logo/bhd.png",
+            nameCinema: "BHD STAR",
+            heThongRap1: "Vincom Thảo Điền",
+            heThongRap2: "Vincom Lê Văn Việt",
+            heThongRap3: "Vincom Quang Trung",
+            diaChi: "L5-Megamall, 159 XL Hà Nội , Q.2"
         },
         {
             name: "cgv",
-            img: "./img/cinema/logo/cgv.png"
+            img: "./img/cinema/logo/cgv.png",
+            nameCinema: "CGV",
+            heThongRap1: "Vincom Thảo Điền",
+            heThongRap2: "Vincom Lê Văn Việt",
+            heThongRap3: "Vincom Quang Trung",
+            diaChi: "L5-Megamall, 159 XL Hà Nội , Q.2"
         },
         {
             name: "ddc",
-            img: "./img/cinema/logo/ddc-cinema.png"
+            img: "./img/cinema/logo/ddc-cinema.png",
+            nameCinema: "DDC",
+            heThongRap1: "Vincom Thảo Điền",
+            heThongRap2: "Vincom Lê Văn Việt",
+            heThongRap3: "Vincom Quang Trung",
+            diaChi: "L5-Megamall, 159 XL Hà Nội , Q.2"
         },
         {
             name: "galaxy",
-            img: "./img/cinema/logo/galaxy-cine.png"
+            img: "./img/cinema/logo/galaxy-cine.png",
+            nameCinema: "GALAXY CINE",
+            heThongRap1: "Vincom Thảo Điền",
+            heThongRap2: "Vincom Lê Văn Việt",
+            heThongRap3: "Vincom Quang Trung",
+            diaChi: "L5-Megamall, 159 XL Hà Nội , Q.2"
         },
         {
             name: "mega",
-            img: "./img/cinema/logo/mega.png"
+            img: "./img/cinema/logo/mega.png",
+            nameCinema: "MEGA",
+            heThongRap1: "Vincom Thảo Điền",
+            heThongRap2: "Vincom Lê Văn Việt",
+            heThongRap3: "Vincom Quang Trung",
+            diaChi: "L5-Megamall, 159 XL Hà Nội , Q.2"
         },
     ],
     listDetailCinema: [
 
     ],
     listUser: [
-    ]
+    ],
+    listDetailFilm: {}
 }
 
 const homeReducers = (state = initalState, action) => {
     switch (action.type) {
         case actionType.actPostUserRegister:
             state.listUser = action.data;
+            return { ...state };
+        case actionType.actGetListShowFilm:
+            state.listHomeMovie = action.data;
+            return { ...state }
+        case actionType.actGetDetailFilm:
+            state.listDetailFilm = action.data
             return { ...state };
         default:
             return { ...state };

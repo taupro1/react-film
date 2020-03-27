@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
+import * as actionApi from "../../../redux/action/action-api/index"
 
 
 class Header extends Component {
@@ -29,17 +30,8 @@ class Header extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        if (this.props.listUser) {
-            this.props.listUser.map((item) => {
-                if (item.taiKhoan === this.state.user.taiKhoan && item.matKhau === this.state.user.matKhau) {
-                    NotificationManager.success("Đăng nhập thành công")
-                }
-                else {
-                    NotificationManager.error("Tài khoản không tồn tại")
-                }
-            })
-        }
-        NotificationManager.error("Tài khoản không tồn tại")
+        this.props.postUser(this.state.user)
+        NotificationManager.success("Login Success")
         this.setState({
             user: {
                 taiKhoan: "",
@@ -120,7 +112,7 @@ class Header extends Component {
                                     {/* <i className="fa fa-facebook i-facebook" aria-hidden="true" /> */}
                                     <FontAwesomeIcon icon={["fab", "facebook-square"]} className="i-facebook" />
                                 </a>
-                                <Link to="/" exact className="logo-header">
+                                <Link to="/" className="logo-header">
                                     <img src="./img/logo-header/logo.png"></img>
                                 </Link>
                                 <div className="d-flex align-items-center">
@@ -171,6 +163,14 @@ class Header extends Component {
     }
 }
 
+const mapDispatchToProps = dispatch => {
+    return {
+        postUser: data => {
+            dispatch(actionApi.actPostUserLoginApi(data))
+        }
+    }
+}
+
 
 const mapStateToProps = state => {
     return {
@@ -178,4 +178,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, null)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

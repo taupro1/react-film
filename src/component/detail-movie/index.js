@@ -1,19 +1,28 @@
 import React, { Component } from 'react'
+import { connect } from "react-redux";
+import * as callApi from "../../redux/action/action-api/index"
 
-export default class DetailMovie extends Component {
+class DetailMovie extends Component {
+
+    componentDidMount() {
+        let id = this.props.match.params.id;
+        this.props.getDetailFilm(id)
+    }
     render() {
+        console.log(this.props.detailFilm);
+        const { detailFilm } = this.props;
         return (
             <section id="film">
                 <div className="container">
                     <div className="row content-film">
                         <div className="col-sm-5 content-left">
                             <div>
-                                <img src="./img/home-movie/show-movie/HO00001895.jfif" alt />
+                                <img src={detailFilm.hinhAnh} alt />
                             </div>
                         </div>
                         <div className="col-sm-7 content-right">
                             <div>
-                                <h3>Nắng 3: Lời hứa của cha</h3>
+                                <h3>{detailFilm.tenPhim}</h3>
                                 <div className="chi-tiet">
                                     <div className="thoi-luong">
                                         Thời lượng: <span>110 phút</span>
@@ -33,10 +42,13 @@ export default class DetailMovie extends Component {
                                     <div className="do-tuoi">
                                         Độ tuổi: <span>C13 - PHIM CẤM PHỔ BIẾN ĐẾN KHÁN GIẢ DƯỚI 13 TUỔI</span>
                                     </div>
+                                    <div className="mo-ta">
+                                        Nội dung: <span>{detailFilm.moTa}</span>
+                                    </div>
                                 </div>
                                 <div className="btn-trailer">
                                     <button>
-                                        <a href="https://www.youtube.com/watch?v=DymKqNH_m8w&t=19s" className="venobox vbox-item" data-vbtype="video">Xem Trailer</a>
+                                        <a href={detailFilm.trailer} className="venobox vbox-item" data-vbtype="video">Xem Trailer</a>
                                     </button>
                                 </div>
                             </div>
@@ -47,3 +59,18 @@ export default class DetailMovie extends Component {
         )
     }
 }
+
+const mapDispatchToProps = dispatch => {
+    return {
+        getDetailFilm: (id) => {
+            dispatch(callApi.actGetDetailFilm(id))
+        }
+    }
+}
+
+const mapStateToProps = state => {
+    return {
+        detailFilm: state.homeReducers.listDetailFilm
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(DetailMovie);

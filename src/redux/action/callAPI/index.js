@@ -8,3 +8,20 @@ export const callApiQuanLyNguoiDung = (method, uri, data) => {
         data
     })
 }
+
+// Api cybersoft
+export const callApiQuanLiPhim = (method, uri, data) => {
+    return Axios({
+        method,
+        url: `${apiUrl.apiQuanLiPhim}/${uri}`,
+        data
+    })
+}
+
+export const callApiQuanLiRap = (method, uri, data) => {
+    return Axios({
+        method,
+        url: `${apiUrl.apiQuanLiRap}/${uri}`,
+        data
+    })
+}

@@ -1,11 +1,17 @@
 import HomePage from "../pages/home";
+import DetailMovie from "../component/detail-movie";
 
-const routesList = [
+const routesHome = [
     {
         path: "/",
         exact: true,
         component: HomePage
+    },
+    {
+        path: "/detail/:id",
+        exact: false,
+        component: DetailMovie
     }
 ]
 
-export default routesList;
+export default routesHome;

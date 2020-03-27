@@ -4,6 +4,9 @@ import ShowMovieItem from './show-movie-item';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Axios from 'axios';
+import * as callApi from "../../../redux/action/action-api/index"
+import * as actionType from "../../../redux/actionType/index"
 
 class ShowMovie extends Component {
     constructor(props) {
@@ -14,6 +17,9 @@ class ShowMovie extends Component {
         }
     }
 
+    componentDidMount() {
+        this.props.getListShowMovie()
+    }
 
     renderHtml = () => {
         return this.props.listShowMovie.map((item, index) => {
@@ -41,10 +47,18 @@ class ShowMovie extends Component {
     }
 }
 
+const mapDispatchToProps = dispatch => {
+    return {
+        getListShowMovie: () => {
+            dispatch(callApi.actGetListFilmApi())
+        }
+    }
+}
+
 const mapStateToProps = state => {
     return {
         listShowMovie: state.homeReducers.listHomeMovie,
     }
 }
 
-export default connect(mapStateToProps, null)(ShowMovie);
+export default connect(mapStateToProps, mapDispatchToProps)(ShowMovie);

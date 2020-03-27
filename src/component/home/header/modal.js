@@ -41,13 +41,10 @@ class ModalHeader extends Component {
         }
     }
 
-    componentDidMount() {
-        this.props.getUser();
-    }
-
     handleSubmit = event => {
         event.preventDefault();
-        this.props.postUser(this.state.user);
+        this.props.postUser(this.state.user)
+        NotificationManager.success("Đăng kí thành công");
         this.setState({
             user: {
                 hoTen: "",
@@ -77,14 +74,14 @@ class ModalHeader extends Component {
         switch (name) {
             case "taiKhoan":
                 taiKhoanValid = status !== "" ? false : true;
-                if (this.props.listUser) {
-                    this.props.listUser.map(item => {
-                        if (item.taiKhoan === this.state.user.taiKhoan) {
-                            taiKhoanValid = false;
-                            status = "Tài khoản đã tồn tại"
-                        }
-                    })
-                }
+                // if (this.props.listUser) {
+                //     this.props.listUser.map(item => {
+                //         if (item.taiKhoan === this.state.user.taiKhoan) {
+                //             taiKhoanValid = false;
+                //             status = "Tài khoản đã tồn tại"
+                //         }
+                //     })
+                // }
                 break;
             case "email":
                 emailValid = status !== "" ? false : true;
@@ -154,42 +151,42 @@ class ModalHeader extends Component {
                             <form action className="form-login form-register">
                                 <div className="form-input">
                                     <label htmlFor="tenDangNhap">Tên đăng nhập</label>
-                                    <input type="text" name="taiKhoan" value={user.taiKhoan} onChange={this.handleOnchange} onBlur={this.handleError} onKeyUp={this.handleError} id="tenDangNhap" placeholder />
+                                    <input type="text" name="taiKhoan" value={user.taiKhoan} onChange={this.handleOnchange} onBlur={this.handleError} onKeyUp={this.handleError} id="tenDangNhap" />
                                     {
                                         error.taiKhoan !== "" ? (<div className="error">{error.taiKhoan}</div>) : ""
                                     }
                                 </div>
                                 <div className="form-input">
                                     <label htmlFor="email-user">Email</label>
-                                    <input type="email" name="email" value={user.email} onChange={this.handleOnchange} onBlur={this.handleError} onKeyUp={this.handleError} id="email-user" placeholder />
+                                    <input type="email" name="email" value={user.email} onChange={this.handleOnchange} onBlur={this.handleError} onKeyUp={this.handleError} id="email-user" />
                                     {
                                         error.email !== "" ? (<div className="error">{error.email}</div>) : ""
                                     }
                                 </div>
                                 <div className="form-input">
                                     <label htmlFor="tenNguoiDung">Họ và tên</label>
-                                    <input type="text" name="hoTen" value={user.hoTen} onChange={this.handleOnchange} onBlur={this.handleError} onKeyUp={this.handleError} id="tenNguoiDung" placeholder />
+                                    <input type="text" name="hoTen" value={user.hoTen} onChange={this.handleOnchange} onBlur={this.handleError} onKeyUp={this.handleError} id="tenNguoiDung" />
                                     {
                                         error.hoTen !== "" ? (<div className="error">{error.hoTen}</div>) : ""
                                     }
                                 </div>
                                 <div className="form-input">
                                     <label htmlFor="phone">Số điện thoại</label>
-                                    <input type="phone" name="soDt" value={user.soDt} onChange={this.handleOnchange} onBlur={this.handleError} onKeyUp={this.handleError} id="phone" placeholder />
+                                    <input type="phone" name="soDt" value={user.soDt} onChange={this.handleOnchange} onBlur={this.handleError} onKeyUp={this.handleError} id="phone" />
                                     {
                                         error.soDt !== "" ? (<div className="error">{error.soDt}</div>) : ""
                                     }
                                 </div>
                                 <div className="form-input">
                                     <label htmlFor="password-user">Mật khẩu</label>
-                                    <input type="password" name="matKhau" value={user.matKhau} onChange={this.handleOnchange} onBlur={this.handleError} onKeyUp={this.handleError} id="password-user" placeholder />
+                                    <input type="password" name="matKhau" value={user.matKhau} onChange={this.handleOnchange} onBlur={this.handleError} onKeyUp={this.handleError} id="password-user" />
                                     {
                                         error.matKhau !== "" ? (<div className="error">{error.matKhau}</div>) : ""
                                     }
                                 </div>
                                 <div className="form-input">
                                     <label htmlFor="password-confirm">Nhập lại mật khẩu</label>
-                                    <input type="password" value={user.matKhauConfirm} onChange={this.handleOnchange} name="matKhauConfirm" onBlur={this.handleError} onKeyUp={this.handleError} id="password-confirm" placeholder />
+                                    <input type="password" value={user.matKhauConfirm} onChange={this.handleOnchange} name="matKhauConfirm" onBlur={this.handleError} onKeyUp={this.handleError} id="password-confirm" />
                                     {
                                         error.matKhauConfirm !== "" ? (<div className="error">{error.matKhauConfirm}</div>) : ""
                                     }
@@ -212,7 +209,7 @@ class ModalHeader extends Component {
 const mapDispatchToProps = dispatch => {
     return {
         postUser: (data) => {
-            dispatch(actionApi.actPostUserApi(data))
+            dispatch(actionApi.actPostUserRegisterApi(data))
         },
         getUser: () => {
             dispatch(actionApi.actGetUserApi())

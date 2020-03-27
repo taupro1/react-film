@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from "react-redux"
 
 export default class ListCinema extends Component {
     render() {
@@ -6,9 +7,18 @@ export default class ListCinema extends Component {
         return (
             <li>
                 <a href>
-                    <img src={item.img} alt />
+                    <img src={item.logo} className={this.props.className} onClick={() => { this.props.img(item.maHeThongRap); }} />
                 </a>
             </li>
         )
     }
 }
+
+
+
+
+
+
+
+
+
