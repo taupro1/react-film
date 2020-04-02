@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 import * as actionApi from "../../../redux/action/action-api/index"
+import { Button } from "@material-ui/core"
 
 
 class Header extends Component {
@@ -109,7 +110,6 @@ class Header extends Component {
                             </div>
                             <div className="col-sm-4 header-between d-flex justify-content-around">
                                 <a className="d-flex align-items-center" target="_blank" href="https://www.facebook.com/profile.php?id=100004391253792">
-                                    {/* <i className="fa fa-facebook i-facebook" aria-hidden="true" /> */}
                                     <FontAwesomeIcon icon={["fab", "facebook-square"]} className="i-facebook" />
                                 </a>
                                 <Link to="/" className="logo-header">
@@ -126,9 +126,9 @@ class Header extends Component {
                                         <li className="nav-item color-item">
                                             <a className="nav-link active" onClick={this.handleClickLogin} href="#" id="login-logo">ĐĂNG NHẬP</a>
                                         </li>
-                                        <li className="nav-item color-item">
+                                        {/* <li className="nav-item color-item">
                                             <a className="nav-link" data-toggle="modal" data-target="#myModal" href="#">ĐĂNG KÝ</a>
-                                        </li>
+                                        </li> */}
                                     </ul>
                                     <div id="login" style={{ display: display }}>
                                         <form action className="form-login">
@@ -148,6 +148,11 @@ class Header extends Component {
                                                 <button type="submit" onClick={this.handleSubmit} id="logo-submit" disabled={!this.state.formValid}>
                                                     Đăng nhập
                   </button>
+                                            </div>
+                                            <div>
+                                                <button id="register">
+                                                    <Link to={"/register"}>Đăng ký</Link>
+                                                </button>
                                             </div>
                                             <NotificationContainer />
                                         </form>

@@ -1,5 +1,10 @@
-import HomePage from "../pages/home";
-import DetailMovie from "../component/detail-movie";
+// import HomePage from "../pages/home";
+// import Detail from "../pages/Detail";
+import { lazy } from "react"
+import Register from "../component/home/register";
+
+const HomePage = lazy(() => import("../pages/home"));
+const Detail = lazy(() => import("../pages/Detail"));
 
 const routesHome = [
     {
@@ -10,7 +15,12 @@ const routesHome = [
     {
         path: "/detail/:id",
         exact: false,
-        component: DetailMovie
+        component: Detail
+    },
+    {
+        path: "/register",
+        exact: false,
+        component: Register
     }
 ]
 

@@ -1,39 +1,30 @@
-import React, { Component } from 'react'
+import React, { Component, PureComponent } from 'react'
 import { connect } from "react-redux"
 import classNames from "classnames"
 
-class LocationCinema extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            maCumRap: "",
-            isValid: true
-        }
-    }
-
-
+class LocationCinema extends PureComponent {
+    // 1. Nhận maCumRap từ hàm RenderHtml( khi onlick vào 1 content cụm rạp)
+    // 2. Gửi maCumRap lên store (để đối chiếu vs listFilmItem)
+    // 3. Khi click maCumRap sẽ được thay đổi và isValid=false(lúc này cụm rạp đầu tiên sẽ ko sáng) thay vào đó là cụm rạp khi được click
     handleOpacityCinema = (maCumRap) => {
         this.props.getMaCumRap(maCumRap)
-        this.setState({
-            maCumRap,
-            isValid: false
-        })
+        this.props.editIsvalid();
     }
 
-    componentWillReceiveProps() {
-        this.setState({
-            isValid: true,
-        })
-    }
-
+    // 1. Nhận tham số từ renderHtml ( classname)
+    // 2. Cụm rạp đầu tiên sẽ được active(sáng lên) (isValid=true)
+    // 3. Cụm rạp sẽ được active(sáng lên) khi dc click
     renderOpacityCinema = (maCumRap, index) => {
-        if (this.state.isValid && index === 0) {
+        if (this.props.isValid && index === 0) {     // hiện sáng hệ thống rạp đầu tiền (index là vị trí hệ thống rạp đầu tiên của từng rạp)
+            this.props.getMaCumRapFirst(maCumRap)
             return "active"
         }
-        if (this.state.maCumRap === maCumRap) {
+        if (this.props.maCumRap === maCumRap) {
             return "active"
         }
     }
+
+    // Duyệt ra các content cụm rạp với từng hệ thống rạp
     renderHtml = () => {
         let cinema = this.props.listDetailCinema[0];
         let content = [];
@@ -72,15 +63,30 @@ const mapStateToProps = state => {
     return {
         listDetailCinema: state.cinemaReducers.listDetailCinema,
         isValid: state.cinemaReducers.isValid,
+        maCumRap: state.cinemaReducers.maCumRap  // Nhận danh sách các cụm rạp từ store
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        getMaCumRap: data => {
+        getMaCumRap: data => {              // Gửi maCumRap lên store để đối chiếu bên listFilmItem
             let action = {
                 type: "GET-MA-CUM-RAP",
                 data
+            }
+            dispatch(action)
+        },
+        getMaCumRapFirst: maCumRap => {    // Gửi maCumRap đầu tiên lên store để đối chiếu bên listFilmItem
+            let action = {
+                type: "GET-MA-CUM-RAP-FIRST",
+                data: maCumRap
+            }
+            dispatch(action)
+        },
+        editIsvalid: () => {
+            let action = {
+                type: "EDIT-ISVALID",
+                data: false
             }
             dispatch(action)
         }

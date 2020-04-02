@@ -1,15 +1,16 @@
-import React from 'react';
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import React, { Fragment, Suspense, lazy } from 'react';
+import { BrowserRouter, Switch } from "react-router-dom";
 import './App.css';
 
 
 // font awesome
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab, faFacebookSquare } from '@fortawesome/free-brands-svg-icons'
-import { faPhoneSquare, faPlay, faFilm, faHome, faCalendarPlus, faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
+import { faPhoneSquare, faPlay, faFilm, faHome, faCalendarPlus, faCalendarAlt, faStar } from '@fortawesome/free-solid-svg-icons'
 import routesHome from './route/routes.js';
 import HomeTemplate from './template/HomeTemplate';
-library.add(fab, faFacebookSquare, faPhoneSquare, faPlay, faFilm, faHome, faCalendarPlus, faCalendarAlt);
+import LottieAnimation from './animation';
+library.add(fab, faFacebookSquare, faPhoneSquare, faPlay, faFilm, faHome, faCalendarPlus, faCalendarAlt, faStar);
 
 
 
@@ -23,11 +24,13 @@ function App() {
   }
   return (
     <BrowserRouter>
-      <div>
-        <Switch>
-          {showMenuHome(routesHome)}
-        </Switch>
-      </div>
+      <Fragment>
+        <Suspense fallback={<LottieAnimation />}>
+          <Switch>
+            {showMenuHome(routesHome)}
+          </Switch>
+        </Suspense>
+      </Fragment>
     </BrowserRouter>
   );
 }

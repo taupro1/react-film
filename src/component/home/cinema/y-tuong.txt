@@ -1,0 +1,11 @@
+Khi click 1 hệ thống rạp
+1. Hiện các cụm rạp với maHeThongRap tương ứng
+2. Giá trị isValid(store) = true
+3. Nếu isValid=true thì cụm rạp đầu tiền sẽ sáng
+4. Nếu isValid=true thì danh sách phim của cụm rạp đầu tiên sẽ hiện ra
+
+Khi click giữa các cụm rạp
+1. Hiện thông tin các bộ phim với maCumRap tương ứng
+2. Giá trị isValid(store)=false
+3. Nếu isValid=false thì cụm rạp được click sẽ sáng
+4. Nếu isValid=false thì danh sách phim hiện ra tương ứng với cụm rạp được click

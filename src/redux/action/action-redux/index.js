@@ -23,6 +23,20 @@ export const actGetDetailFilm = data => {
     }
 }
 
+export const actEditIsvalid = data => {
+    return {
+        type: actionType.actEditIsvalid,
+        data
+    }
+}
+
+export const actGetListCumRapDetail = data => {
+    return {
+        type: actionType.actGetListCumRapDetail,
+        data
+    }
+}
+
 // Quan li rap
 export const actGetListCinema = (data, type) => {
     return {

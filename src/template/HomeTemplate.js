@@ -6,9 +6,9 @@ import Header from "../component/home/header/header"
 const HomeComponent = props => {
     return (
         <Fragment>
-            <Header />
+            {/* <Header /> */}
             {props.children}
-            <Footer />
+            {/* <Footer /> */}
         </Fragment>
     )
 }

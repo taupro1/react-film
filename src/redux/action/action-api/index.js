@@ -52,11 +52,15 @@ export const actGetListFilmApi = () => {
     }
 
 }
+
+
+// Quan li rap
 export const actGetDetailFilm = (id) => {
     return dispatch => {
-        callApi.callApiQuanLiPhim("GET", `LayThongTinPhim?MaPhim=${id}`, null)
+        callApi.callApiQuanLiRap("GET", `LayThongTinLichChieuPhim?MaPhim=${id}`, null)
             .then((rs) => {
                 dispatch(action.actGetDetailFilm(rs.data))
+                dispatch(action.actGetListCinema(false, actionType.actEditIsvalidAnimation))
             })
             .catch(() => {
 
@@ -64,7 +68,6 @@ export const actGetDetailFilm = (id) => {
     }
 }
 
-// Quan li rap
 export const actGetListCinemaApi = () => {
     return dispatch => {
         callApi.callApiQuanLiRap("GET", `LayThongTinHeThongRap`, null)
@@ -82,6 +85,18 @@ export const actGetListDetailCinemaApi = (maHeThongRap) => {
         callApi.callApiQuanLiRap("GET", `LayThongTinLichChieuHeThongRap?maHeThongRap=${maHeThongRap}&maNhom=GP01`)
             .then((rs) => {
                 dispatch(action.actGetListCinema(rs.data, actionType.actGetListDetailCinema))
+            })
+            .catch(() => {
+
+            })
+    }
+}
+
+export const actGetListCumRapDetail = (maHeThongRap) => {
+    return dispatch => {
+        callApi.callApiQuanLiRap("GET", `LayThongTinCumRapTheoHeThong?maHeThongRap=${maHeThongRap}`, null)
+            .then((rs) => {
+                dispatch(action.actGetListCumRapDetail(rs.data))
             })
             .catch(() => {
 

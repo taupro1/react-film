@@ -74,14 +74,6 @@ class ModalHeader extends Component {
         switch (name) {
             case "taiKhoan":
                 taiKhoanValid = status !== "" ? false : true;
-                // if (this.props.listUser) {
-                //     this.props.listUser.map(item => {
-                //         if (item.taiKhoan === this.state.user.taiKhoan) {
-                //             taiKhoanValid = false;
-                //             status = "Tài khoản đã tồn tại"
-                //         }
-                //     })
-                // }
                 break;
             case "email":
                 emailValid = status !== "" ? false : true;

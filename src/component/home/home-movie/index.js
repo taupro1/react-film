@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import ShowMovie from "./show-movie"
 import SoonMovie from './soon-movie'
-// import styled from "styled-components";
 import variable from "../../../scss/_variable.scss";
 
 export default class HomeMovie extends Component {

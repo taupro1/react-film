@@ -1,15 +1,19 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux"
+import { Link } from 'react-router-dom';
 
 class ListFilmItem extends Component {
-    constructor(props) {
-        super(props)
 
-        this.state = {
-
-        }
+    // Duyệt mảng danh sách phim kiếm hình ảnh tương ứng với mã phim (img của renderHtml)
+    duyetMangPhim = (maPhim) => {
+        let img = "";
+        this.props.listFilm.map((item) => {
+            if (item.maPhim === maPhim) {
+                img = item.hinhAnh
+            }
+        })
+        return img
     }
-
 
     renderHtml = () => {
         let cinema = this.props.listDetailCinema[0];
@@ -17,13 +21,13 @@ class ListFilmItem extends Component {
         for (let item in cinema) {
             if (item === "lstCumRap") {
                 let listContent = [];
-                cinema[item].map((list, index) => {
+                cinema[item].map((list) => {
                     let listContentFilm = []
-                    if (list.maCumRap === this.props.maCumRap) {
+                    if (list.maCumRap === this.props.maCumRap || (list.maCumRap === this.props.maCumRapFirst && this.props.isValid)) {
                         list.danhSachPhim.map(item => {
                             listContentFilm.push(
-                                <div className="film">
-                                    <img src="./img/home-movie/show-movie/HO00001895.jfif" alt />
+                                <Link className="film" to={`/detail/${item.maPhim}`}>
+                                    <img src={this.duyetMangPhim(item.maPhim)} />
                                     <div className="date-film">
                                         <ul>
                                             <li>
@@ -40,18 +44,20 @@ class ListFilmItem extends Component {
                                                     <ul>
                                                         <li>
                                                             <a href>
-                                                                11:45
-    </a>
+                                                                12:00
+                                                            </a>
                                                         </li>
-                                                        <li><a href>
-                                                            11:45
-    </a></li>
+                                                        <li>
+                                                            <a href>
+                                                                10:00
+                                                            </a>
+                                                        </li>
                                                     </ul>
                                                 </div>
                                             </li>
                                         </ul>
                                     </div>
-                                </div>
+                                </Link>
                             )
                         })
                     }
@@ -62,6 +68,7 @@ class ListFilmItem extends Component {
         }
         return content;
     }
+
     render() {
         return (
             <div className="list">
@@ -75,6 +82,9 @@ const mapStateToProps = state => {
     return {
         listDetailCinema: state.cinemaReducers.listDetailCinema,
         maCumRap: state.cinemaReducers.maCumRap,
+        maCumRapFirst: state.cinemaReducers.maCumRapFirst,
+        isValid: state.cinemaReducers.isValid,
+        listFilm: state.homeReducers.listHomeMovie
     }
 }
 export default connect(mapStateToProps, null)(ListFilmItem);

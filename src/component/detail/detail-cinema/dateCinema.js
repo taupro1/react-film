@@ -2,8 +2,13 @@ import React, { Component, PureComponent } from 'react';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { connect } from "react-redux"
 
-export default class DateCinema extends PureComponent {
+class DateCinema extends PureComponent {
+
+    renderHtml = () => {
+
+    }
     render() {
         const settings = {
             infinite: true,
@@ -51,3 +56,10 @@ export default class DateCinema extends PureComponent {
         )
     }
 }
+
+const mapStateToProps = state => {
+
+}
+
+export default connect(mapStateToProps, null)(DateCinema);
+

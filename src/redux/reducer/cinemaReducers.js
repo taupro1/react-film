@@ -6,6 +6,9 @@ const initalState = {
     listDetailCinema: [
     ],
     maCumRap: "",
+    maCumRapFirst: "",
+    isValid: true,
+    isValidCinema: false,
 }
 
 const cinemaReducers = (state = initalState, action) => {
@@ -18,6 +21,18 @@ const cinemaReducers = (state = initalState, action) => {
             return { ...state }
         case "GET-MA-CUM-RAP":
             state.maCumRap = action.data;
+            return { ...state }
+        case "GET-MA-CUM-RAP-FIRST":
+            state.maCumRapFirst = action.data
+            return { ...state }
+        case "EDIT-ISVALID":
+            state.isValid = action.data
+            return { ...state }
+        case "EDIT-ISVALID-CINEMA":
+            state.isValidCinema = action.data;
+            return { ...state }
+        case "EDIT-ISVALID-MACUMRAP":
+            state.maCumRap = "";
             return { ...state }
         default: return { ...state }
     }

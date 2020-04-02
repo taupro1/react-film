@@ -1,8 +1,8 @@
 import React, { Component, PureComponent } from 'react'
-import DateCinema from './dateCinema'
+import DateCinema from "./dateCinema"
 import ListFilmItem from './listFilmItem'
 
-export default class ListFilm extends PureComponent {
+export default class ListFilmDetail extends PureComponent {
     render() {
         return (
             <div className="col-sm-7 list-film">

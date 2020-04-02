@@ -33,36 +33,18 @@
     .movie-play {
       margin-right: 3rem;
       cursor: pointer;
-      // &::after {
-      //   bottom: 0;
-      //   content: "";
-      //   transform: skewX(-15deg);
-      //   background-color: $color-1;
-      //   position: absolute;
-      //   background-image: initial;
-      //   box-shadow: rgba(0, 0, 0, 0.9) 6px 7px 5px;
-      //   top: 0%;
-      //   width: 10%;
-      //   height: 100%;
-      //   right: -6%;
-      // }
     }
     .movie-soon {
       cursor: pointer;
-      // &::before {
-      //   bottom: 0;
-      //   content: "";
-      //   transform: skewX(165deg);
-      //   background-color: $color-3;
-      //   position: absolute;
-      //   background-image: initial;
-      //   box-shadow: rgba(0, 0, 0, 0.9) -3px 7px 3px;
-      //   top: 0%;
-      //   width: 14%;
-      //   left: -6%;
-      //   height: 100%;
-      // }
     }
+  }
+  .tiltle-detail {
+    position: relative;
+    @include tiltle();
+    text-align: center;
+    position: relative;
+    padding: 4% 0;
+    font-size: 212%;
   }
   .show-movie {
     .my-movie {
@@ -77,6 +59,7 @@
           height: 80%;
           margin: 0 auto;
           &:hover {
+            transition: delay 0.5s;
             transform: scale(1.1);
             transition: ease-in-out 0.5s;
             cursor: pointer;

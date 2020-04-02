@@ -1,16 +1,9 @@
 import React, { Component } from 'react'
-import { connect } from "react-redux";
-import * as callApi from "../../redux/action/action-api/index"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-class DetailMovie extends Component {
-
-    componentDidMount() {
-        let id = this.props.match.params.id;
-        this.props.getDetailFilm(id)
-    }
+export default class DetailFilm extends Component {
     render() {
-        console.log(this.props.detailFilm);
-        const { detailFilm } = this.props;
+        let { detailFilm } = this.props
         return (
             <section id="film">
                 <div className="container">
@@ -27,7 +20,7 @@ class DetailMovie extends Component {
                                     <div className="thoi-luong">
                                         Thời lượng: <span>110 phút</span>
                                     </div>
-                                    <div className="khoi-chieu">
+                                    {/* <div className="khoi-chieu">
                                         Khởi chiếu: <span>06/03/2020</span>
                                     </div>
                                     <div className="the-loai">
@@ -41,9 +34,12 @@ class DetailMovie extends Component {
                                     </div>
                                     <div className="do-tuoi">
                                         Độ tuổi: <span>C13 - PHIM CẤM PHỔ BIẾN ĐẾN KHÁN GIẢ DƯỚI 13 TUỔI</span>
-                                    </div>
+                                    </div> */}
                                     <div className="mo-ta">
                                         Nội dung: <span>{detailFilm.moTa}</span>
+                                    </div>
+                                    <div className="danh-gia-sao">
+                                        Đánh giá: <span>{detailFilm.danhGia}<FontAwesomeIcon icon="star" className="i-star" /></span>
                                     </div>
                                 </div>
                                 <div className="btn-trailer">
@@ -60,17 +56,3 @@ class DetailMovie extends Component {
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        getDetailFilm: (id) => {
-            dispatch(callApi.actGetDetailFilm(id))
-        }
-    }
-}
-
-const mapStateToProps = state => {
-    return {
-        detailFilm: state.homeReducers.listDetailFilm
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(DetailMovie);
