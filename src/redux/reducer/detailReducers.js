@@ -7,7 +7,10 @@ const initalState = {
     maHeThongRap: "",
     isValidCumRap: true,
     listCumRap: [],
-    maCumRapDetail: ""
+    maCumRapDetail: "",
+    listLichChieuPhim: "",
+    dateFilm: "",           //xác định được ngày chiếu để show ra giờ chiếu
+    isValidDate: true,    // date first sáng trc
 }
 
 const detailReducers = (state = initalState, action) => {
@@ -29,6 +32,15 @@ const detailReducers = (state = initalState, action) => {
             return { ...state }
         case "GET-MACUMRAP-DETAIL":
             state.maCumRapDetail = action.data
+            return { ...state }
+        case "GET-LICH-CHIEU-PHIM":
+            state.listLichChieuPhim = action.data
+            return { ...state }
+        case "GET-DATE-FILM":
+            state.dateFilm = action.data
+            return { ...state }
+        case "EDIT-ISVALID-DATE":
+            state.isValidDate = action.data;
             return { ...state }
         default:
             return { ...state }

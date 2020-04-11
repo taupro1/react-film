@@ -4,6 +4,7 @@ import LocationCinemaDetail from "./locationCinema"
 import { connect } from "react-redux";
 import ListFilmDetail from './listFilm';
 import variable from "../../../scss/_variable.scss"
+import DanhGiaPhim from './danh-gia';
 
 class DetailCinema extends Component {
     constructor(props) {
@@ -65,16 +66,21 @@ class DetailCinema extends Component {
                             </a>
                         </li>
                     </ul>
-                    <div className="list-cinema">
-                        <ul>
-                            {this.renderListCinema()}
-                        </ul>
-                    </div>
-                    <div className="item-cinema">
-                        <div className="item row">
-                            <LocationCinemaDetail />
-                            <ListFilmDetail />
+                    <div style={{ display: "none" }}>
+                        <div className="list-cinema">
+                            <ul>
+                                {this.renderListCinema()}
+                            </ul>
                         </div>
+                        <div className="item-cinema" >
+                            <div className="item row">
+                                <LocationCinemaDetail />
+                                <ListFilmDetail />
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <DanhGiaPhim />
                     </div>
                 </div>
             </section>

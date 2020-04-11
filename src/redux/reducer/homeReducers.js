@@ -23,7 +23,6 @@ const initalState = {
             href: "https://www.youtube.com/watch?v=UH_67fgOrj0"
         }
     ],
-
     listHomeMovie: [
     ],
     listDetailCinema: [
@@ -64,6 +63,9 @@ const initalState = {
     ],
     listUser: [
     ],
+    statusLogin: false,
+    listDetailFilm: {},
+    isValid: false
 
 }
 
@@ -74,6 +76,15 @@ const homeReducers = (state = initalState, action) => {
             return { ...state };
         case actionType.actGetListShowFilm:
             state.listHomeMovie = action.data;
+            return { ...state }
+        case "EDIT-STATUS-LOGIN":
+            state.statusLogin = action.data;
+            return { ...state }
+        case "GET-LIST-DETAIL-HOME":
+            state.listDetailFilm = action.data;
+            return { ...state }
+        case "EDIT-ISVALID-LOGIN-TICKET":
+            state.isValid = action.data
             return { ...state }
         default:
             return { ...state };

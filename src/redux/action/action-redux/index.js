@@ -1,8 +1,8 @@
 import * as actionType from "../../actionType/index"
 
-export const actGetUser = (data) => {
+export const actGetUser = (type, data) => {
     return {
-        type: actionType.actPostUserRegister,
+        type,
         data
     }
 }
@@ -39,6 +39,14 @@ export const actGetListCumRapDetail = data => {
 
 // Quan li rap
 export const actGetListCinema = (data, type) => {
+    return {
+        type,
+        data
+    }
+}
+
+// Quan li dat ve
+export const actGetListDetailBooking = (data, type) => {
     return {
         type,
         data

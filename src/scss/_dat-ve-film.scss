@@ -2,6 +2,8 @@
   position: relative;
   color: white;
   display: flex;
+  padding-top: 4%;
+  padding-bottom: 6%;
   &::before {
     content: "";
     background-image: url(../img/home-movie/movie-details-bg.jpg);
@@ -38,7 +40,7 @@
         align-items: center;
         margin-bottom: 10%;
         .seat-trong,
-        .seat-da-chon,
+        .seat-dang-chon,
         .seat-da-dat,
         .seat-disable {
           height: 30px;
@@ -47,14 +49,14 @@
           background: white;
           border-radius: 5px;
         }
-        .seat-da-chon {
+        .seat-dang-chon {
           background: $color-1;
         }
         .seat-da-dat {
           background: $color-3;
         }
         .seat-disable {
-          background: $color-2;
+          background: #e9b7a0d1;
         }
         .phan-loai {
           font-size: 17px;
@@ -64,9 +66,10 @@
       .select-seat {
         background: $color-2;
         padding: 0;
+        height: 100%;
         .man-hinh {
           width: 100%;
-          height: 7%;
+          height: 20px;
           background: black;
         }
         .ghe-ngoi {
@@ -76,19 +79,10 @@
           }
           .vi-tri-ghe {
             display: flex;
-            justify-content: space-around;
             margin-top: 10%;
-            div {
-              height: 30px;
-              width: 7%;
-              background: white;
-              border-radius: 5px;
-              text-align: center;
-              line-height: 30px;
-              span {
-                color: black;
-              }
-            }
+          }
+          span {
+            color: black;
           }
         }
       }
@@ -100,6 +94,7 @@
     background: $color-3;
     position: relative;
     box-shadow: rgba(0, 0, 0, 0.9) 6px 7px 5px;
+    height: 30%;
     .thong-tin {
       width: 90%;
       margin: 0 auto;

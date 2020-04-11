@@ -41,18 +41,6 @@ class ListFilmItem extends Component {
                                                     <div className="name-film">
                                                         {item.tenPhim}
                                                     </div>
-                                                    <ul>
-                                                        <li>
-                                                            <a href>
-                                                                12:00
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href>
-                                                                10:00
-                                                            </a>
-                                                        </li>
-                                                    </ul>
                                                 </div>
                                             </li>
                                         </ul>

@@ -135,6 +135,9 @@
             margin: 0 auto;
             .date-item {
               text-align: center;
+              cursor: pointer;
+              outline: none;
+              opacity: 0.5;
               p {
                 color: white;
               }
@@ -161,7 +164,6 @@
                 .type {
                   font-size: 110%;
                   font-weight: 600;
-                  padding-right: 34%;
                   .classify {
                     text-align: center;
                     background-color: $color-1;
@@ -185,6 +187,10 @@
                       font-size: 156%;
                       font-weight: 600;
                       text-transform: uppercase;
+                      &:hover {
+                        color: $color-1;
+                        transition: all 0.3s;
+                      }
                     }
                     ul {
                       padding-left: 0;

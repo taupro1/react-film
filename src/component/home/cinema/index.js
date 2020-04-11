@@ -4,6 +4,14 @@ import ListCinema from './listCinema';
 import LocationCinema from './locationCinema';
 import ListFilm from './listFilm';
 import * as callApi from "../../../redux/action/action-api";
+import { rubberBand, tada } from "react-animations"
+import styled, { keyframes } from "styled-components"
+import * as action from "../../../redux/action/action-redux/index"
+
+const hingeAnimation = keyframes`${rubberBand}`;
+const HingeDiv = styled.div`
+    animation:10s ${hingeAnimation}
+`
 
 class Cinema extends Component {
     constructor(props) {
@@ -48,9 +56,9 @@ class Cinema extends Component {
         return (
             <section id="cinema">
                 <div className="container-fuild">
-                    <div className="title-cinema">
+                    <HingeDiv className="title-cinema">
                         Cụm rạp
-    </div>
+    </HingeDiv>
                     <div className="list-cinema">
                         <ul>
                             {this.renderListCinema()}
@@ -72,6 +80,9 @@ class Cinema extends Component {
         this.props.getListCinema();  // Gọi hàm lấy danh sách hệ thống rạp qua api như BHD, CGV....
         this.props.getListDetailCinema(this.state.name); // Gọi hàm lấy danh sách cụm rạp của từng hệ thống rạp từ api với (maHeThongRap)
     }
+    componentWillUnmount() {
+        this.props.reset()
+    }
 }
 
 // Gọi api, store, redux
@@ -88,6 +99,12 @@ const mapDispatchToProps = dispatch => {
         },
         getListDetailCinema: (maHeThongRap) => {  // Gọi api lấy danh sách cụm rạp với tham số maHeThongRap (được gọi trong handleGetImgName() và được thực thi khi onclick vào 1 hệ thống rạp bên listCinema)
             dispatch(callApi.actGetListDetailCinemaApi(maHeThongRap))
+        },
+        reset: () => {
+            dispatch(action.actGetUser("GET-MA-CUM-RAP", ""))
+            dispatch(action.actGetUser("GET-MA-CUM-RAP-FIRST", ""))
+            dispatch(action.actGetUser("EDIT-ISVALID", true))
+            dispatch(action.actGetUser("EDIT-ISVALID-CINEMA", false))
         }
     }
 }

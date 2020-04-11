@@ -24,7 +24,6 @@ class DetailMovie extends Component {
                 <Fragment>
                     <DetailFilm detailFilm={detailFilm} />
                     <DetailCinema />
-                    <Footer />
                 </Fragment>
             )
         }
@@ -38,7 +37,7 @@ class DetailMovie extends Component {
     }
 
     componentWillUnmount() {
-        this.props.editIsvalid()
+        this.props.reset()
     }
 }
 
@@ -47,8 +46,11 @@ const mapDispatchToProps = dispatch => {
         getDetailFilm: (id) => {
             dispatch(callApi.actGetDetailFilm(id))
         },
-        editIsvalid: () => {
-            dispatch(action.actEditIsvalid(true))
+        reset: () => {
+            dispatch(action.actGetUser("GET-DATE-FILM", ""))
+            dispatch(action.actGetUser("EDIT-ISVALID-MACUMRAP-DETAIL", true))
+            dispatch(action.actGetUser("GET-MACUMRAP-DETAIL", ""))
+            dispatch(action.actGetUser("EDIT-ISVALID-DATE", true))
         }
     }
 }

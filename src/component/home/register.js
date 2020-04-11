@@ -1,11 +1,15 @@
-import React, { useState } from 'react'
+import React, { Component } from 'react'
 import styled from "styled-components"
 import variable from "../../scss/_variable.scss"
+import { NotificationContainer, NotificationManager } from 'react-notifications';
+import { connect } from "react-redux"
+import * as actionApi from "../../redux/action/action-api/index"
 
 
 const Content = styled.div`
     background-color:${variable.colorTwo};
-    color:white
+    color:white;
+    padding-top:7%
 `
 const Tiltle = styled.h4`
     text-align: center;
@@ -39,78 +43,105 @@ const Submit = styled.button`
     font-size: 164%;
     width: 100%;
     border-radius: 13px;
-    background: ${variable.colorThree};
     border: none;
     text-transform: uppercase;
     color: white;
     font-weight: 600;
     cursor: pointer;
-    &:hover {
-    background: ${variable.colorOne};
-    transition: ease-in-out 0.2s;
-    }
+    background:${props => props.disabled ? variable.colorThree : variable.colorOne}
+`
+const Error = styled.div`
+    color:red
 `
 
+class Register extends Component {
+    constructor(props) {
+        super(props)
+        this.matKhauConfirmReset = React.createRef()
+        this.state = {
+            user: {
+                hoTen: "",
+                taiKhoan: "",
+                matKhau: "",
+                email: "",
+                soDt: "",
+                maNhom: "GP01",
+                maLoaiNguoiDung: "KhachHang",
+            },
+            reset: {
+                hoTen: "",
+                taiKhoan: "",
+                matKhau: "",
+                email: "",
+                soDt: "",
+                matKhauConfirm: ""
+            },
+            error: {
+                hoTen: "",
+                taiKhoan: "",
+                matKhau: "",
+                email: "",
+                soDt: "",
+                maNhom: "GP01",
+                maLoaiNguoiDung: "KhachHang",
+                matKhauConfirm: ""
+            },
+            formValid: false,
+            hoTenValid: false,
+            taiKhoanValid: false,
+            matKhauValid: false,
+            emailValid: false,
+            soDtValid: false,
+            matKhauConfirmValid: false,
+        }
+    }
 
-export default function Register() {
-    const [user, setUser] = useState({
-        hoTen: "",
-        taiKhoan: "",
-        matKhau: "",
-        email: "",
-        soDt: "",
-        maNhom: "GP01",
-        maLoaiNguoiDung: "KhachHang",
-        matKhauConfirm: ""
-    })
-    const [error, setError] = useState({
-        hoTen: "",
-        taiKhoan: "",
-        matKhau: "",
-        email: "",
-        soDt: "",
-        maNhom: "GP01",
-        maLoaiNguoiDung: "KhachHang",
-        matKhauConfirm: ""
-    })
-    const [valid, setValid] = useState({
-        formValid: false,
-        hoTenValid: false,
-        taiKhoanValid: false,
-        matKhauValid: false,
-        emailValid: false,
-        soDtValid: false,
-        matKhauConfirmValid: false,
-    })
+    handleSubmit = event => {
+        event.preventDefault();
+        this.props.postUser(this.state.user, this.props.history)
+        this.matKhauConfirmReset.current.value = ""
+        this.setState({
+            user: {
+                hoTen: "",
+                taiKhoan: "",
+                matKhau: "",
+                email: "",
+                soDt: "",
+                maNhom: "GP01",
+                maLoaiNguoiDung: "KhachHang",
+            },
+            error: {
+                hoTen: "",
+                taiKhoan: "",
+                matKhau: "",
+                email: "",
+                soDt: "",
+                maNhom: "GP01",
+                maLoaiNguoiDung: "KhachHang",
+                matKhauConfirm: ""
+            },
+            formValid: false,
+            hoTenValid: false,
+            taiKhoanValid: false,
+            matKhauValid: false,
+            emailValid: false,
+            soDtValid: false,
+            matKhauConfirmValid: false,
+        })
 
-    const handleOnchange = event => {
-        let { name, value } = event.target;
-        setUser({
-            [name]: value
+    }
+
+    handleOnchange = event => {
+        let { name, value } = event.target
+        this.setState({
+            user: { ...this.state.user, [name]: value }
         })
     }
-    // const handleSubmit = event => {
-    //     event.preventDefault();
-    //     this.props.postUser(this.state.user)
-    //     NotificationManager.success("Đăng kí thành công");
-    //     this.setState({
-    //         user: {
-    //             hoTen: "",
-    //             taiKhoan: "",
-    //             matKhau: "",
-    //             email: "",
-    //             soDt: "",
-    //             maNhom: "GP01",
-    //             maLoaiNguoiDung: "KhachHang",
-    //             matKhauConfirm: ""
-    //         },
-    //     })
-    // }
 
-    const handleError = event => {
+    handleError = event => {
         let { name, value } = event.target;
         let status = value === "" ? "Vui lòng điền vào trường này" : "";
-        let { hoTenValid, taiKhoanValid, matKhauValid, emailValid, soDtValid, matKhauConfirmValid } = valid;
+        let { hoTenValid, taiKhoanValid, matKhauValid, emailValid, soDtValid, matKhauConfirmValid } = this.state;
         switch (name) {
             case "taiKhoan":
                 taiKhoanValid = status !== "" ? false : true;
@@ -145,88 +176,103 @@ export default function Register() {
                 break;
             case "matKhauConfirm":
                 matKhauConfirmValid = status !== "" ? false : true;
-                if (value !== "" && value !== user.matKhau) {
+                if (value !== "" && value !== this.state.user.matKhau) {
                     matKhauConfirmValid = false;
                     status = "Mật khẩu không trùng khớp"
                 }
                 break;
             default: break;
         }
-        setError({
-            [name]: status
-        })
-        setValid({
+        this.setState({
+            error: { ...this.state.error, [name]: status },
             taiKhoanValid,
             hoTenValid,
             matKhauValid,
             emailValid,
             soDtValid,
             matKhauConfirmValid
-        }, () => { validationForm() })
+        }, () => {
+            this.validationForm()
+        })
     }
-    const validationForm = () => {
-        const { hoTenValid, taiKhoanValid, matKhauValid, emailValid, soDtValid, matKhauConfirmValid } = valid;
-        setValid({
+    validationForm = () => {
+        const { hoTenValid, taiKhoanValid, matKhauValid, emailValid, soDtValid, matKhauConfirmValid } = this.state;
+        this.setState({
             formValid: hoTenValid && taiKhoanValid && matKhauValid && emailValid && soDtValid && matKhauConfirmValid
         })
     }
-    return (
-        <Content className="content-modal-register">
-            <div className="register-header">
-                <Tiltle className="register-title">Đăng ký</Tiltle>
-            </div>
-            <div className="register-body register">
-                <form action className="form-login form-register">
-                    <FormInput className="form-input">
-                        <Label htmlFor="tenDangNhap">Tên đăng nhập</Label>
-                        <Input type="text" name="taiKhoan" value={user.taiKhoan} onChange={handleOnchange} onBlur={handleError} onKeyUp={handleError} id="tenDangNhap" />
-                        {
-                            error.taiKhoan !== "" ? (<div className="error">{error.taiKhoan}</div>) : ""
-                        }
-                    </FormInput>
-                    <FormInput className="form-input">
-                        <Label htmlFor="email-user">Email</Label>
-                        <Input type="email" name="email" value={user.email} onChange={handleOnchange} onBlur={handleError} onKeyUp={handleError} id="email-user" />
-                        {
-                            error.email !== "" ? (<div className="error">{error.email}</div>) : ""
-                        }
-                    </FormInput>
-                    <FormInput className="form-input">
-                        <Label htmlFor="tenNguoiDung">Họ và tên</Label>
-                        <Input type="text" name="hoTen" value={user.hoTen} onChange={handleOnchange} onBlur={handleError} onKeyUp={handleError} id="tenNguoiDung" />
-                        {
-                            error.hoTen !== "" ? (<div className="error">{error.hoTen}</div>) : ""
-                        }
-                    </FormInput>
-                    <FormInput className="form-input">
-                        <Label htmlFor="phone">Số điện thoại</Label>
-                        <Input type="phone" name="soDt" value={user.soDt} onChange={handleOnchange} onBlur={handleError} onKeyUp={handleError} id="phone" />
-                        {
-                            error.soDt !== "" ? (<div className="error">{error.soDt}</div>) : ""
-                        }
-                    </FormInput>
-                    <FormInput className="form-input">
-                        <Label htmlFor="password-user">Mật khẩu</Label>
-                        <Input type="password" name="matKhau" value={user.matKhau} onChange={handleOnchange} onBlur={handleError} onKeyUp={handleError} id="password-user" />
-                        {
-                            error.matKhau !== "" ? (<div className="error">{error.matKhau}</div>) : ""
-                        }
-                    </FormInput>
-                    <FormInput className="form-input">
-                        <Label htmlFor="password-confirm">Nhập lại mật khẩu</Label>
-                        <Input type="password" value={user.matKhauConfirm} onChange={handleOnchange} name="matKhauConfirm" onBlur={handleError} onKeyUp={handleError} id="password-confirm" />
-                        {
-                            error.matKhauConfirm !== "" ? (<div className="error">{error.matKhauConfirm}</div>) : ""
-                        }
-                    </FormInput>
-                    <DivTiltle>
-                        <Submit type="submit" id="logo-submit" disabled={!valid.formValid}>
-                            Đăng kí
+    render() {
+        const { error, user } = this.state;
+        return (
+            <Content className="content-modal-register">
+                <div className="register-header">
+                    <Tiltle className="register-title">Đăng ký</Tiltle>
+                </div>
+                <div className="register-body register">
+                    <form action className="form-login form-register">
+                        <FormInput className="form-input">
+                            <Label htmlFor="tenDangNhap">Tên đăng nhập</Label>
+                            <Input type="text" name="taiKhoan" value={user.taiKhoan} onChange={this.handleOnchange} onBlur={this.handleError} onKeyUp={this.handleError} id="tenDangNhap" />
+                            {
+                                error.taiKhoan !== "" ? (<Error>{error.taiKhoan}</Error>) : ""
+                            }
+                        </FormInput>
+                        <FormInput className="form-input">
+                            <Label htmlFor="email-user">Email</Label>
+                            <Input type="email" name="email" value={user.email} onChange={this.handleOnchange} onBlur={this.handleError} onKeyUp={this.handleError} id="email-user" />
+                            {
+                                error.email !== "" ? (<Error>{error.email}</Error>) : ""
+                            }
+                        </FormInput>
+                        <FormInput className="form-input">
+                            <Label htmlFor="tenNguoiDung">Họ và tên</Label>
+                            <Input type="text" name="hoTen" value={user.hoTen} onChange={this.handleOnchange} onBlur={this.handleError} onKeyUp={this.handleError} id="tenNguoiDung" />
+                            {
+                                error.hoTen !== "" ? (<Error>{error.hoTen}</Error>) : ""
+                            }
+                        </FormInput>
+                        <FormInput className="form-input">
+                            <Label htmlFor="phone">Số điện thoại</Label>
+                            <Input type="phone" name="soDt" value={user.soDt} onChange={this.handleOnchange} onBlur={this.handleError} onKeyUp={this.handleError} id="phone" />
+                            {
+                                error.soDt !== "" ? (<Error>{error.soDt}</Error>) : ""
+                            }
+                        </FormInput>
+                        <FormInput className="form-input">
+                            <Label htmlFor="password-user">Mật khẩu</Label>
+                            <Input type="password" name="matKhau" value={user.matKhau} onChange={this.handleOnchange} onBlur={this.handleError} onKeyUp={this.handleError} id="password-user" />
+                            {
+                                error.matKhau !== "" ? (<Error>{error.matKhau}</Error>) : ""
+                            }
+                        </FormInput>
+                        <FormInput className="form-input">
+                            <Label htmlFor="password-confirm">Nhập lại mật khẩu</Label>
+                            <Input type="password" ref={this.matKhauConfirmReset} name="matKhauConfirm" onBlur={this.handleError} onKeyUp={this.handleError} id="password-confirm" />
+                            {
+                                error.matKhauConfirm !== "" ? (<Error>{error.matKhauConfirm}</Error>) : ""
+                            }
+                        </FormInput>
+                        <DivTiltle>
+                            <Submit type="submit" onClick={this.handleSubmit} disabled={!this.state.formValid}>
+                                Đăng kí
                         </Submit>
-                    </DivTiltle>
-                </form>
-                {/* <NotificationContainer /> */}
-            </div>
-        </Content>
-    )
+                        </DivTiltle>
+                    </form>
+                    <NotificationContainer />
+                </div>
+            </Content>
+        )
+    }
 }
+
+const mapDispatchToProps = dispatch => {
+    return {
+        postUser: (data, history) => {
+            dispatch(actionApi.actPostUserRegisterApi(data, history))
+        }
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Register);
+
+

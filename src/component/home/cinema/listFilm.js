@@ -6,7 +6,7 @@ export default class ListFilm extends PureComponent {
     render() {
         return (
             <div className="col-sm-7 list-film">
-                <DateCinema />
+                {/* <DateCinema /> */}
                 <ListFilmItem />
             </div>
         )

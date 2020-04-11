@@ -2,6 +2,17 @@ import React, { Component } from 'react'
 import ShowMovie from "./show-movie"
 import SoonMovie from './soon-movie'
 import variable from "../../../scss/_variable.scss";
+import { slideInDown, slideInUp } from "react-animations"
+import styled, { keyframes } from "styled-components"
+
+const slideInDownAnimation = keyframes`${slideInDown}`
+const SlideInDownDiv = styled.li`
+    animation:7s ${slideInDownAnimation}
+`
+const slideInUpAnimation = keyframes`${slideInUp}`
+const SlideInUpDiv = styled.li`
+    animation:7s ${slideInUpAnimation}
+`
 
 export default class HomeMovie extends Component {
     constructor(props) {
@@ -25,16 +36,16 @@ export default class HomeMovie extends Component {
             <section id="home-movie">
                 <div className="container-fluid">
                     <ul className="title">
-                        <li className="movie-play" style={{ backgroundColor: this.renderTiltleShowMovie() }} onClick={() => { this.setState({ isValid: true }) }}>
+                        <SlideInDownDiv className="movie-play" style={{ backgroundColor: this.renderTiltleShowMovie() }} onClick={() => { this.setState({ isValid: true }) }}>
                             <a href>
                                 <span>Phim đang chiếu</span>
                             </a>
-                        </li>
-                        <li className="movie-soon" style={{ backgroundColor: this.renderTiletleSoonMovie() }} onClick={() => { this.setState({ isValid: false }) }}>
+                        </SlideInDownDiv>
+                        <SlideInUpDiv className="movie-soon" style={{ backgroundColor: this.renderTiletleSoonMovie() }} onClick={() => { this.setState({ isValid: false }) }}>
                             <a href>
                                 <span>Phim sắp chiếu</span>
                             </a>
-                        </li>
+                        </SlideInUpDiv>
                     </ul>
                     <div className="content-phim container-fluid">
                         {this.renderHtml()}

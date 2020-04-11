@@ -2,6 +2,7 @@
 // import Detail from "../pages/Detail";
 import { lazy } from "react"
 import Register from "../component/home/register";
+import SeatBooking from "../component/seat-select";
 
 const HomePage = lazy(() => import("../pages/home"));
 const Detail = lazy(() => import("../pages/Detail"));
@@ -21,6 +22,11 @@ const routesHome = [
         path: "/register",
         exact: false,
         component: Register
+    },
+    {
+        path: "/booking/:id",
+        exact: false,
+        component: SeatBooking
     }
 ]
 

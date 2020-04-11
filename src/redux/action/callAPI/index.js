@@ -25,3 +25,11 @@ export const callApiQuanLiRap = (method, uri, data) => {
         data
     })
 }
+
+export const callApiQuanLiDatVe = (method, uri, data) => {
+    return Axios({
+        method,
+        url: `${apiUrl.apiQuanLiDatVe}/${uri}`,
+        data
+    })
+}

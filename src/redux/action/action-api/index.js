@@ -1,36 +1,40 @@
 import * as callApi from "../callAPI/index"
 import * as action from "../action-redux/index"
 import * as actionType from "../../actionType/index"
-import 'react-notifications/lib/notifications.css';
+
 
 // Quan li nguoi dung
-export const actPostUserRegisterApi = (data) => {
+export const actPostUserRegisterApi = (data, history) => {
     return dispatch => {
-        callApi.callApiQuanLyNguoiDung("POST", `listUser`, data)
+        callApi.callApiQuanLyNguoiDung("POST", `DangKy`, data)
             .then((rs) => {
+                history.push("/");
             })
-            .catch(() => {
-                console.log("error");
+            .catch((er) => {
+                alert(er.response.data);
             })
     }
 }
-export const actPostUserLoginApi = data => {
+export const actPostUserLoginApi = (data) => {
     return dispatch => {
-        callApi.callApiQuanLyNguoiDung("POST", `listUser`, data)
-            .then(() => {
+        callApi.callApiQuanLyNguoiDung("POST", `DangNhap`, data)
+            .then((rs) => {
+                localStorage.setItem("login", JSON.stringify(rs.data));
+                console.log("1");
 
+                dispatch(action.actGetUser("EDIT-ISVALID-LOGIN-TICKET", true))
             })
-            .catch(() => {
+            .catch((er) => {
+                alert(er.response.data);
 
             })
     }
 }
 export const actGetUserApi = () => {
     return dispatch => {
-        callApi.callApiQuanLyNguoiDung("GET", `listUser`, null)
+        callApi.callApiQuanLyNguoiDung("GET", `DangNhap`, null)
             .then((result) => {
-                console.log(result.data);
-                dispatch(action.actGetUser(result.data))
+                dispatch(action.actGetUser(result.data, actionType.actPostUserRegister))
             })
             .catch((error) => {
                 console.log(error);
@@ -68,6 +72,18 @@ export const actGetDetailFilm = (id) => {
     }
 }
 
+export const actGetListDetailFilm = (id) => {
+    return dispatch => {
+        callApi.callApiQuanLiRap("GET", `LayThongTinLichChieuPhim?MaPhim=${id}`, null)
+            .then((rs) => {
+                dispatch(action.actGetListCinema(rs.data, "GET-LIST-DETAIL-HOME"))
+            })
+            .catch(() => {
+
+            })
+    }
+}
+
 export const actGetListCinemaApi = () => {
     return dispatch => {
         callApi.callApiQuanLiRap("GET", `LayThongTinHeThongRap`, null)
@@ -97,6 +113,20 @@ export const actGetListCumRapDetail = (maHeThongRap) => {
         callApi.callApiQuanLiRap("GET", `LayThongTinCumRapTheoHeThong?maHeThongRap=${maHeThongRap}`, null)
             .then((rs) => {
                 dispatch(action.actGetListCumRapDetail(rs.data))
+            })
+            .catch(() => {
+
+            })
+    }
+}
+
+// Quan li dat ve
+export const actGetListDetailBooking = id => {
+    return dispatch => {
+        callApi.callApiQuanLiDatVe("GET", `LayDanhSachPhongVe?MaLichChieu=${id}`, null)
+            .then((rs) => {
+                dispatch(action.actGetListDetailBooking(rs.data, actionType.actGetListDetailBooking))
+                dispatch(action.actGetListDetailBooking(false, "GET-SEAT-ISVALID"))
             })
             .catch(() => {
 

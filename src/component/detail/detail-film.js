@@ -20,21 +20,6 @@ export default class DetailFilm extends Component {
                                     <div className="thoi-luong">
                                         Thời lượng: <span>110 phút</span>
                                     </div>
-                                    {/* <div className="khoi-chieu">
-                                        Khởi chiếu: <span>06/03/2020</span>
-                                    </div>
-                                    <div className="the-loai">
-                                        Thể loại: <span>Tình cảm</span>
-                                    </div>
-                                    <div className="dao-dien">
-                                        Đạo diễn: <span>Đồng Đăng Giao</span>
-                                    </div>
-                                    <div className="dien-vien">
-                                        Diễn viên: <span>Kiều Minh Tuấn, Khả Như, Oanh Kiều, Ngân Chi, Hữu Châu</span>
-                                    </div>
-                                    <div className="do-tuoi">
-                                        Độ tuổi: <span>C13 - PHIM CẤM PHỔ BIẾN ĐẾN KHÁN GIẢ DƯỚI 13 TUỔI</span>
-                                    </div> */}
                                     <div className="mo-ta">
                                         Nội dung: <span>{detailFilm.moTa}</span>
                                     </div>

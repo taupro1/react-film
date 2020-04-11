@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux"
 import { Link } from 'react-router-dom';
+import { NotificationContainer, NotificationManager } from "react-notifications"
+
 
 class ListFilmItemDetail extends Component {
     duyetMangPhim = (maPhim) => {
-        console.log(maPhim);
-        console.log(this.props.listFilm);
         let img = "";
         this.props.listFilm.map((item) => {
             if (item.maPhim === maPhim) {
@@ -13,6 +13,48 @@ class ListFilmItemDetail extends Component {
             }
         })
         return img
+    }
+
+    kiemTraLogin = (data, maLichChieu) => {
+        if (this.props.statusLogin || localStorage.getItem("login")) {
+            return (
+                <Link to={`/booking/${maLichChieu}`}>
+                    {data}
+                </Link>
+            )
+        }
+        else {
+            return (
+                <a href onClick={() => NotificationManager.warning("Vui lòng đăng nhập")}>
+                    {data}
+                </a>
+            )
+        }
+
+
+    }
+    renderSuatChieu = () => {
+        if (this.props.dateFilm !== "") {
+            if (this.props.listDetailFilm.heThongRapChieu) {
+                return this.props.listDetailFilm.heThongRapChieu.map((item, index) => {
+                    if (item.maHeThongRap === this.props.maHeThongRap) {
+                        return item.cumRapChieu.map((list, index) => {
+                            if (list.maCumRap === this.props.maCumRap || index === 0) {
+                                return list.lichChieuPhim.map((item, index) => {
+                                    if ((new Date(item.ngayChieuGioChieu).toLocaleDateString()) === this.props.dateFilm) {
+                                        return (
+                                            <li key={index}>
+                                                {this.kiemTraLogin(new Date(item.ngayChieuGioChieu).toLocaleTimeString(), item.maLichChieu)}
+                                            </li>
+                                        )
+                                    }
+                                })
+                            }
+                        })
+                    }
+                })
+            }
+        }
     }
 
     renderHtml = () => {
@@ -26,7 +68,7 @@ class ListFilmItemDetail extends Component {
                             <ul>
                                 <li>
                                     <div className="type">
-                                        <p className="classify">2D SUB</p>
+                                        <p className="classify">2D</p>
                                         <p className="rating">C16</p>
                                     </div>
                                 </li>
@@ -36,22 +78,14 @@ class ListFilmItemDetail extends Component {
                                             {listDetailFilm.tenPhim}
                                         </div>
                                         <ul>
-                                            <li>
-                                                <a href>
-                                                    12:00
-                                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href>
-                                                    10:00
-                                                                </a>
-                                            </li>
+                                            {this.renderSuatChieu()}
                                         </ul>
                                     </div>
                                 </li>
                             </ul>
                         </div>
                     </a>
+                    <NotificationContainer />
                 </div>
             )
         }
@@ -68,13 +102,12 @@ class ListFilmItemDetail extends Component {
 
 const mapStateToProps = state => {
     return {
-        // listDetailCinema: state.cinemaReducers.listDetailCinema,
-        // maCumRap: state.cinemaReducers.maCumRap,
-        // maCumRapFirst: state.cinemaReducers.maCumRapFirst,
-        // isValid: state.cinemaReducers.isValid,
-
         listDetailFilm: state.detailReducers.listDetailFilm,
-        listFilm: state.homeReducers.listHomeMovie
+        listFilm: state.homeReducers.listHomeMovie,
+        dateFilm: state.detailReducers.dateFilm,
+        statusLogin: state.homeReducers.statusLogin,
+        maCumRap: state.detailReducers.maCumRapDetail,
+        maHeThongRap: state.detailReducers.maHeThongRap,
     }
 }
 export default connect(mapStateToProps, null)(ListFilmItemDetail);

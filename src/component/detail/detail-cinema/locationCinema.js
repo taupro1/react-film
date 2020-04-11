@@ -82,6 +82,13 @@ const mapDispatchToProps = dispatch => {
             }
             dispatch(action)
         },
+        getLichChieuPhim: data => {
+            let action = {
+                type: "GET-LICH-CHIEU-PHIM",
+                data
+            }
+            dispatch(action)
+        }
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(LocationCinemaDetail);

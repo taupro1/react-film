@@ -1,12 +1,12 @@
 import React, { Fragment } from 'react'
 import { Route } from 'react-router-dom'
 import Footer from '../component/home/footer'
-import Header from "../component/home/header/header"
+import Header from "../component/header/header"
 
 const HomeComponent = props => {
     return (
         <Fragment>
-            {/* <Header /> */}
+            <Header />
             {props.children}
             {/* <Footer /> */}
         </Fragment>
