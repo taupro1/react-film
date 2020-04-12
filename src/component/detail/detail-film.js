@@ -1,7 +1,37 @@
 import React, { Component } from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import styled from "styled-components"
+import Button from "@material-ui/core/Button"
+import variable from "../../scss/_variable.scss"
+
+const CloseBtn = styled(Button)`
+    float:right;
+    background:${variable.colorThree} !important;
+    outline: none !important;
+    color:white !important;
+`
+const ContentTrailer = styled.div`
+    position: absolute;
+    top: 0;
+    width: 80%;
+    height: 110%;
+    transition: margin .5s;
+    margin-left: ${props => props.margin ? "130%" : "0"};
+`
+const Iframe = styled.iframe`
+    width: 100%;
+    height: 100%;
+`
 
 export default class DetailFilm extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            isValid: true
+        }
+    }
+
     render() {
         let { detailFilm } = this.props
         return (
@@ -28,10 +58,14 @@ export default class DetailFilm extends Component {
                                     </div>
                                 </div>
                                 <div className="btn-trailer">
-                                    <button>
-                                        <a href={detailFilm.trailer} className="venobox vbox-item" data-vbtype="video">Xem Trailer</a>
+                                    <button onClick={() => this.setState({ isValid: false })}>
+                                        <a>Xem Trailer</a>
                                     </button>
                                 </div>
+                                <ContentTrailer margin={this.state.isValid}>
+                                    <CloseBtn variant="contained" onClick={() => this.setState({ isValid: true })}>Close</CloseBtn>
+                                    <Iframe src={detailFilm.trailer} frameborder="0" allowfullscreen></Iframe>
+                                </ContentTrailer>
                             </div>
                         </div>
                     </div>

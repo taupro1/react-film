@@ -132,7 +132,7 @@ class TicketBooking extends Component {
     }
     renderSubmit = () => {
         if (this.state.statusButton) {
-            if (localStorage.getItem("login") || this.props.isValid) {
+            if (localStorage.getItem("login") || this.props.statusLogin) {
                 return (
                     <button type="submit" className="btn-dat-ve">
                         <Link to={`/booking/${this.state.maLichChieu}`}>Mua vé</Link>
@@ -272,7 +272,7 @@ const mapStateToProps = state => {
     return {
         listFilm: state.homeReducers.listHomeMovie,
         listDetailFilm: state.homeReducers.listDetailFilm,
-        isValid: state.homeReducers.isValid
+        statusLogin: state.homeReducers.statusLogin
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(TicketBooking)

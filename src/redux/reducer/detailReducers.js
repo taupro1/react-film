@@ -11,6 +11,27 @@ const initalState = {
     listLichChieuPhim: "",
     dateFilm: "",           //xác định được ngày chiếu để show ra giờ chiếu
     isValidDate: true,    // date first sáng trc
+    listStar: [
+        {
+            id: 1
+        },
+        {
+            id: 2
+        },
+        {
+            id: 3
+        },
+        {
+            id: 4
+        },
+        {
+            id: 5
+        },
+    ],
+
+    // Danh gia
+    danhGia: [
+    ]
 }
 
 const detailReducers = (state = initalState, action) => {
@@ -41,6 +62,11 @@ const detailReducers = (state = initalState, action) => {
             return { ...state }
         case "EDIT-ISVALID-DATE":
             state.isValidDate = action.data;
+            return { ...state }
+        case "EDIT-COMMENT":
+            let list = [...state.danhGia];
+            list.push(action.data)
+            state.danhGia = list;
             return { ...state }
         default:
             return { ...state }

@@ -5,22 +5,22 @@ const initalState = {
         {
             index: 0,
             img: "./img/carousel/wild-15834618796245.jpg",
-            href: "https://www.youtube.com/watch?v=gn5QmllRCn4"
+            href: "https://www.youtube.com/embed/gn5QmllRCn4"
         },
         {
             index: 1,
             img: "./img/carousel/bloodshot-sneak-2048x682-1583483072373-2.jpg",
-            href: "https://www.youtube.com/watch?v=6-T5-Tohan0"
+            href: "https://www.youtube.com/embed/6-T5-Tohan0"
         },
         {
             index: 2,
             img: "./img/carousel/nang-3-15834617419228.jpg",
-            href: "https://www.youtube.com/watch?v=DymKqNH_m8w"
+            href: "https://www.youtube.com/embed/DymKqNH_m8w"
         },
         {
             index: 3,
             img: "./img/carousel/wild-15822193320074.gif",
-            href: "https://www.youtube.com/watch?v=UH_67fgOrj0"
+            href: "https://www.youtube.com/embed/UH_67fgOrj0"
         }
     ],
     listHomeMovie: [
@@ -65,8 +65,6 @@ const initalState = {
     ],
     statusLogin: false,
     listDetailFilm: {},
-    isValid: false
-
 }
 
 const homeReducers = (state = initalState, action) => {
@@ -83,9 +81,7 @@ const homeReducers = (state = initalState, action) => {
         case "GET-LIST-DETAIL-HOME":
             state.listDetailFilm = action.data;
             return { ...state }
-        case "EDIT-ISVALID-LOGIN-TICKET":
-            state.isValid = action.data
-            return { ...state }
+
         default:
             return { ...state };
     }

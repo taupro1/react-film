@@ -49,6 +49,12 @@ class DetailCinema extends Component {
     renderTiletleSoonMovie = () => {
         return this.state.isValid ? `${variable.colorThree}` : `${variable.colorOne}`
     }
+    renderDisplayLichChieu = () => {
+        return this.state.isValid ? "block" : "none"
+    }
+    renderDisplayDanhGia = () => {
+        return this.state.isValid ? "none" : "block"
+    }
 
     render() {
         return (
@@ -66,7 +72,7 @@ class DetailCinema extends Component {
                             </a>
                         </li>
                     </ul>
-                    <div style={{ display: "none" }}>
+                    <div style={{ display: this.renderDisplayLichChieu() }}>
                         <div className="list-cinema">
                             <ul>
                                 {this.renderListCinema()}
@@ -79,7 +85,7 @@ class DetailCinema extends Component {
                             </div>
                         </div>
                     </div>
-                    <div>
+                    <div style={{ display: this.renderDisplayDanhGia() }}>
                         <DanhGiaPhim />
                     </div>
                 </div>

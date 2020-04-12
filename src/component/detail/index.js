@@ -24,6 +24,7 @@ class DetailMovie extends Component {
                 <Fragment>
                     <DetailFilm detailFilm={detailFilm} />
                     <DetailCinema />
+                    <Footer />
                 </Fragment>
             )
         }

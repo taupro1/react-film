@@ -15,21 +15,19 @@ export const actPostUserRegisterApi = (data, history) => {
             })
     }
 }
-export const actPostUserLoginApi = (data) => {
-    return dispatch => {
-        callApi.callApiQuanLyNguoiDung("POST", `DangNhap`, data)
-            .then((rs) => {
-                localStorage.setItem("login", JSON.stringify(rs.data));
-                console.log("1");
+// export const actPostUserLoginApi = (data) => {
+//     return dispatch => {
+//         callApi.callApiQuanLyNguoiDung("POST", `DangNhap`, data)
+//             .then((rs) => {
+//                 localStorage.setItem("login", JSON.stringify(rs.data));
+//                 dispatch(action.actGetUser("EDIT-ISVALID-LOGIN-TICKET", true))
+//             })
+//             .catch((er) => {
+//                 alert(er.response.data);
 
-                dispatch(action.actGetUser("EDIT-ISVALID-LOGIN-TICKET", true))
-            })
-            .catch((er) => {
-                alert(er.response.data);
-
-            })
-    }
-}
+//             })
+//     }
+// }
 export const actGetUserApi = () => {
     return dispatch => {
         callApi.callApiQuanLyNguoiDung("GET", `DangNhap`, null)

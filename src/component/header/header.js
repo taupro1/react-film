@@ -31,7 +31,6 @@ class Header extends Component {
                 NotificationManager.success("Login success")
                 localStorage.setItem("login", JSON.stringify(rs.data));
                 this.props.editStatusLogin(true);
-                this.props.editIsvalidLogin()
                 this.setState({
                     display: "none"
                 })
@@ -192,9 +191,6 @@ class Header extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        postUser: data => {
-            dispatch(actionApi.actPostUserLoginApi(data))
-        },
         editStatusLogin: data => {
             let action = {
                 type: "EDIT-STATUS-LOGIN",
@@ -202,9 +198,6 @@ const mapDispatchToProps = dispatch => {
             }
             dispatch(action)
         },
-        editIsvalidLogin: () => {
-            dispatch(action.actGetUser("EDIT-ISVALID-LOGIN-TICKET", true))
-        }
     }
 }
 
