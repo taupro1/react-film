@@ -4,16 +4,48 @@ import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
-import * as actionApi from "../../redux/action/action-api/index"
 import * as callApi from "../../redux/action/callAPI/index"
-import * as action from "../../redux/action/action-redux/index"
 import Account from './account';
 import { Link, animateScroll as scroll } from "react-scroll";
+import styled from "styled-components"
+import variable from "../../scss/_variable.scss"
+
+const ContentMenu = styled.div`
+    z-index:3;
+    display:none;
+    position: absolute;
+    background-color: ${variable.colorTwo};
+    width: 50%;
+    left: ${props => props.marginLeft ? "-100%" : "0"};
+    transition:left .5s;
+    @media (max-width: 1152px){
+        display:block
+    }
+`
+const ContentMenuUl = styled.ul`
+    list-style: none;
+    color: white;
+`
+const ContentMenuLi = styled.li`
+    cursor: pointer;
+    font-size: 22px;
+    font-weight: 600;
+    &:hover{
+        color:${variable.colorOne};
+        transition:all .3s
+    }
+`
+const ContentMenuNavLink = styled(NavLink)`
+    color:white;
+    &:hover{
+        color:${variable.colorOne};
+        transition:all .3s
+    }
+`
 
 class Header extends Component {
     constructor(props) {
         super(props)
-
         this.state = {
             display: "none",
             isValid: true,
@@ -21,6 +53,7 @@ class Header extends Component {
                 taiKhoan: "",
                 matKhau: ""
             },
+            marginLeft: true
         }
     }
 
@@ -70,7 +103,7 @@ class Header extends Component {
         }
         if (!localStorage.getItem("login")) {
             return (
-                <li className="nav-item color-item">
+                <li className="nav-item color-item-login">
                     <a className="nav-link active" onClick={this.handleClickLogin} id="login-logo">ĐĂNG NHẬP</a>
                 </li>
             )
@@ -91,15 +124,28 @@ class Header extends Component {
     scrollToTop = () => {
         scroll.scrollToTop();
     }
+
+    handleOnclickContentMenu = () => {
+        console.log("1");
+
+        this.state.marginLeft ?
+            this.setState({
+                marginLeft: false
+            })
+            :
+            this.setState({
+                marginLeft: true
+            })
+    }
     render() {
         const { display, user } = this.state
         return (
             <header>
                 <div className="header">
-                    <div className="container-fluid">
+                    <div className="container-fluid header-container">
                         <div className="row padding-header">
-                            <div className="col-sm-4 header-left d-flex justify-content-center align-items-center">
-                                <ul className="nav position-absolute">
+                            <div className="col-xl-4 col-sm-6 col-6 header-left justify-content-center align-items-center">
+                                <ul className="nav left-ul position-absolute">
                                     <li className="nav-item color-item">
                                         <Link
                                             className="nav-link"
@@ -139,9 +185,14 @@ class Header extends Component {
                                             Đánh giá
                                         </Link>
                                     </li>
+                                    <li className="menu" onClick={this.handleOnclickContentMenu}>
+                                        <div>
+                                            <FontAwesomeIcon className="icon-menu" icon="bars" />
+                                        </div>
+                                    </li>
                                 </ul>
                             </div>
-                            <div className="col-sm-4 header-between d-flex justify-content-around">
+                            <div className="col-xl-4 header-between justify-content-around">
                                 <a className="d-flex align-items-center" target="_blank" href="https://www.facebook.com/profile.php?id=100004391253792">
                                     <FontAwesomeIcon icon={["fab", "facebook-square"]} className="i-facebook" />
                                 </a>
@@ -153,8 +204,8 @@ class Header extends Component {
                                     <span>:123456</span>
                                 </div>
                             </div>
-                            <div className="col-sm-4 ">
-                                <div className="row header-right d-flex h-100 justify-content-center">
+                            <div className="col-xl-4 col-sm-6 col-6 content-header-right">
+                                <div className="row header-right h-100 justify-content-center">
                                     <ul className="nav logo-login">
                                         {this.renderLogin()}
                                     </ul>
@@ -183,6 +234,57 @@ class Header extends Component {
                             </div>
                         </div>
                     </div>
+                    <ContentMenu className="content-menu" marginLeft={this.state.marginLeft}>
+                        <ContentMenuUl>
+                            <ContentMenuLi>
+                                <ContentMenuNavLink
+                                    className="nav-link"
+                                    to="/"
+                                >
+                                    Trang chủ
+                                        </ContentMenuNavLink>
+                            </ContentMenuLi>
+                            <ContentMenuLi>
+                                <Link
+                                    className="nav-link"
+                                    activeClass="active"
+                                    to="home-movie"
+                                    spy={true}
+                                    smooth={true}
+                                    offset={-50}
+                                    duration={500}
+                                >
+                                    Lịch chiếu
+                                        </Link>
+                            </ContentMenuLi>
+                            <ContentMenuLi>
+                                <Link
+                                    className="nav-link"
+                                    activeClass="active"
+                                    to="cinema"
+                                    spy={true}
+                                    smooth={true}
+                                    offset={-50}
+                                    duration={500}
+                                >
+                                    Cụm rạp
+                                        </Link>
+                            </ContentMenuLi>
+                            <ContentMenuLi>
+                                <Link
+                                    className="nav-link"
+                                    activeClass="active"
+                                    to="news-review"
+                                    spy={true}
+                                    smooth={true}
+                                    offset={-50}
+                                    duration={500}
+                                >
+                                    Đánh giá
+                                        </Link>
+                            </ContentMenuLi>
+                        </ContentMenuUl>
+                    </ContentMenu>
                 </div>
             </header >
         )

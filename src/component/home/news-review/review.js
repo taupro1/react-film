@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export default class Review extends Component {
     render() {
         return (
-            <div className="col-sm-6 news review">
+            <div className="col-sm-12 col-12 col-lg-6 news review">
                 <h3 className="tiltle">Đánh giá phim</h3>
                 <div className="news-film">
                     <img src="./img/news-review/review/bloooshot.jpg" alt />

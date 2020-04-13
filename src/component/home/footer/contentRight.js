@@ -17,7 +17,7 @@ class ContentRight extends Component {
     }
     render() {
         return (
-            <div className="col-sm-4 content-right">
+            <div className="col-md-4 col-sm-12 col-12 content-right">
                 <div className="item-footer">
                     <h5 className="tiltle-footer">Đối tác</h5>
                     <ul>

@@ -31,10 +31,17 @@ const CloseBtn = styled(Button)`
 export default class CarouselItem extends Component {
     constructor(props) {
         super(props)
-
+        this.elementIframe = React.createRef()
         this.state = {
             isValid: true
         }
+    }
+    handleOnclickClose = element => {
+        this.setState({
+            isValid: true
+        })
+        // let video = document.getElementById("video")
+        // video.contentWindow.postMessage('{"event":"command","func":"' + 'stopVideo' + '","args":""}', '*')
     }
 
     render() {
@@ -48,8 +55,8 @@ export default class CarouselItem extends Component {
                     </PlayVideo>
                 </div>
                 <ContentTrailer margin={this.state.isValid}>
-                    <CloseBtn variant="contained" onClick={() => this.setState({ isValid: true })}>Close</CloseBtn>
-                    <Iframe src={item.href} frameborder="0" allowfullscreen></Iframe>
+                    <CloseBtn variant="contained" onClick={this.handleOnclickClose}>Close</CloseBtn>
+                    <Iframe id="video" ref={this.elementIframe} src={item.href} frameborder="0" allowfullscreen="true"></Iframe>
                 </ContentTrailer>
             </div>
         )

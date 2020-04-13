@@ -194,66 +194,68 @@ class TicketBooking extends Component {
     render() {
         return (
             <section id="dat-ve">
-                <RorateDivLeft className="content-left">
-                    <h2>
-                        <img src="./img/dat-ve/icon-ticket.png" alt />
-                        <span>Đặt vé</span>
-                    </h2>
-                </RorateDivLeft>
-                <RorateDivRight className="content-right">
-                    <form action>
-                        <div className="select-item">
-                            <div className="select-tiltle">
-                                <FontAwesomeIcon icon="film" />
+                <div className=" row">
+                    <RorateDivLeft className="content-left col-lg-6">
+                        <h2>
+                            <img src="./img/dat-ve/icon-ticket.png" alt />
+                            <span>Đặt vé</span>
+                        </h2>
+                    </RorateDivLeft>
+                    <RorateDivRight className="content-right col-lg-6 col-12">
+                        <form action>
+                            <div className="select-item">
+                                <div className="select-tiltle">
+                                    <FontAwesomeIcon icon="film" />
+                                </div>
+                                <div className="select-group">
+                                    <select onChange={this.handleOnchangeFilm} className="form-control select-dat-ve">
+                                        <option value="chon-phim" style={{ display: "none" }}>Chọn phim</option>
+                                        {this.renderListFilm()}
+                                    </select>
+                                </div>
                             </div>
-                            <div className="select-group">
-                                <select onChange={this.handleOnchangeFilm} className="form-control select-dat-ve">
-                                    <option value="chon-phim" style={{ display: "none" }}>Chọn phim</option>
-                                    {this.renderListFilm()}
-                                </select>
+                            <div className="select-item">
+                                <div className="select-tiltle">
+                                    <FontAwesomeIcon icon="home" />
+                                </div>
+                                <div className="select-group">
+                                    <select onChange={this.handleOnchangeCinema} className="form-control select-dat-ve">
+                                        <option value="chon-rap" style={{ display: "none" }}>Chọn rạp</option>
+                                        {this.validationChonRap()}
+                                        {this.renderRap()}
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div className="select-item">
-                            <div className="select-tiltle">
-                                <FontAwesomeIcon icon="home" />
+                            <div className="select-item">
+                                <div className="select-tiltle">
+                                    <FontAwesomeIcon icon="calendar-plus" />
+                                </div>
+                                <div className="select-group">
+                                    <select onChange={this.handleOnchangeDate} className="form-control select-dat-ve" name id>
+                                        <option style={{ display: "none" }}>Chọn ngày</option>
+                                        {this.validationChonNgay()}
+                                        {this.renderNgay()}
+                                    </select>
+                                </div>
                             </div>
-                            <div className="select-group">
-                                <select onChange={this.handleOnchangeCinema} className="form-control select-dat-ve">
-                                    <option value="chon-rap" style={{ display: "none" }}>Chọn rạp</option>
-                                    {this.validationChonRap()}
-                                    {this.renderRap()}
-                                </select>
+                            <div className="select-item">
+                                <div className="select-tiltle">
+                                    <FontAwesomeIcon icon="calendar-alt" />
+                                </div>
+                                <div className="select-group">
+                                    <select onChange={this.handleOnchangeSuat} className="form-control select-dat-ve">
+                                        <option style={{ display: "none" }}>Chọn suất</option>
+                                        {this.validationChonSuat()}
+                                        {this.renderGio()}
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div className="select-item">
-                            <div className="select-tiltle">
-                                <FontAwesomeIcon icon="calendar-plus" />
+                            <div className="center">
+                                {this.renderSubmit()}
                             </div>
-                            <div className="select-group">
-                                <select onChange={this.handleOnchangeDate} className="form-control select-dat-ve" name id>
-                                    <option style={{ display: "none" }}>Chọn ngày</option>
-                                    {this.validationChonNgay()}
-                                    {this.renderNgay()}
-                                </select>
-                            </div>
-                        </div>
-                        <div className="select-item">
-                            <div className="select-tiltle">
-                                <FontAwesomeIcon icon="calendar-alt" />
-                            </div>
-                            <div className="select-group">
-                                <select onChange={this.handleOnchangeSuat} className="form-control select-dat-ve">
-                                    <option style={{ display: "none" }}>Chọn suất</option>
-                                    {this.validationChonSuat()}
-                                    {this.renderGio()}
-                                </select>
-                            </div>
-                        </div>
-                        <div className="center">
-                            {this.renderSubmit()}
-                        </div>
-                    </form>
-                </RorateDivRight>
+                        </form>
+                    </RorateDivRight>
+                </div>
                 <NotificationContainer />
             </section>
         )

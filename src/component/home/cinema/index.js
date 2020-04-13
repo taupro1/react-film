@@ -10,7 +10,7 @@ import * as action from "../../../redux/action/action-redux/index"
 
 const hingeAnimation = keyframes`${rubberBand}`;
 const HingeDiv = styled.div`
-    animation:10s ${hingeAnimation}
+    animation:10s ${hingeAnimation};
 `
 
 class Cinema extends Component {

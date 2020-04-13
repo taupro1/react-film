@@ -2,8 +2,9 @@ import React, { Component, Fragment } from 'react'
 import { connect } from "react-redux"
 import styled from "styled-components"
 import { NotificationContainer, NotificationManager } from "react-notifications"
-import { Redirect } from 'react-router-dom'
-import { Link } from "react-router-dom"
+import ModalBooking from './.modalBooking'
+import { Button } from '@material-ui/core'
+import variable from "../../scss/_variable.scss"
 
 const WidthImg = styled.img`
     width:30%
@@ -26,8 +27,41 @@ const DetailRap = styled.div`
 const SeatSpan = styled.span`
     margin-right:5px
 `
+const ButtonChiTiet = styled(Button)`
+    font-weight: 600 !important;
+    color: white !important;
+    background: ${variable.colorThree} !important;
+    outline:none !important;
+`
+const ButtonClose = styled(ButtonChiTiet)`
+    float: right !important;
+    margin: 2% !important;
+`
+const ButtonThemBot = styled(Button)`
+    padding: 0 !important;
+    outline:none !important;
+`
+const ContentCombo = styled.div`
+    position: absolute;
+    left: ${props => props.left ? "0" : "-100%"};
+    width: 100%;
+    z-index: 2;
+    background: black;
+    padding: 2%;
+    margin-top: 70%;
+    transition:left .5s;
+`
+
 
 class DetailBooking extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            left: true
+        }
+    }
+
     renderHtml = () => {
         if (Object.keys(this.props.listDetailBooking).length !== 0) {
             const { listDetailBooking } = this.props
@@ -71,36 +105,56 @@ class DetailBooking extends Component {
         return 0
     }
 
-    handleOnlick = () => {
-        NotificationManager.success("Đặt vé thành công");
-        // <Redirect to="/" />
-    }
-
     renderTongTien = () => {
         return this.renderTienGhe()
     }
     render() {
         return (
-            <div className="thong-tin">
-                <div className="tong-tien">{this.renderTongTien()}<span>đ</span></div>
-                <div className="detail-film">
-                    {this.renderHtml()}
+            <Fragment>
+                <div className="thong-tin">
+                    <div className="tong-tien">{this.renderTongTien()}<span>đ</span></div>
+                    <div className="detail-film">
+                        {this.renderHtml()}
+                    </div>
+                    <div className="seat-select">
+                        <div><span>Ghế:</span> {this.renderSearSelect()}</div>
+                        <div className="gia-tien"> {this.renderTienGhe()} <span>đ</span></div>
+                    </div>
+                    <div className="combo">
+                        <div className="chon-combo" onClick={() => this.setState({ left: false })}>Chọn Combo</div>
+                        <div className="gia-tien-combo"><span>đ</span></div>
+                    </div>
+                    <div className="btn-dat-ve">
+                        <button>
+                            <a data-toggle="modal" data-target="#myModal">Đặt vé</a>
+                        </button>
+                    </div>
+                    <NotificationContainer />
+                    <ModalBooking />
                 </div>
-                <div className="seat-select">
-                    <div><span>Ghế:</span> {this.renderSearSelect()}</div>
-                    <div className="gia-tien"> {this.renderTienGhe()} <span>đ</span></div>
-                </div>
-                <div className="combo">
-                    <div>Chọn Combo</div>
-                    <div className="gia-tien-combo"><span>đ</span></div>
-                </div>
-                <div className="btn-dat-ve">
-                    <button>
-                        <a onClick={this.handleOnlick}>Đặt vé</a>
-                    </button>
-                </div>
-                <NotificationContainer />
-            </div>
+                <ContentCombo left={this.state.left} className="listCombo">
+                    <h3>Combo</h3>
+                    <div className="content-combo">
+                        <div className="chi-tiet-combo">
+                            <span>Nước coca</span>
+                            <div className="them-bot">
+                                <ButtonThemBot variant="contained"><span>+</span></ButtonThemBot>
+                                <ButtonThemBot variant="contained"><span>-</span></ButtonThemBot>
+                            </div>
+                        </div>
+                        <div className="chi-tiet-combo">
+                            <span>Bắp rang</span>
+                            <div className="them-bot">
+                                <ButtonThemBot variant="contained"><span>+</span></ButtonThemBot>
+                                <ButtonThemBot variant="contained"><span>-</span></ButtonThemBot>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <ButtonClose onClick={() => this.setState({ left: true })} variant="contained">Close</ButtonClose>
+                    </div>
+                </ContentCombo>
+            </Fragment>
         )
     }
 

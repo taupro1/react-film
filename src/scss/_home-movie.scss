@@ -14,24 +14,24 @@
   }
   .title {
     position: relative;
-    height: 14rem;
     @include flex(center);
     list-style: none;
     padding-left: 0;
-    padding-top: 3rem;
+    padding-top: 5%;
     a {
       @include Element-a();
       @include tiltle();
     }
     li {
-      width: 26%;
+      width: 30%;
       @include flex(center);
       height: 50%;
       box-shadow: rgba(0, 0, 0, 0.9) 6px 7px 5px;
       position: relative;
+      padding: 3% 0;
     }
     .movie-play {
-      margin-right: 3rem;
+      margin-right: 6%;
       cursor: pointer;
     }
     .movie-soon {
@@ -158,6 +158,33 @@
             cursor: pointer;
           }
         }
+      }
+    }
+  }
+}
+@media (max-width: 960px) {
+  #home-movie {
+    .title {
+      a {
+        font-size: 100%;
+      }
+    }
+  }
+}
+@media (max-width: 600px) {
+  #home-movie {
+    .title {
+      a {
+        font-size: 70%;
+      }
+    }
+  }
+}
+@media (max-width: 375px) {
+  #home-movie {
+    .title {
+      li {
+        width: 50%;
       }
     }
   }

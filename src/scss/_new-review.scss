@@ -22,9 +22,8 @@
       .news-film {
         display: flex;
         margin-bottom: 5%;
-        height: 25%;
         img {
-          width: 40%;
+          max-width: 40%;
         }
         .news-item {
           padding-left: 2%;
@@ -35,16 +34,32 @@
             margin-bottom: 3%;
             a {
               @include Element-a();
-              font-size: 139%;
               &:hover {
                 color: $color-1;
                 transition: all 0.5s;
+                cursor: pointer;
               }
             }
           }
           p {
             color: #ffffff87;
             text-align: justify;
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 600px) {
+  #news-review {
+    .review-news {
+      .news {
+        .tiltle {
+          font-size: 150%;
+        }
+        .news-film {
+          img {
+            display: none;
           }
         }
       }

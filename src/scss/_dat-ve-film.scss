@@ -35,32 +35,44 @@
     }
     .chon-ghe {
       padding-top: 4%;
-      .seat {
-        display: flex;
-        align-items: center;
-        margin-bottom: 10%;
-        .seat-trong,
-        .seat-dang-chon,
-        .seat-da-dat,
-        .seat-disable {
-          height: 30px;
-          display: inline-block;
-          width: 15%;
-          background: white;
-          border-radius: 5px;
+      @media (max-width: 992px) {
+        .note {
+          display: flex;
         }
-        .seat-dang-chon {
-          background: $color-1;
+      }
+      @media (max-width: 600px) {
+        .note {
+          display: block;
         }
-        .seat-da-dat {
-          background: $color-3;
-        }
-        .seat-disable {
-          background: #e9b7a0d1;
-        }
-        .phan-loai {
-          font-size: 17px;
-          padding-left: 10%;
+      }
+      .note {
+        .seat {
+          display: flex;
+          align-items: center;
+          margin-bottom: 10%;
+          .seat-trong,
+          .seat-dang-chon,
+          .seat-da-dat,
+          .seat-disable {
+            height: 30px;
+            display: inline-block;
+            width: 15%;
+            background: white;
+            border-radius: 5px;
+          }
+          .seat-dang-chon {
+            background: $color-1;
+          }
+          .seat-da-dat {
+            background: $color-3;
+          }
+          .seat-disable {
+            background: #e9b7a0d1;
+          }
+          .phan-loai {
+            font-size: 17px;
+            padding-left: 10%;
+          }
         }
       }
       .select-seat {
@@ -96,8 +108,13 @@
     box-shadow: rgba(0, 0, 0, 0.9) 6px 7px 5px;
     height: 30%;
     .thong-tin {
-      width: 90%;
+      width: 100%;
       margin: 0 auto;
+      z-index: 3;
+      position: absolute;
+      right: 0;
+      background: #241734;
+      padding: 3%;
       .tong-tien {
         text-align: center;
         font-size: 3rem;
@@ -122,16 +139,24 @@
         border-bottom: 2px solid;
         font-size: 1rem;
         cursor: pointer;
+        .chon-combo {
+          &:hover {
+            color: $color-1;
+            transition: all 0.3s;
+          }
+        }
       }
       .btn-dat-ve {
         padding: 10% 0;
         width: 100%;
+        outline: none;
         button {
           width: 100%;
           border-radius: 5px;
           border: none;
           padding: 4% 0px;
           background: $color-2;
+          outline: none;
           &:hover {
             background: $color-1;
             transition: all 0.5s;
@@ -143,6 +168,78 @@
           }
         }
       }
+      .detail-dat-ve {
+        h3 {
+          text-align: center;
+          padding: 3% 0;
+          border-bottom: 2px solid;
+          width: 90%;
+          margin: 0 auto;
+        }
+        .thong-tin-dat-ve {
+          width: 95%;
+          margin: 0 auto;
+          line-height: 2rem;
+          padding: 2% 0;
+          border-bottom: 2px solid;
+          .chi-tiet {
+            font-weight: 600;
+            font-size: 20px;
+            color: $color-1;
+          }
+          .ghe {
+            background: $color-1;
+            margin-right: 1%;
+            padding: 1%;
+            border-radius: 8px;
+          }
+        }
+        a {
+          color: white;
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
     }
+    .listCombo {
+      h3 {
+        text-align: center;
+        width: 90%;
+        margin: 0 auto;
+        border-bottom: 2px solid;
+        padding: 3% 0;
+      }
+      .content-combo {
+        padding: 9% 2%;
+        border-bottom: 2px solid;
+        .chi-tiet-combo {
+          display: flex;
+          justify-content: space-between;
+          font-size: 22px;
+          .them-bot {
+            span {
+              font-size: 25px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  #dat-ve-film {
+    padding-top: 6%;
+  }
+}
+@media (max-width: 768px) {
+  #dat-ve-film {
+    padding-top: 10%;
+  }
+}
+@media (max-width: 576px) {
+  #dat-ve-film {
+    padding-top: 15%;
   }
 }

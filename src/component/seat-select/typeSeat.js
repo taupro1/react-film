@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export default class TypeSeat extends Component {
     render() {
         return (
-            <div className="col-sm-3">
+            <div className="col-sm-12 col-12 col-lg-3">
                 <div className="note">
                     <div className="seat">
                         <span className="seat-trong" />

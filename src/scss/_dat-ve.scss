@@ -79,3 +79,13 @@
     }
   }
 }
+@media (max-width: 992px) {
+  #dat-ve {
+    .content-left {
+      display: none;
+    }
+    .content-right {
+      padding-left: 10%;
+    }
+  }
+}

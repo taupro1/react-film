@@ -27,3 +27,22 @@
     }
   }
 }
+
+@media (max-width: 960px) {
+  #promotion {
+    .promotion-content {
+      .tiltle {
+        font-size: 100%;
+      }
+    }
+  }
+}
+@media (max-width: 600px) {
+  #promotion {
+    .promotion-content {
+      .tiltle {
+        font-size: 60%;
+      }
+    }
+  }
+}

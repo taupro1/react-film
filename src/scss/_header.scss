@@ -6,20 +6,36 @@
   .padding-header {
     align-items: center;
     padding: 10px 0;
-    .color-item {
-      background-color: #ec753224;
-      a {
-        @include Element-a();
-        text-transform: uppercase;
+    .header-left {
+      display: flex;
+      .color-item {
+        background-color: #ec753224;
+        a {
+          @include Element-a();
+          text-transform: uppercase;
+        }
+        &:hover {
+          cursor: pointer;
+          transform: scale(1.1);
+          background-color: $color-1;
+          transition: all 0.2s;
+        }
       }
-      &:hover {
+      .menu {
+        display: none;
+        padding-left: 5%;
         cursor: pointer;
-        transform: scale(1.1);
-        background-color: $color-1;
-        transition: all 0.2s;
+        .icon-menu {
+          color: white;
+          font-size: 30px;
+        }
+        #check {
+          display: none;
+        }
       }
     }
     .header-between {
+      display: flex;
       .logo-header {
         text-align: center;
         cursor: pointer;
@@ -52,6 +68,7 @@
       width: 80%;
       margin: 0 auto;
       position: relative;
+      display: flex;
       .error {
         color: red;
       }
@@ -59,6 +76,19 @@
         @include flex(flex-end);
         width: 100%;
         cursor: pointer;
+        .color-item-login {
+          background-color: #ec753224;
+          a {
+            @include Element-a();
+            text-transform: uppercase;
+          }
+          &:hover {
+            cursor: pointer;
+            transform: scale(1.1);
+            background-color: $color-1;
+            transition: all 0.2s;
+          }
+        }
       }
       #login {
         position: absolute;
@@ -122,6 +152,34 @@
       }
       div {
         color: white;
+      }
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .header {
+    .header-container {
+      height: 100%;
+      .padding-header {
+        height: 100%;
+        .header-left {
+          .left-ul {
+            width: 100%;
+            .color-item {
+              display: none;
+            }
+            .menu {
+              display: block;
+            }
+          }
+        }
+        .header-between {
+          display: none !important;
+        }
+        .content-header-right {
+          padding: 0;
+        }
       }
     }
   }

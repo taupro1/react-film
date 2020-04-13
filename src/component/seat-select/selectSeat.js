@@ -18,7 +18,8 @@ const SeatDiv = styled.div`
     margin-right: 1%;
     cursor: pointer;
     margin-bottom:2%;
-    margin-left: 1%;;
+    margin-left: 1%;
+    padding:0 !important;
 `
 
 class SelectSeat extends Component {
@@ -82,14 +83,14 @@ class SelectSeat extends Component {
             return listDetailBooking.danhSachGhe.map((item, index) => {
                 if (this.handleBackgroundSeatSelect(item)) {
                     return (
-                        <SeatDiv key={index} style={{ backgroundColor: variable.colorOne }} onClick={() => this.handleOnclick(item)} className="col-sm-1">
+                        <SeatDiv key={index} style={{ backgroundColor: variable.colorOne }} onClick={() => this.handleOnclick(item)} className="col-lg-1 col-sm-2 col-3">
                             <span>{item.stt}</span>
                         </SeatDiv>
                     )
                 }
                 else {
                     return (
-                        <SeatDiv key={index} style={{ backgroundColor: this.handleBackgroundSeat(item) }} onClick={() => this.handleOnclick(item)} className="col-sm-1">
+                        <SeatDiv key={index} style={{ backgroundColor: this.handleBackgroundSeat(item) }} onClick={() => this.handleOnclick(item)} className="col-lg-1 col-sm-2 col-3">
                             <span>{item.stt}</span>
                         </SeatDiv>
                     )
@@ -101,7 +102,7 @@ class SelectSeat extends Component {
     }
     render() {
         return (
-            <div className="col-sm-9 select-seat">
+            <div className="col-sm-12 col-12 col-lg-9 select-seat">
                 <div className="man-hinh" />
                 <div className="ghe-ngoi">
                     <h5>Màn hình</h5>

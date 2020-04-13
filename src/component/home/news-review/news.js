@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export default class News extends Component {
     render() {
         return (
-            <div className="col-sm-6 news">
+            <div className="col-sm-12 col-12 col-lg-6 news">
                 <h3 className="tiltle">Tin tức</h3>
                 <div className="news-film">
                     <img src="./img/news-review/news/sau-mot-bo-phim-ho-tro-thanh-con-sen.jpg" alt />

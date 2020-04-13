@@ -6,11 +6,11 @@ import './App.css';
 // font awesome
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab, faFacebookSquare } from '@fortawesome/free-brands-svg-icons'
-import { faPhoneSquare, faPlay, faFilm, faHome, faCalendarPlus, faCalendarAlt, faStar } from '@fortawesome/free-solid-svg-icons'
+import { faPhoneSquare, faPlay, faFilm, faHome, faCalendarPlus, faCalendarAlt, faStar, faBars, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import routesHome from './route/routes.js';
 import HomeTemplate from './template/HomeTemplate';
 import LottieAnimation from './animation';
-library.add(fab, faFacebookSquare, faPhoneSquare, faPlay, faFilm, faHome, faCalendarPlus, faCalendarAlt, faStar);
+library.add(fab, faFacebookSquare, faPhoneSquare, faPlay, faFilm, faHome, faCalendarPlus, faCalendarAlt, faStar, faBars, faCheckCircle);
 
 
 

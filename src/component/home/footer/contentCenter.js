@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export default class ContentCenter extends Component {
     render() {
         return (
-            <div className="col-sm-4 content-center">
+            <div className="col-md-4 col-sm-12 col-12 content-center">
                 <div className="item-footer">
                     <h5 className="tiltle-footer">Hỗ trợ khách hàng</h5>
                     <ul>

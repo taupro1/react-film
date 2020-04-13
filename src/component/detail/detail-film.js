@@ -38,12 +38,12 @@ export default class DetailFilm extends Component {
             <section id="film">
                 <div className="container">
                     <div className="row content-film">
-                        <div className="col-sm-5 content-left">
+                        <div className="col-12 col-sm-12 col-md-5 content-left">
                             <div>
                                 <img src={detailFilm.hinhAnh} alt />
                             </div>
                         </div>
-                        <div className="col-sm-7 content-right">
+                        <div className="col-12 col-sm-12 col-md-7 content-right">
                             <div>
                                 <h3>{detailFilm.tenPhim}</h3>
                                 <div className="chi-tiet">
