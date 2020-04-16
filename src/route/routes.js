@@ -4,6 +4,13 @@ import { lazy } from "react"
 import Register from "../component/home/register";
 import SeatBooking from "../component/seat-select";
 import Login from "../component/home/login";
+import Dashboard from "../component/admin/dashboard";
+import FilmAdmin from "../component/admin/film";
+import UserAdmin from "../component/admin/users/user";
+import CinemaAdmin from "../component/admin/cinema";
+import TicketAdmin from "../component/admin/ticket";
+import AccountAdmin from "../component/admin/account"
+
 
 const HomePage = lazy(() => import("../pages/home"));
 const Detail = lazy(() => import("../pages/Detail"));
@@ -36,4 +43,37 @@ const routesHome = [
     }
 ]
 
-export default routesHome;
+const routesAdmin = [
+    {
+        path: "/admin/dashboard",
+        exact: false,
+        component: Dashboard
+    },
+    {
+        path: "/admin/user",
+        exact: false,
+        component: UserAdmin
+    },
+    {
+        path: "/admin/film",
+        exact: false,
+        component: FilmAdmin
+    },
+    {
+        path: "/admin/account",
+        exact: false,
+        component: AccountAdmin
+    },
+    {
+        path: "/admin/cinema",
+        exact: false,
+        component: CinemaAdmin
+    },
+    {
+        path: "/admin/ticket",
+        exact: false,
+        component: TicketAdmin
+    }
+]
+
+export { routesHome, routesAdmin };

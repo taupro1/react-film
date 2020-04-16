@@ -194,7 +194,7 @@ class TicketBooking extends Component {
     render() {
         return (
             <section id="dat-ve">
-                <div className=" row">
+                <div className=" row w-100">
                     <RorateDivLeft className="content-left col-lg-6">
                         <h2>
                             <img src="./img/dat-ve/icon-ticket.png" alt />

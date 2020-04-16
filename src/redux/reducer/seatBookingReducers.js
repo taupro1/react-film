@@ -4,7 +4,8 @@ import * as actionType from "../actionType/index"
 const initalState = {
     listDetailBooking: {},
     seatSelect: [],
-    isValid: true
+    isValid: true,
+    tongTien: "",
 }
 const seatBookingReducers = (state = initalState, action) => {
     switch (action.type) {
@@ -16,6 +17,9 @@ const seatBookingReducers = (state = initalState, action) => {
             return { ...state }
         case "GET-SEAT-ISVALID":
             state.isValid = action.data
+            return { ...state }
+        case "GET-TONG-TIEN":
+            state.tongTien = action.data;
             return { ...state }
         default:
             return { ...state }

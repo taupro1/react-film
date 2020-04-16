@@ -1,0 +1,35 @@
+.user-admin {
+    width: 85%;
+    float: right;
+    h6 {
+        font-size: 24px;
+    }
+    .toolbar {
+        display: flex;
+        justify-content: space-between;
+        .content-form {
+            display: flex;
+            width: 37%;
+            .item-form {
+                width: 70%;
+            }
+            .item-icon {
+                margin-left: 5%;
+            }
+        }
+    }
+    .tiltle {
+        text-align: center;
+        font-size: 17px;
+    }
+    .data {
+        text-align: center;
+    }
+    .data-action {
+        button {
+            font-size: 9px;
+            margin-right: 2%;
+            outline: none;
+        }
+    }
+}

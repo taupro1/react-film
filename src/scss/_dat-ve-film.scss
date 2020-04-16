@@ -168,39 +168,6 @@
           }
         }
       }
-      .detail-dat-ve {
-        h3 {
-          text-align: center;
-          padding: 3% 0;
-          border-bottom: 2px solid;
-          width: 90%;
-          margin: 0 auto;
-        }
-        .thong-tin-dat-ve {
-          width: 95%;
-          margin: 0 auto;
-          line-height: 2rem;
-          padding: 2% 0;
-          border-bottom: 2px solid;
-          .chi-tiet {
-            font-weight: 600;
-            font-size: 20px;
-            color: $color-1;
-          }
-          .ghe {
-            background: $color-1;
-            margin-right: 1%;
-            padding: 1%;
-            border-radius: 8px;
-          }
-        }
-        a {
-          color: white;
-          &:hover {
-            text-decoration: none;
-          }
-        }
-      }
     }
     .listCombo {
       h3 {
@@ -222,6 +189,39 @@
               font-size: 25px;
             }
           }
+        }
+      }
+    }
+    .detail-dat-ve {
+      h3 {
+        text-align: center;
+        padding: 3% 0;
+        border-bottom: 2px solid;
+        width: 90%;
+        margin: 0 auto;
+      }
+      .thong-tin-dat-ve {
+        width: 95%;
+        margin: 0 auto;
+        line-height: 2rem;
+        padding: 2% 0;
+        border-bottom: 2px solid;
+        .chi-tiet {
+          font-weight: 600;
+          font-size: 20px;
+          color: $color-1;
+        }
+        .ghe {
+          background: $color-1;
+          margin-right: 1%;
+          padding: 1%;
+          border-radius: 8px;
+        }
+      }
+      a {
+        color: white;
+        &:hover {
+          text-decoration: none;
         }
       }
     }

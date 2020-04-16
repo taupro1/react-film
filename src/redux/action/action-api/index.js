@@ -15,19 +15,6 @@ export const actPostUserRegisterApi = (data, history) => {
             })
     }
 }
-// export const actPostUserLoginApi = (data) => {
-//     return dispatch => {
-//         callApi.callApiQuanLyNguoiDung("POST", `DangNhap`, data)
-//             .then((rs) => {
-//                 localStorage.setItem("login", JSON.stringify(rs.data));
-//                 dispatch(action.actGetUser("EDIT-ISVALID-LOGIN-TICKET", true))
-//             })
-//             .catch((er) => {
-//                 alert(er.response.data);
-
-//             })
-//     }
-// }
 export const actGetUserApi = () => {
     return dispatch => {
         callApi.callApiQuanLyNguoiDung("GET", `DangNhap`, null)
@@ -36,6 +23,34 @@ export const actGetUserApi = () => {
             })
             .catch((error) => {
                 console.log(error);
+            })
+    }
+}
+export const actPostUserLoginApi = (data, history) => {
+    return dispatch => {
+        callApi.callApiQuanLyNguoiDung("POST", `DangNhap`, data)
+            .then((rs) => {
+                if (rs.data.maLoaiNguoiDung === "QuanTri") {
+                    localStorage.setItem("userAdmin", JSON.stringify(rs.data));
+                    history.push("/admin/dashboard")
+                }
+                else {
+                    alert("Bạn không có quyền truy cập")
+                }
+            })
+            .catch((er) => {
+                alert(er.response.data);
+            })
+    }
+}
+export const actGetListUser = () => {
+    return dispatch => {
+        callApi.callApiQuanLyNguoiDung("GET", `LayDanhSachNguoiDung?MaNhom=GP01`, null)
+            .then(rs => {
+                dispatch(action.actGetUser("GET-LIST-USER-ADMIN", rs.data))
+            })
+            .catch(er => {
+                alert(er.response.data)
             })
     }
 }

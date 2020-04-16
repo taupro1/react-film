@@ -16,7 +16,7 @@ const ContentTrailer = styled.div`
     width: 80%;
     height: 110%;
     transition: margin .5s;
-    margin-left: ${props => props.margin ? "130%" : "0"};
+    margin-left: ${props => props.margin ? "200%" : "0"};
 `
 const Iframe = styled.iframe`
     width: 100%;

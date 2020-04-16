@@ -2,9 +2,10 @@ import React, { Component, Fragment } from 'react'
 import { connect } from "react-redux"
 import styled from "styled-components"
 import { NotificationContainer, NotificationManager } from "react-notifications"
-import ModalBooking from './.modalBooking'
+import ModalBooking from './modalBooking'
 import { Button } from '@material-ui/core'
 import variable from "../../scss/_variable.scss"
+import * as action from "../../redux/action/action-redux/index"
 
 const WidthImg = styled.img`
     width:30%
@@ -58,7 +59,9 @@ class DetailBooking extends Component {
         super(props)
 
         this.state = {
-            left: true
+            left: true,
+            giaNuoc: 0,
+            giaBaprang: 0
         }
     }
 
@@ -104,9 +107,46 @@ class DetailBooking extends Component {
         }
         return 0
     }
+    renderTienCombo = () => {
+        let { giaBaprang, giaNuoc } = this.state
+        if (giaNuoc !== 0 || giaBaprang !== 0) {
+            return giaBaprang + giaNuoc
+        }
+        return 0
+    }
+    handleOnclickButton = (status, data) => {
+        if (data === "nuoc") {
+            let giaNuoc = this.state.giaNuoc
+            if (status) {
+                this.setState({
+                    giaNuoc: giaNuoc + 10000
+                })
+            }
+            if (!status && giaNuoc !== 0) {
+                this.setState({
+                    giaNuoc: giaNuoc - 10000
+                })
+            }
+        }
+        if (data === "baprang") {
+            let giaBaprang = this.state.giaBaprang
+            if (status) {
+                this.setState({
+                    giaBaprang: giaBaprang + 20000
+                })
+            }
+            if (!status && giaBaprang !== 0) {
+                this.setState({
+                    giaBaprang: giaBaprang - 20000
+                })
+            }
+        }
+    }
 
     renderTongTien = () => {
-        return this.renderTienGhe()
+        let tongTien = this.renderTienGhe() + this.renderTienCombo()
+        this.props.getTongtien(tongTien)
+        return tongTien
     }
     render() {
         return (
@@ -122,7 +162,7 @@ class DetailBooking extends Component {
                     </div>
                     <div className="combo">
                         <div className="chon-combo" onClick={() => this.setState({ left: false })}>Chọn Combo</div>
-                        <div className="gia-tien-combo"><span>đ</span></div>
+                        <div className="gia-tien-combo">{this.renderTienCombo()}<span>đ</span></div>
                     </div>
                     <div className="btn-dat-ve">
                         <button>
@@ -130,23 +170,22 @@ class DetailBooking extends Component {
                         </button>
                     </div>
                     <NotificationContainer />
-                    <ModalBooking />
                 </div>
                 <ContentCombo left={this.state.left} className="listCombo">
                     <h3>Combo</h3>
                     <div className="content-combo">
                         <div className="chi-tiet-combo">
-                            <span>Nước coca</span>
+                            <span>Nước coca (10k)</span>
                             <div className="them-bot">
-                                <ButtonThemBot variant="contained"><span>+</span></ButtonThemBot>
-                                <ButtonThemBot variant="contained"><span>-</span></ButtonThemBot>
+                                <ButtonThemBot onClick={() => this.handleOnclickButton(true, "nuoc")} variant="contained"><span>+</span></ButtonThemBot>
+                                <ButtonThemBot onClick={() => this.handleOnclickButton(false, "nuoc")} variant="contained"><span>-</span></ButtonThemBot>
                             </div>
                         </div>
                         <div className="chi-tiet-combo">
-                            <span>Bắp rang</span>
+                            <span>Bắp rang (20k)</span>
                             <div className="them-bot">
-                                <ButtonThemBot variant="contained"><span>+</span></ButtonThemBot>
-                                <ButtonThemBot variant="contained"><span>-</span></ButtonThemBot>
+                                <ButtonThemBot onClick={() => this.handleOnclickButton(true, "baprang")} variant="contained"><span>+</span></ButtonThemBot>
+                                <ButtonThemBot onClick={() => this.handleOnclickButton(false, "baprang")} variant="contained"><span>-</span></ButtonThemBot>
                             </div>
                         </div>
                     </div>
@@ -154,6 +193,7 @@ class DetailBooking extends Component {
                         <ButtonClose onClick={() => this.setState({ left: true })} variant="contained">Close</ButtonClose>
                     </div>
                 </ContentCombo>
+                <ModalBooking />
             </Fragment>
         )
     }
@@ -178,6 +218,9 @@ const mapDispatchToProps = dispatch => {
                 data
             }
             dispatch(action)
+        },
+        getTongtien: data => {
+            dispatch(action.actGetListDetailBooking(data, "GET-TONG-TIEN"))
         }
     }
 }

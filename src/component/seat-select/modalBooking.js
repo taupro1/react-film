@@ -35,6 +35,7 @@ const ContentDetail = styled.div`
     width: 60%;
     right: ${props => props.right ? "-100%" : "25%"};
     transition:right .6s;
+    z-index:4
 `
 const ButtonClose = styled(ButtonChiTiet)`
     float: right !important;
@@ -50,32 +51,42 @@ class ModalBooking extends Component {
         }
     }
     renderHtml = () => {
-        if (this.props.seatSelect.length !== 0) {
-            return (
-                <Fragment>
-                    <ModalHeader className="modal-header">
-                        <Icon icon="check-circle" ></Icon>
-                        <ItemHeader>Đặt vé thành công</ItemHeader>
-                    </ModalHeader>
+        if (localStorage.getItem("login") || this.state.statusLogin) {
+            if (this.props.seatSelect.length !== 0) {
+                return (
+                    <Fragment>
+                        <ModalHeader className="modal-header">
+                            <Icon icon="check-circle" ></Icon>
+                            <ItemHeader>Đặt vé thành công</ItemHeader>
+                        </ModalHeader>
+                        <ModalBody className="modal-body">
+                            <p>Chúc quý khách xem phim vui vẻ bên gấu (-_-)</p>
+                            <p>Chúc các bạn FA sớm có gấu ! Fighting</p>
+                        </ModalBody>
+                        <div className="modal-footer">
+                            <ButtonChiTiet data-dismiss="modal" variant="contained" onClick={() => this.setState({ right: false })}>
+                                Xem chi tiết đặt vé
+                            </ButtonChiTiet>
+                        </div>
+                    </Fragment>
+                )
+            }
+            else {
+                return (
                     <ModalBody className="modal-body">
-                        <p>Chúc quý khách xem phim vui vẻ bên gấu (-_-)</p>
-                        <p>Chúc các bạn FA sớm có gấu ! Fighting</p>
+                        <p>Vui lòng đặt ghế xem phim</p>
                     </ModalBody>
-                    <div className="modal-footer">
-                        <ButtonChiTiet data-dismiss="modal" variant="contained" onClick={() => this.setState({ right: false })}>
-                            Xem chi tiết đặt vé
-                        </ButtonChiTiet>
-                    </div>
-                </Fragment>
-            )
+                )
+            }
         }
         else {
             return (
                 <ModalBody className="modal-body">
-                    <p>Vui lòng đặt ghế xem phim</p>
+                    <p>Vui lòng đăng nhập</p>
                 </ModalBody>
             )
         }
+
     }
     renderSearSelect = () => {
         if (this.props.seatSelect.length !== 0) {
@@ -85,16 +96,6 @@ class ModalBooking extends Component {
                 )
             })
         }
-    }
-    renderTienGhe = () => {
-        if (this.props.seatSelect.length !== 0) {
-            let sum = 0;
-            this.props.seatSelect.map((item, index) => {
-                sum += item.giaVe
-            })
-            return sum
-        }
-        return 0
     }
     renderListDetail = () => {
         if (Object.keys(this.props.listDetailBooking).length !== 0) {
@@ -122,7 +123,7 @@ class ModalBooking extends Component {
                             <span>Ghế: </span>{this.renderSearSelect()}
                         </div>
                         <div>
-                            <span>Tổng tiền: </span><span className="chi-tiet">{this.renderTienGhe()}</span>
+                            <span>Tổng tiền: </span><span className="chi-tiet">{this.props.tongTien}</span>
                         </div>
                     </div>
                 </Fragment>
@@ -161,7 +162,9 @@ class ModalBooking extends Component {
 const mapStateToProps = state => {
     return {
         listDetailBooking: state.seatBookingReducers.listDetailBooking,
-        seatSelect: state.seatBookingReducers.seatSelect
+        seatSelect: state.seatBookingReducers.seatSelect,
+        tongTien: state.seatBookingReducers.tongTien,
+        statusLogin: state.homeReducers.statusLogin
     }
 }
 export default connect(mapStateToProps, null)(ModalBooking)

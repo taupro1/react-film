@@ -57,7 +57,8 @@ class SeatBooking extends Component {
     }
     componentWillUnmount() {
         this.props.deleteListDetailBooking();
-        this.props.editIsvalid(true)
+        this.props.editIsvalid(true);
+        this.props.deleteTongTien("");
     }
 }
 
@@ -77,6 +78,9 @@ const mapDispatchToProps = dispatch => {
         },
         editIsvalid: data => {
             dispatch(action.actGetListDetailBooking(data, "GET-SEAT-ISVALID"))
+        },
+        deleteTongTien: data => {
+            dispatch(action.actGetListDetailBooking(data, "GET-TONG-TIEN"))
         }
     }
 }
