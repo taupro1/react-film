@@ -1,85 +1,110 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import LottieAnimation from "../../../animation/index"
+import { Fragment } from "react"
+import * as callApi from "../../../redux/action/action-api/index"
+import * as action from "../../../redux/action/action-redux/index"
+
+import Table from "@material-ui/core/Table"
+import TableContainer from "@material-ui/core/TableContainer"
+import TableRow from "@material-ui/core/TableRow"
+
 import EditIcon from '@material-ui/icons/Edit';
 import SearchIcon from '@material-ui/icons/Search';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import TextField from '@material-ui/core/TextField';
 import Tooltip from "@material-ui/core/Tooltip";
 import DeleteIcon from '@material-ui/icons/Delete';
-import ModalUsers from "./modalUsers"
-
-import Paper from '@material-ui/core/Paper';
-import { Toolbar, FormControl, InputAdornment, ButtonBase } from '@material-ui/core';
-import Table from "@material-ui/core/Table"
-import TableContainer from "@material-ui/core/TableContainer"
-import TableRow from "@material-ui/core/TableRow"
-import { TableCell, Button, TableBody } from "@material-ui/core"
+import Button from "@material-ui/core/Button"
+import ModalMovies from "./modalMovies"
+import ModalUploadHinh from "./modalUploadHinh"
 
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import * as callApi from "../../../redux/action/action-api/index"
-import * as action from "../../../redux/action/action-redux/index"
-import { connect } from 'react-redux';
-import LottieAnimation from "../../../animation/index"
-import { Fragment } from "react"
 
-class UserAdmin extends Component {
+
+import Paper from '@material-ui/core/Paper';
+import { Toolbar, FormControl, InputAdornment, ButtonBase, TableBody, TableCell } from '@material-ui/core';
+import CloudUploadIcon from "@material-ui/icons/CloudUpload"
+import { connect } from 'react-redux'
+
+class MoviesAdmin extends Component {
     constructor(props) {
         super(props)
-
         this.state = {
-            keyword: ""
-        }
-    }
+            keyword: "",
 
-    handleOnclickEdit = data => {
-        this.props.editUserEdit(data)
+        }
     }
     renderTable = item => {
         return (
             <Fragment>
                 <TableRow>
                     <TableCell className="chi-tiet" >
-                        Tài khoản
+                        Mã phim
                 </TableCell>
                     <TableCell className="chi-tiet-item" >
-                        {item.taiKhoan}
+                        {item.maPhim}
                     </TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell className="chi-tiet" >
-                        Email
+                        Bí danh
                  </TableCell>
                     <TableCell className="chi-tiet-item" >
-                        {item.email}
+                        {item.biDanh}
                     </TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell className="chi-tiet" >
-                        Số điện thoại
+                        Trailer
              </TableCell>
                     <TableCell className="chi-tiet-item" >
-                        {item.soDt}
+                        {item.trailer}
                     </TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell className="chi-tiet" >
-                        Mật khẩu
+                        Mô tả
           </TableCell>
                     <TableCell className="chi-tiet-item" >
-                        {item.matKhau}
+                        {item.moTa}
+                    </TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell className="chi-tiet" >
+                        Mã nhóm
+       </TableCell>
+                    <TableCell className="chi-tiet-item" >
+                        {item.maNhom}
+                    </TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell className="chi-tiet" >
+                        Ngày khởi chiếu
+    </TableCell>
+                    <TableCell className="chi-tiet-item" >
+                        {item.ngayKhoiChieu}
+                    </TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell className="chi-tiet" >
+                        Đánh giá
+ </TableCell>
+                    <TableCell className="chi-tiet-item" >
+                        {item.danhGia}
                     </TableCell>
                 </TableRow>
             </Fragment>
         )
     }
     renderListUser = () => {
-        let { listUser } = this.props;
-        if (listUser.length !== 0) {
-            listUser = listUser.filter(item => {
-                return item.taiKhoan.toLowerCase().indexOf(this.state.keyword.toLowerCase()) !== -1
+        let { listMovies } = this.props
+        if (listMovies.length !== 0) {
+            listMovies = listMovies.filter(item => {
+                return item.tenPhim.toLowerCase().indexOf(this.state.keyword.toLowerCase()) !== -1
             })
-            return listUser.map((item, index) => {
+            return listMovies.map((item, index) => {
                 return (
                     <div className="row item-user" key={index}>
                         <div className="col-sm-3 item item-chi-tiet">
@@ -90,7 +115,7 @@ class UserAdmin extends Component {
                                     className="btn-chi-tiet"
                                 >
                                     <Button variant="contained" color="primary">
-                                        Chi tiết người dùng
+                                        Chi tiết phim
                                     </Button>
                                 </ExpansionPanelSummary>
                                 <ExpansionPanelDetails className="list-chi-tiet">
@@ -106,10 +131,10 @@ class UserAdmin extends Component {
                             </ExpansionPanel>
                         </div>
                         <div className="col-sm-3 item item-tiltle">
-                            {item.hoTen}
+                            {item.tenPhim}
                         </div>
-                        <div className="col-sm-3 item item-tiltle">
-                            {item.maLoaiNguoiDung}
+                        <div className="col-sm-3 item item-img">
+                            <img src={item.hinhAnh} />
                         </div>
                         <div className="col-sm-3 item">
                             <Button
@@ -119,7 +144,7 @@ class UserAdmin extends Component {
                                 className="btn-action"
                                 onClick={() => {
                                     this.props.editIsValidUser(true)
-                                    this.props.deleteUser(item.taiKhoan)
+                                    this.props.deleteMovies(item.maPhim)
                                 }}
                             >
                                 Delete
@@ -130,13 +155,17 @@ class UserAdmin extends Component {
                                 color="primary"
                                 endIcon={<EditIcon />}
                                 data-toggle="modal"
-                                data-target="#myModalUser"
-                                onClick={() => this.props.editUserEdit(item)}
+                                data-target="#myModalMovies"
+                                onClick={() => this.props.editMoviesEdit(item)}
                             >
                                 Edit
-              </Button>
+                            </Button>
+                            <Button style={{ fontSize: "11px", marginTop: "5%" }} onClick={() => this.props.editUploadHinh(item)} data-toggle="modal" data-target="#modalUpload" variant="contained" color="default" startIcon={<CloudUploadIcon />}>
+                                Upload hình
+        </Button>
                         </div>
-                    </div>
+                    </div >
+
                 )
             })
         }
@@ -145,12 +174,12 @@ class UserAdmin extends Component {
         return this.props.isValidUser ?
             <LottieAnimation />
             :
-            <div className="user-admin">
+            <div className="movies-admin">
                 <Paper className="content-search">
                     <Toolbar className="toolbar">
                         <div>
                             <h6>
-                                List user
+                                List movies
                         </h6>
                         </div>
                         <div className="content-form">
@@ -165,8 +194,8 @@ class UserAdmin extends Component {
                                 </TextField>
                             </FormControl>
                             <div className="item-icon">
-                                <Tooltip title="Add user">
-                                    <ButtonBase onClick={() => this.handleOnclickEdit(null)} data-toggle="modal" data-target="#myModalUser" style={{ outline: "none" }}>
+                                <Tooltip title="Add movie">
+                                    <ButtonBase onClick={() => this.props.editMoviesEdit(null)} data-toggle="modal" data-target="#myModalMovies" style={{ outline: "none" }}>
                                         <AddBoxIcon />
                                     </ButtonBase>
                                 </Tooltip>
@@ -179,10 +208,10 @@ class UserAdmin extends Component {
                                 Chi tiết
                         </div>
                             <div className="col-sm-3">
-                                Họ tên
+                                Tên phim
                         </div>
                             <div className="col-sm-3">
-                                Loại người dùng
+                                Hình ảnh
                         </div>
                             <div className="col-sm-3">
                                 Action
@@ -193,7 +222,8 @@ class UserAdmin extends Component {
                 <div className="content-user">
                     {this.renderListUser()}
                 </div>
-                <ModalUsers />
+                <ModalMovies />
+                <ModalUploadHinh />
             </div>
     }
     render() {
@@ -203,38 +233,37 @@ class UserAdmin extends Component {
             </Fragment>
         )
     }
-
     componentDidMount() {
-        this.props.getListUser()
+        this.props.getListMovie()
     }
     componentWillUnmount() {
-        this.props.editIsValidUser(true)
+        this.props.editIsValidUser(true);
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        getListUser: () => {
-            dispatch(callApi.actGetListUser())
+        getListMovie: () => {
+            dispatch(callApi.actGetListFilmApi())
         },
-        editUserEdit: data => {
-            dispatch(action.actGetUser("EDIT-USER-EDIT", data))
-        },
-        deleteUser: data => {
-            dispatch(callApi.actDeleteUser(data))
+        editMoviesEdit: data => {
+            dispatch(action.actGetListMovie("EDIT-MOVIES-EDIT", data))
         },
         editIsValidUser: data => {
             dispatch(action.actGetUser("GET-ISVALID-USER-ADMIN", data))
+        },
+        deleteMovies: data => {
+            dispatch(callApi.actDeleteMoviesAdmin(data))
+        },
+        editUploadHinh: data => {
+            dispatch(action.actGetListMovie("EDIT-UPLOAD-HINH", data))
         }
     }
 }
 const mapStateToProps = state => {
     return {
-        listUser: state.usersReducers.listUser,
+        listMovies: state.moviesReducers.listMovies,
         isValidUser: state.usersReducers.isValidUser
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(UserAdmin)
-
-
-
+export default connect(mapStateToProps, mapDispatchToProps)(MoviesAdmin)

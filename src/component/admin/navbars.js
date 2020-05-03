@@ -58,7 +58,7 @@ export default class Navbars extends Component {
                         </NavLink>
                     </li>
                     <li className="navbar-li">
-                        <NavLink activeClassName="activeAdmin" className="a-navbars" to="/admin/film">
+                        <NavLink activeClassName="activeAdmin" className="a-navbars" to="/admin/movies">
                             <Button className="btn-navbars">
                                 <MovieIcon className="icon" />
                                 <div>Movie</div>

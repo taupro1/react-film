@@ -5,11 +5,11 @@ import Register from "../component/home/register";
 import SeatBooking from "../component/seat-select";
 import Login from "../component/home/login";
 import Dashboard from "../component/admin/dashboard";
-import FilmAdmin from "../component/admin/film";
 import UserAdmin from "../component/admin/users/user";
-import CinemaAdmin from "../component/admin/cinema";
+import CinemaAdmin from "../component/admin/cinema/cinema";
 import TicketAdmin from "../component/admin/ticket";
 import AccountAdmin from "../component/admin/account"
+import MoviesAdmin from "../component/admin/movies/film"
 
 
 const HomePage = lazy(() => import("../pages/home"));
@@ -55,9 +55,9 @@ const routesAdmin = [
         component: UserAdmin
     },
     {
-        path: "/admin/film",
+        path: "/admin/movies",
         exact: false,
-        component: FilmAdmin
+        component: MoviesAdmin
     },
     {
         path: "/admin/account",

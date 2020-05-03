@@ -5,7 +5,7 @@ export const callApiQuanLyNguoiDung = (method, uri, data) => {
     return Axios({
         method,
         url: `${apiUrl.apiQuanLyNguoiDung}/${uri}`,
-        data
+        data,
     })
 }
 
@@ -16,6 +16,15 @@ export const callApiQuanLiPhim = (method, uri, data) => {
         url: `${apiUrl.apiQuanLiPhim}/${uri}`,
         data
     })
+}
+
+export const callApiUploadHinh = (method, url, data) => {
+    return Axios({
+        method,
+        url,
+        data
+    })
+
 }
 
 export const callApiQuanLiRap = (method, uri, data) => {

@@ -1,4 +1,4 @@
-.user-admin {
+.movies-admin {
     width: 85%;
     float: right;
     h6 {
@@ -60,7 +60,6 @@
                 .btn-chi-tiet {
                     display: flex;
                     justify-content: center;
-                    padding: 0;
                     button {
                         outline: none;
                     }
@@ -68,7 +67,7 @@
                 .list-chi-tiet {
                     background-color: $color-2;
                     width: 34rem;
-                    height: 16rem;
+                    height: 20rem;
                     .chi-tiet {
                         width: 30%;
                         color: white;
@@ -97,7 +96,7 @@
             }
         }
         .item-tiltle {
-            font-size: 21px;
+            font-size: 25px;
             font-weight: 600;
             height: 20%;
         }

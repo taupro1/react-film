@@ -5,6 +5,10 @@ import Button from "@material-ui/core/Button"
 import SystemUpdateIcon from '@material-ui/icons/SystemUpdate';
 import CloseIcon from '@material-ui/icons/Close';
 import { connect } from 'react-redux';
+import { NotificationContainer, NotificationManager } from "react-notifications"
+
+import * as callApi from "../../../redux/action/action-api/index"
+import * as action from "../../../redux/action/action-redux/index"
 
 const TextFieldContent = styled(TextField)`
     width:100%;
@@ -15,10 +19,12 @@ const ContentButton = styled(Button)`
     margin-right: 2%;
 `
 
+
 class ModalUsers extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            open: false,
             loaiNguoiDung: [
                 {
                     type: "Quản trị",
@@ -54,11 +60,13 @@ class ModalUsers extends Component {
             soDtValid: false,
         }
     }
+
+    // Validation form
     handleOnchange = event => {
         let { name, value } = event.target
         this.setState({
             user: { ...this.state.user, [name]: value }
-        }, () => console.log(this.state.user))
+        })
     }
     handleError = event => {
         let { name, value } = event.target;
@@ -109,37 +117,21 @@ class ModalUsers extends Component {
             this.validationForm()
         })
     }
-    handleSubmit = event => {
-        event.preventDefault();
-        // this.props.postUser(this.state.user, this.props.history)
+    handleSubmit = () => {
+        let user = { ...this.state.user, maNhom: "GP01" }
         this.setState({
-            user: {
-                hoTen: "",
-                taiKhoan: "",
-                matKhau: "",
-                email: "",
-                soDt: "",
-                maNhom: "",
-                maLoaiNguoiDung: "",
-            },
-            error: {
-                hoTen: "",
-                taiKhoan: "",
-                matKhau: "",
-                email: "",
-                soDt: "",
-                maNhom: "",
-                maLoaiNguoiDung: "",
-            },
-            formValid: false,
-            hoTenValid: false,
-            taiKhoanValid: false,
-            matKhauValid: false,
-            emailValid: false,
-            soDtValid: false,
-            maNhom: false,
-        })
-
+            user
+        }, () => { this.checkHandleSubmit() })
+    }
+    checkHandleSubmit = () => {
+        if (this.props.userEdit) {
+            this.props.editIsValidUser(true)
+            this.props.editUserAdmin(this.state.user)
+        }
+        else {
+            this.props.editIsValidUser(true)
+            this.props.addUserAdmin(this.state.user)
+        }
     }
     validationForm = () => {
         const { hoTenValid, taiKhoanValid, matKhauValid, emailValid, soDtValid } = this.state;
@@ -176,6 +168,43 @@ class ModalUsers extends Component {
             maNhom: false,
         })
     }
+    handleDisabled = () => {
+        if (this.props.userEdit) {
+            return false
+        }
+        else {
+            if (!this.state.formValid) {
+                return true
+            }
+            return false
+        }
+    }
+
+    //Edit form
+    componentWillReceiveProps(nextProps) {
+        if (nextProps && nextProps.userEdit) {
+            const { userEdit } = nextProps;
+            this.setState({
+                user: userEdit
+            })
+        }
+        if (nextProps && !nextProps.userEdit) {
+            this.setState({
+                user:
+                {
+                    hoTen: "",
+                    taiKhoan: "",
+                    matKhau: "",
+                    email: "",
+                    soDt: "",
+                    maNhom: "GP01",
+                    maLoaiNguoiDung: "",
+                },
+
+            })
+        }
+
+    }
     render() {
         const { error, user, formValid } = this.state;
         return (
@@ -204,6 +233,7 @@ class ModalUsers extends Component {
                             </div>
                             <div>
                                 <TextFieldContent
+                                    value={user.maLoaiNguoiDung}
                                     name="maLoaiNguoiDung"
                                     id="standard-select-currency-native"
                                     select
@@ -227,11 +257,12 @@ class ModalUsers extends Component {
                                 variant="contained"
                                 color="primary"
                                 startIcon={<SystemUpdateIcon />}
-                                disabled={!formValid}
+                                disabled={this.handleDisabled()}
                                 onClick={this.handleSubmit}
+                                data-dismiss="modal"
                             >
-                                Update
-      </ContentButton>
+                                {this.props.userEdit ? "Update" : "Add"}
+                            </ContentButton>
                             <ContentButton
                                 variant="contained"
                                 color="secondary"
@@ -244,14 +275,28 @@ class ModalUsers extends Component {
                         </div>
                     </div>
                 </div>
+                <NotificationContainer />
             </div>
         )
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        editUserAdmin: data => {
+            dispatch(callApi.actEditUser(data))
+        },
+        addUserAdmin: data => {
+            dispatch(callApi.actAddUser(data))
+        },
+        editIsValidUser: data => {
+            dispatch(action.actGetUser("GET-ISVALID-USER-ADMIN", data))
+        }
     }
 }
 
 const mapStateToProps = state => {
     return {
-        userEdit: state.usersReducers.userEdit
+        userEdit: state.usersReducers.userEdit,
     }
 }
-export default connect(mapStateToProps, null)(ModalUsers);
+export default connect(mapStateToProps, mapDispatchToProps)(ModalUsers);

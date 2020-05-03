@@ -8,6 +8,12 @@ export const actGetUser = (type, data) => {
 }
 
 // Quan ly phim
+export const actGetListMovie = (type, data) => {
+    return {
+        type,
+        data
+    }
+}
 
 export const actGetListShowFilm = data => {
     return {

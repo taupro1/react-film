@@ -1,82 +1,15 @@
-.header {
-  z-index: 6;
+header {
+  position: sticky;
   background-color: $color-3;
-  position: fixed;
-  width: 100%;
-  .padding-header {
-    align-items: center;
-    padding: 10px 0;
-    .header-left {
-      display: flex;
-      .color-item {
-        background-color: #ec753224;
-        a {
-          @include Element-a();
-          text-transform: uppercase;
-        }
-        &:hover {
-          cursor: pointer;
-          transform: scale(1.1);
-          background-color: $color-1;
-          transition: all 0.2s;
-        }
-      }
-      .menu {
-        display: none;
-        padding-left: 5%;
-        cursor: pointer;
-        .icon-menu {
-          color: white;
-          font-size: 30px;
-        }
-        #check {
-          display: none;
-        }
-      }
-    }
-    .header-between {
-      display: flex;
-      .logo-header {
-        text-align: center;
-        cursor: pointer;
-        img {
-          width: 30%;
-        }
-      }
-      a {
-        @include Element-a();
-      }
-      .i-phone {
-        color: $color-1;
-        font-size: 38px;
-      }
-      .i-facebook {
-        @include Element-i();
-        font-size: 20px;
-        height: 35px;
-        width: 35px;
-        background-color: blue;
-        border-radius: 9px;
-      }
-      span {
-        @include Element-span();
-        padding-left: 3px;
-        font-size: 19px;
-      }
-    }
-    .header-right {
-      width: 80%;
-      margin: 0 auto;
-      position: relative;
-      display: flex;
-      .error {
-        color: red;
-      }
-      .logo-login {
-        @include flex(flex-end);
-        width: 100%;
-        cursor: pointer;
-        .color-item-login {
+  top: 0;
+  z-index: 10;
+  .header {
+    .padding-header {
+      align-items: center;
+      padding: 10px 0;
+      .header-left {
+        display: flex;
+        .color-item {
           background-color: #ec753224;
           a {
             @include Element-a();
@@ -89,96 +22,165 @@
             transition: all 0.2s;
           }
         }
-      }
-      #login {
-        position: absolute;
-        top: 100%;
-        z-index: 1;
-        width: 100%;
-        background: #0000006b;
-        .form-login {
-          width: 90%;
-          margin: 0 auto;
-          padding: 8% 0;
-          .form-input {
-            width: 100%;
-            margin-bottom: 3%;
-            input {
-              width: 100%;
-              padding: 4%;
-              border: none;
-              line-height: 21px;
-              border-radius: 7px;
-              outline: none;
-            }
-          }
-          #logo-submit {
-            padding: 3%;
-            font-size: 148%;
-            width: 100%;
-            border-radius: 7px;
-            background: $color-3;
-            border: none;
-            text-transform: uppercase;
+        .menu {
+          display: none;
+          padding-left: 5%;
+          cursor: pointer;
+          .icon-menu {
             color: white;
-            font-weight: 600;
-            cursor: pointer;
-            &:hover {
-              background: $color-1;
-              transition: ease-in-out 0.2s;
-            }
+            font-size: 30px;
           }
-          #register {
-            a {
-              @include Element-a();
-            }
-            margin-top: 2%;
-            padding: 3%;
-            font-size: 148%;
-            width: 100%;
-            border-radius: 7px;
-            background: $color-3;
-            border: none;
-            text-transform: uppercase;
-            color: white;
-            font-weight: 600;
-            cursor: pointer;
-            &:hover {
-              background: $color-1;
-              transition: ease-in-out 0.2s;
-            }
+          #check {
+            display: none;
           }
         }
       }
-      div {
-        color: white;
+      .header-between {
+        display: flex;
+        .logo-header {
+          text-align: center;
+          cursor: pointer;
+          img {
+            width: 30%;
+          }
+        }
+        a {
+          @include Element-a();
+        }
+        .i-phone {
+          color: $color-1;
+          font-size: 38px;
+        }
+        .i-facebook {
+          @include Element-i();
+          font-size: 20px;
+          height: 35px;
+          width: 35px;
+          background-color: blue;
+          border-radius: 9px;
+        }
+        span {
+          @include Element-span();
+          padding-left: 3px;
+          font-size: 19px;
+        }
+      }
+      .header-right {
+        width: 80%;
+        margin: 0 auto;
+        position: relative;
+        display: flex;
+        .error {
+          color: red;
+        }
+        .logo-login {
+          @include flex(flex-end);
+          width: 100%;
+          cursor: pointer;
+          .color-item-login {
+            background-color: #ec753224;
+            a {
+              @include Element-a();
+              text-transform: uppercase;
+            }
+            &:hover {
+              cursor: pointer;
+              transform: scale(1.1);
+              background-color: $color-1;
+              transition: all 0.2s;
+            }
+          }
+        }
+        #login {
+          position: absolute;
+          top: 100%;
+          z-index: 1;
+          width: 100%;
+          background: #0000006b;
+          .form-login {
+            width: 90%;
+            margin: 0 auto;
+            padding: 8% 0;
+            .form-input {
+              width: 100%;
+              margin-bottom: 3%;
+              input {
+                width: 100%;
+                padding: 4%;
+                border: none;
+                line-height: 21px;
+                border-radius: 7px;
+                outline: none;
+              }
+            }
+            #logo-submit {
+              padding: 3%;
+              font-size: 148%;
+              width: 100%;
+              border-radius: 7px;
+              background: $color-3;
+              border: none;
+              text-transform: uppercase;
+              color: white;
+              font-weight: 600;
+              cursor: pointer;
+              &:hover {
+                background: $color-1;
+                transition: ease-in-out 0.2s;
+              }
+            }
+            #register {
+              a {
+                @include Element-a();
+              }
+              margin-top: 2%;
+              padding: 3%;
+              font-size: 148%;
+              width: 100%;
+              border-radius: 7px;
+              background: $color-3;
+              border: none;
+              text-transform: uppercase;
+              color: white;
+              font-weight: 600;
+              cursor: pointer;
+              &:hover {
+                background: $color-1;
+                transition: ease-in-out 0.2s;
+              }
+            }
+          }
+        }
+        div {
+          color: white;
+        }
       }
     }
   }
-}
 
-@media (max-width: 1200px) {
-  .header {
-    .header-container {
-      height: 100%;
-      .padding-header {
+  @media (max-width: 1200px) {
+    .header {
+      .header-container {
         height: 100%;
-        .header-left {
-          .left-ul {
-            width: 100%;
-            .color-item {
-              display: none;
-            }
-            .menu {
-              display: block;
+        .padding-header {
+          height: 100%;
+          .header-left {
+            .left-ul {
+              width: 100%;
+              .color-item {
+                display: none;
+              }
+              .menu {
+                display: block;
+              }
             }
           }
-        }
-        .header-between {
-          display: none !important;
-        }
-        .content-header-right {
-          padding: 0;
+          .header-between {
+            display: none !important;
+          }
+          .content-header-right {
+            padding: 0;
+          }
         }
       }
     }
