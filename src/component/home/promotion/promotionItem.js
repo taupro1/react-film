@@ -42,32 +42,32 @@ export default class PromotionItem extends Component {
             <Slider {...settings} className="promotion-item">
                 <div className="item-promotion">
                     <a href>
-                        <img src="./img/promotion-event/BHD-Star-45k-Hue-710x320.jpg" alt />
+                        <img alt="" src="./img/promotion-event/BHD-Star-45k-Hue-710x320.jpg" alt />
                     </a>
                 </div>
                 <div className="item-promotion">
                     <a href>
-                        <img src="./img/promotion-event/BHD-Star-SuatSom-710x320.jpg" alt />
+                        <img alt="" src="./img/promotion-event/BHD-Star-SuatSom-710x320.jpg" alt />
                     </a>
                 </div>
                 <div className="item-promotion">
                     <a href>
-                        <img src="./img/promotion-event/BHD-Star_MEMBERDAY_710x320.jpg" alt />
+                        <img alt="" src="./img/promotion-event/BHD-Star_MEMBERDAY_710x320.jpg" alt />
                     </a>
                 </div>
                 <div className="item-promotion">
                     <a href>
-                        <img src="./img/promotion-event/bhd.jpg" alt />
+                        <img alt="" src="./img/promotion-event/bhd.jpg" alt />
                     </a>
                 </div>
                 <div className="item-promotion">
                     <a href>
-                        <img src="./img/promotion-event/cgv.jpg" alt />
+                        <img alt="" src="./img/promotion-event/cgv.jpg" alt />
                     </a>
                 </div>
                 <div className="item-promotion">
                     <a href>
-                        <img src="./img/promotion-event/BHD-Star-SuatSom-710x320.jpg" alt />
+                        <img alt="" src="./img/promotion-event/BHD-Star-SuatSom-710x320.jpg" />
                     </a>
                 </div>
             </Slider>

@@ -1,70 +1,55 @@
 #film {
   position: relative;
-  padding-bottom: 2rem;
   div,
   span {
     color: white;
   }
-  &::before {
-    content: "";
-    background-image: url(../img/home-movie/movie-details-bg.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    position: absolute;
-    background-attachment: fixed;
-    background-position: top;
-    width: 100%;
-    height: 100%;
+  .bg-film img {
+    max-width: 100%;
   }
   .content-film {
-    padding-top: 7%;
+    transform: translateY(-10rem);
     .content-left {
       div {
         text-align: center;
         img {
-          width: 60%;
+          width: 75%;
+          height: 23rem;
         }
       }
     }
     .content-right {
-      h3 {
-        text-transform: uppercase;
-        font-weight: 600;
+      background: linear-gradient(to right, rgba(0, 0, 0, 0.91) 0%, rgba(0, 0, 0, 0.06) 85%, rgba(0, 0, 0, 0.01) 100%);
+      .content-right-padding {
+        padding: 2%;
       }
       .chi-tiet {
-        font-size: 18px;
-        line-height: 45px;
-        div {
-          color: $color-1;
-          font-weight: 600;
-          span {
-            color: white;
-            font-weight: 500;
-          }
-          .i-star {
-            color: yellow;
-          }
+        .chi-tiet-div {
+          display: flex;
+          align-items: center;
+        }
+        .chi-tiet-body1 {
+          color: #ffffff80;
+        }
+        .chi-tiet-subtitle1 {
+          width: 20%;
+        }
+        .i-star {
+          color: #e99518;
         }
       }
       .btn-trailer {
         margin-top: 5%;
-        button {
-          padding: 2% 3%;
-          border-radius: 6px;
-          border: none;
-          background: $color-3;
-          &:hover {
-            background: $color-1;
-            transition: all 0.5s;
-          }
-          a {
-            @include Element-a();
-            font-size: 17px;
-            text-transform: uppercase;
-            font-weight: 600;
-          }
-        }
       }
+    }
+  }
+  .content-synopsis {
+    transform: translateY(-9rem);
+    .synopsis-subtitle1 {
+      color: $color-1;
+    }
+    .synopsis-body2 {
+      color: black;
     }
   }
 }

@@ -5,6 +5,9 @@ import { connect } from "react-redux";
 import ListFilmDetail from './listFilm';
 import variable from "../../../scss/_variable.scss"
 import DanhGiaPhim from './danh-gia';
+import AOS from "aos"
+import "aos/dist/aos.css"
+import { Typography } from "@material-ui/core"
 
 class DetailCinema extends Component {
     constructor(props) {
@@ -44,10 +47,10 @@ class DetailCinema extends Component {
 
     // Hai button Lịch chiếu Và Đánh giá
     renderTiltleShowMovie = () => {
-        return this.state.isValid ? `${variable.colorOne}` : `${variable.colorThree}`
+        return this.state.isValid ? `${variable.colorOne}` : "white"
     }
     renderTiletleSoonMovie = () => {
-        return this.state.isValid ? `${variable.colorThree}` : `${variable.colorOne}`
+        return this.state.isValid ? "white" : `${variable.colorOne}`
     }
     renderDisplayLichChieu = () => {
         return this.state.isValid ? "block" : "none"
@@ -57,24 +60,25 @@ class DetailCinema extends Component {
     }
 
     render() {
+        AOS.init()
         return (
             <section id="cinema">
                 <div className="container-fuild">
                     <ul className="title">
-                        <li className="movie-play" style={{ backgroundColor: this.renderTiltleShowMovie() }} onClick={() => { this.setState({ isValid: true }) }}>
-                            <a href>
-                                <span>Lịch chiếu</span>
-                            </a>
+                        <li data-aos="fade-right" data-aos-duration="600" className="movie-play" style={{ color: this.renderTiltleShowMovie() }} onClick={() => { this.setState({ isValid: true }) }}>
+                            <Typography variant="h4">
+                                Lịch chiếu
+                            </Typography>
                         </li>
-                        <li className="movie-soon" style={{ backgroundColor: this.renderTiletleSoonMovie() }} onClick={() => { this.setState({ isValid: false }) }}>
-                            <a href>
-                                <span>Đánh giá</span>
-                            </a>
+                        <li data-aos="fade-left" data-aos-duration="600" className="movie-soon" style={{ color: this.renderTiletleSoonMovie() }} onClick={() => { this.setState({ isValid: false }) }}>
+                            <Typography variant="h4">
+                                Đánh giá
+                            </Typography>
                         </li>
                     </ul>
                     <div style={{ display: this.renderDisplayLichChieu() }}>
                         <div className="list-cinema">
-                            <ul>
+                            <ul data-aos="zoom-in" data-aos-duration="700">
                                 {this.renderListCinema()}
                             </ul>
                         </div>

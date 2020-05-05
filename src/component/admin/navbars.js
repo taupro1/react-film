@@ -8,19 +8,19 @@ import PersonIcon from '@material-ui/icons/Person';
 import HdIcon from '@material-ui/icons/Hd';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import Button from "@material-ui/core/Button"
+import { Typography } from "@material-ui/core"
+import { connect } from 'react-redux';
+import * as action from "../../redux/action/action-redux/index"
 
 
-export default class Navbars extends Component {
-    constructor(props) {
-        super(props)
-        this.signOut = createRef()
-    }
+class Navbars extends Component {
 
     handleOnclickSignOut = () => {
-        return <Redirect to="/admin" />
+        localStorage.removeItem("userAdmin");
+        this.props.getIslogin()
     }
     renderAccount = () => {
-        if (localStorage.getItem("userAdmin")) {
+        if (localStorage.getItem("userAdmin") || this.props.isLogin) {
             let account = JSON.parse(localStorage.getItem("userAdmin"))
             return account.hoTen
         }
@@ -36,7 +36,9 @@ export default class Navbars extends Component {
                         <NavLink activeClassName="activeAdmin" className="a-navbars" to="/admin/account">
                             <Button className="btn-navbars">
                                 <PersonIcon className="icon" />
-                                <div>{this.renderAccount()}</div>
+                                <Typography className="btn-subtitle1" variant="subtitle1">
+                                    {this.renderAccount()}
+                                </Typography>
                             </Button>
                         </NavLink>
 
@@ -45,7 +47,9 @@ export default class Navbars extends Component {
                         <NavLink activeClassName="activeAdmin" className="a-navbars" to="/admin/dashboard">
                             <Button className="btn-navbars">
                                 <DashboardIcon className="icon" />
-                                <div>Dashboard</div>
+                                <Typography className="btn-subtitle1" variant="subtitle1">
+                                    Dashboard
+                                </Typography>
                             </Button>
                         </NavLink>
                     </li>
@@ -53,7 +57,9 @@ export default class Navbars extends Component {
                         <NavLink activeClassName="activeAdmin" className="a-navbars" to="/admin/user">
                             <Button className="btn-navbars">
                                 <AccountCircleIcon className="icon" />
-                                <div>User</div>
+                                <Typography className="btn-subtitle1" variant="subtitle1">
+                                    Người dùng
+                                </Typography>
                             </Button>
                         </NavLink>
                     </li>
@@ -61,7 +67,9 @@ export default class Navbars extends Component {
                         <NavLink activeClassName="activeAdmin" className="a-navbars" to="/admin/movies">
                             <Button className="btn-navbars">
                                 <MovieIcon className="icon" />
-                                <div>Movie</div>
+                                <Typography className="btn-subtitle1" variant="subtitle1">
+                                    Phim
+                                </Typography>
                             </Button>
                         </NavLink>
                     </li>
@@ -69,7 +77,9 @@ export default class Navbars extends Component {
                         <NavLink activeClassName="activeAdmin" className="a-navbars" to="/admin/cinema">
                             <Button className="btn-navbars">
                                 <AccountBalanceIcon className="icon" />
-                                <div>Cinema</div>
+                                <Typography className="btn-subtitle1" variant="subtitle1">
+                                    Hệ thống rạp
+                                </Typography>
                             </Button>
                         </NavLink>
                     </li>
@@ -77,15 +87,19 @@ export default class Navbars extends Component {
                         <NavLink activeClassName="activeAdmin" className="a-navbars" to="/admin/ticket">
                             <Button className="btn-navbars">
                                 <HdIcon className="icon" />
-                                <div>Ticket booking</div>
+                                <Typography className="btn-subtitle1" variant="subtitle1">
+                                    Lịch chiếu
+                                </Typography>
                             </Button>
                         </NavLink>
                     </li>
                     <li className="navbar-li">
-                        <a className="a-navbars">
+                        <a href className="a-navbars">
                             <Button onClick={this.handleOnclickSignOut} className="btn-navbars">
                                 <ExitToAppIcon className="icon" />
-                                <div>Sign out</div>
+                                <Typography className="btn-subtitle1" variant="subtitle1">
+                                    Đăng xuất
+                                </Typography>
                             </Button>
                         </a>
                     </li>
@@ -94,3 +108,18 @@ export default class Navbars extends Component {
         )
     }
 }
+const mapDispatchToProps = dispatch => {
+    return {
+        getIslogin: () => {
+            dispatch(action.actGetUser("GET-ISVALID-LOGIN-ADMIN", false))
+        }
+    }
+}
+
+const mapStateToProps = state => {
+    return {
+        isLogin: state.loginReducers.isLogin
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Navbars)
+

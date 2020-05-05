@@ -1,68 +1,18 @@
 header {
   position: sticky;
-  background-color: $color-3;
   top: 0;
   z-index: 10;
+  background-color: black;
   .header {
     .padding-header {
       align-items: center;
       padding: 10px 0;
       .header-left {
+        justify-content: center;
         display: flex;
-        .color-item {
-          background-color: #ec753224;
-          a {
-            @include Element-a();
-            text-transform: uppercase;
-          }
-          &:hover {
-            cursor: pointer;
-            transform: scale(1.1);
-            background-color: $color-1;
-            transition: all 0.2s;
-          }
-        }
-        .menu {
-          display: none;
-          padding-left: 5%;
-          cursor: pointer;
-          .icon-menu {
-            color: white;
-            font-size: 30px;
-          }
-          #check {
-            display: none;
-          }
-        }
-      }
-      .header-between {
-        display: flex;
-        .logo-header {
-          text-align: center;
-          cursor: pointer;
-          img {
-            width: 30%;
-          }
-        }
-        a {
-          @include Element-a();
-        }
-        .i-phone {
-          color: $color-1;
-          font-size: 38px;
-        }
-        .i-facebook {
-          @include Element-i();
-          font-size: 20px;
-          height: 35px;
-          width: 35px;
-          background-color: blue;
-          border-radius: 9px;
-        }
-        span {
-          @include Element-span();
-          padding-left: 3px;
-          font-size: 19px;
+        .logo {
+          color: #e3b922;
+          text-decoration: none;
         }
       }
       .header-right {
@@ -70,33 +20,23 @@ header {
         margin: 0 auto;
         position: relative;
         display: flex;
+        justify-content: center;
+        .color-item {
+          a {
+            @include Element-a();
+            border-radius: 16px;
+          }
+          &:hover {
+            cursor: pointer;
+            background-color: $color-1;
+            transition: ease-in-out 0.5s;
+            border-radius: 16px;
+          }
+        }
         .error {
           color: red;
         }
-        .logo-login {
-          @include flex(flex-end);
-          width: 100%;
-          cursor: pointer;
-          .color-item-login {
-            background-color: #ec753224;
-            a {
-              @include Element-a();
-              text-transform: uppercase;
-            }
-            &:hover {
-              cursor: pointer;
-              transform: scale(1.1);
-              background-color: $color-1;
-              transition: all 0.2s;
-            }
-          }
-        }
         #login {
-          position: absolute;
-          top: 100%;
-          z-index: 1;
-          width: 100%;
-          background: #0000006b;
           .form-login {
             width: 90%;
             margin: 0 auto;
@@ -154,6 +94,18 @@ header {
         div {
           color: white;
         }
+        .menu {
+          display: none;
+          padding-left: 5%;
+          cursor: pointer;
+          .icon-menu {
+            color: white;
+            font-size: 30px;
+          }
+          #check {
+            display: none;
+          }
+        }
       }
     }
   }
@@ -164,19 +116,18 @@ header {
         height: 100%;
         .padding-header {
           height: 100%;
-          .header-left {
+          .header-right {
             .left-ul {
               width: 100%;
               .color-item {
                 display: none;
               }
               .menu {
+                width: 100%;
                 display: block;
+                text-align: right;
               }
             }
-          }
-          .header-between {
-            display: none !important;
           }
           .content-header-right {
             padding: 0;

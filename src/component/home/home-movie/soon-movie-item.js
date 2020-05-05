@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { Typography, Box } from "@material-ui/core"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 export default class SoonMovieItem extends Component {
     render() {
@@ -6,14 +8,20 @@ export default class SoonMovieItem extends Component {
         return (
             <div className="movie">
                 <div className="film-item">
-                    <img src={item.img} alt />
-                    <a className="name-movie">
-                        <span>{item.nameFilm}</span>
+                    <a href>
+                        <img src={item.hinhAnh} alt="film" />
                     </a>
-                    <div className="mua-ve">
-                        <a href>
-                            <span>MUA VÉ</span>
-                        </a>
+                    <a href className="name-movie">
+                        <Typography variant="subtitle1">
+                            <Box fontWeight="fontWeightBold">
+                                {item.tenPhim}
+                            </Box>
+                        </Typography>
+                    </a>
+                </div>
+                <div className="overplay-movies">
+                    <div className="icon-overplay">
+                        <FontAwesomeIcon className="icon" icon={['fab', 'youtube']} />
                     </div>
                 </div>
             </div>

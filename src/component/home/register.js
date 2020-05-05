@@ -1,147 +1,70 @@
-import React, { Component } from 'react'
-import styled from "styled-components"
-import variable from "../../scss/_variable.scss"
-import { NotificationContainer, NotificationManager } from 'react-notifications';
-import { connect } from "react-redux"
-import * as actionApi from "../../redux/action/action-api/index"
+import React, { useState } from 'react';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import { connect } from 'react-redux';
+import Axios from 'axios';
+import * as action from "../../redux/action/action-redux/index"
+import { NotificationManager, NotificationContainer } from "react-notifications"
 
+const useStyles = makeStyles((theme) => ({
+    paper: {
+        marginTop: theme.spacing(8),
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+    },
+    avatar: {
+        margin: theme.spacing(1),
+        backgroundColor: theme.palette.secondary.main,
+    },
+    form: {
+        width: '100%', // Fix IE 11 issue.
+        marginTop: theme.spacing(1),
+    },
+    submit: {
+        margin: theme.spacing(3, 0, 2),
+    },
+}));
 
-const Content = styled.div`
-    background-color:${variable.colorTwo};
-    color:white;
-    padding-top:7%
-`
-const Tiltle = styled.h4`
-    text-align: center;
-    font-size: 3rem;
-    text-transform: uppercase;
-    margin-bottom: 3%;
-    padding-top: 2%;
-`
-const FormInput = styled.div`
-    padding-bottom: 2%;
-    width: 50%;
-    margin: 0 auto;
-`
-const Label = styled.label`
-    display:block;
-`
-const Input = styled.input`
-    width: 100%;
-    padding: 2%;
-    border: none;
-    line-height: 21px;
-    border-radius: 7px;
-    outline: none;
-`
-const DivTiltle = styled.div`
-    width: 50%;
-    margin: 0 auto;
-`
-const Submit = styled.button`
-    padding: 2%;
-    font-size: 164%;
-    width: 100%;
-    border-radius: 13px;
-    border: none;
-    text-transform: uppercase;
-    color: white;
-    font-weight: 600;
-    cursor: pointer;
-    background:${props => props.disabled ? variable.colorThree : variable.colorOne}
-`
-const Error = styled.div`
-    color:red
-`
-
-class Register extends Component {
-    constructor(props) {
-        super(props)
-        this.matKhauConfirmReset = React.createRef()
-        this.state = {
-            user: {
-                hoTen: "",
-                taiKhoan: "",
-                matKhau: "",
-                email: "",
-                soDt: "",
-                maNhom: "GP01",
-                maLoaiNguoiDung: "KhachHang",
-            },
-            reset: {
-                hoTen: "",
-                taiKhoan: "",
-                matKhau: "",
-                email: "",
-                soDt: "",
-                matKhauConfirm: ""
-            },
-            error: {
-                hoTen: "",
-                taiKhoan: "",
-                matKhau: "",
-                email: "",
-                soDt: "",
-                maNhom: "GP01",
-                maLoaiNguoiDung: "KhachHang",
-                matKhauConfirm: ""
-            },
-            formValid: false,
-            hoTenValid: false,
-            taiKhoanValid: false,
-            matKhauValid: false,
-            emailValid: false,
-            soDtValid: false,
-            matKhauConfirmValid: false,
-        }
+function Register(props) {
+    const classes = useStyles();
+    const [state, setState] = useState({ taiKhoan: "", matKhau: "", email: "", soDt: "", hoTen: "", maNhom: "GP01", maLoaiNguoiDung: "KhachHang" });
+    const [error, setError] = useState({ taiKhoan: "", matKhau: "", email: "", soDt: "", hoTen: "" })
+    const [valid, setValid] = useState({ taiKhoanValid: false, matKhauValid: false, emailValid: false, soDtValid: false, hoTenValid: false })
+    const [formValid, setFormValid] = useState(false)
+    const handleOnchange = event => {
+        let { name, value } = event.target;
+        setState({
+            ...state,
+            [name]: value
+        })
     }
-
-    handleSubmit = event => {
+    const handleOnsubmit = event => {
         event.preventDefault();
-        this.props.postUser(this.state.user, this.props.history)
-        this.matKhauConfirmReset.current.value = ""
-        this.setState({
-            user: {
-                hoTen: "",
-                taiKhoan: "",
-                matKhau: "",
-                email: "",
-                soDt: "",
-                maNhom: "GP01",
-                maLoaiNguoiDung: "KhachHang",
-            },
-            error: {
-                hoTen: "",
-                taiKhoan: "",
-                matKhau: "",
-                email: "",
-                soDt: "",
-                maNhom: "GP01",
-                maLoaiNguoiDung: "KhachHang",
-                matKhauConfirm: ""
-            },
-            formValid: false,
-            hoTenValid: false,
-            taiKhoanValid: false,
-            matKhauValid: false,
-            emailValid: false,
-            soDtValid: false,
-            matKhauConfirmValid: false,
+        Axios({
+            method: "POST",
+            url: "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangKy",
+            data: state
         })
+            .then(rs => {
+                NotificationManager.success("Login success")
+                props.history.push("/")
+            })
+            .catch(er => {
+                NotificationManager.error(er.response.data)
 
+            })
     }
-
-    handleOnchange = event => {
-        let { name, value } = event.target
-        this.setState({
-            user: { ...this.state.user, [name]: value }
-        })
-    }
-
-    handleError = event => {
+    const handleError = event => {
         let { name, value } = event.target;
         let status = value === "" ? "Vui lòng điền vào trường này" : "";
-        let { hoTenValid, taiKhoanValid, matKhauValid, emailValid, soDtValid, matKhauConfirmValid } = this.state;
+        let { taiKhoanValid, emailValid, hoTenValid, matKhauValid, soDtValid } = valid
         switch (name) {
             case "taiKhoan":
                 taiKhoanValid = status !== "" ? false : true;
@@ -169,110 +92,130 @@ class Register extends Component {
                 break;
             case "matKhau":
                 matKhauValid = status !== "" ? false : true;
-                if (value !== "" && !value.match(/^[A-Za-z]\w{7,14}$/)) {
+                if (value !== "" && !value.match(/^[A-Za-z]\w{8,14}$/)) {
                     matKhauValid = false;
-                    status = "Mật khẩu phải có số, chữ in hoa, dài hơn 7 kí tự và ngắn hơn 14 kí tự"
-                }
-                break;
-            case "matKhauConfirm":
-                matKhauConfirmValid = status !== "" ? false : true;
-                if (value !== "" && value !== this.state.user.matKhau) {
-                    matKhauConfirmValid = false;
-                    status = "Mật khẩu không trùng khớp"
+                    status = "Mật khẩu phải có số, chữ in hoa, dài hơn 8 kí tự và ngắn hơn 14 kí tự"
                 }
                 break;
             default: break;
         }
-        this.setState({
-            error: { ...this.state.error, [name]: status },
+        setError({
+            ...error,
+            [name]: status
+        })
+        setValid({
             taiKhoanValid,
-            hoTenValid,
             matKhauValid,
-            emailValid,
+            hoTenValid,
             soDtValid,
-            matKhauConfirmValid
-        }, () => {
-            this.validationForm()
+            emailValid
         })
+        setFormValid(taiKhoanValid && matKhauValid && hoTenValid && soDtValid && emailValid)
     }
-    validationForm = () => {
-        const { hoTenValid, taiKhoanValid, matKhauValid, emailValid, soDtValid, matKhauConfirmValid } = this.state;
-        this.setState({
-            formValid: hoTenValid && taiKhoanValid && matKhauValid && emailValid && soDtValid && matKhauConfirmValid
-        })
-    }
-    render() {
-        const { error, user } = this.state;
-        return (
-            <Content className="content-modal-register">
-                <div className="register-header">
-                    <Tiltle className="register-title">Đăng ký</Tiltle>
-                </div>
-                <div className="register-body register">
-                    <form action className="form-login form-register">
-                        <FormInput className="form-input">
-                            <Label htmlFor="tenDangNhap">Tên đăng nhập</Label>
-                            <Input type="text" name="taiKhoan" value={user.taiKhoan} onChange={this.handleOnchange} onBlur={this.handleError} onKeyUp={this.handleError} id="tenDangNhap" />
-                            {
-                                error.taiKhoan !== "" ? (<Error>{error.taiKhoan}</Error>) : ""
-                            }
-                        </FormInput>
-                        <FormInput className="form-input">
-                            <Label htmlFor="email-user">Email</Label>
-                            <Input type="email" name="email" value={user.email} onChange={this.handleOnchange} onBlur={this.handleError} onKeyUp={this.handleError} id="email-user" />
-                            {
-                                error.email !== "" ? (<Error>{error.email}</Error>) : ""
-                            }
-                        </FormInput>
-                        <FormInput className="form-input">
-                            <Label htmlFor="tenNguoiDung">Họ và tên</Label>
-                            <Input type="text" name="hoTen" value={user.hoTen} onChange={this.handleOnchange} onBlur={this.handleError} onKeyUp={this.handleError} id="tenNguoiDung" />
-                            {
-                                error.hoTen !== "" ? (<Error>{error.hoTen}</Error>) : ""
-                            }
-                        </FormInput>
-                        <FormInput className="form-input">
-                            <Label htmlFor="phone">Số điện thoại</Label>
-                            <Input type="phone" name="soDt" value={user.soDt} onChange={this.handleOnchange} onBlur={this.handleError} onKeyUp={this.handleError} id="phone" />
-                            {
-                                error.soDt !== "" ? (<Error>{error.soDt}</Error>) : ""
-                            }
-                        </FormInput>
-                        <FormInput className="form-input">
-                            <Label htmlFor="password-user">Mật khẩu</Label>
-                            <Input type="password" name="matKhau" value={user.matKhau} onChange={this.handleOnchange} onBlur={this.handleError} onKeyUp={this.handleError} id="password-user" />
-                            {
-                                error.matKhau !== "" ? (<Error>{error.matKhau}</Error>) : ""
-                            }
-                        </FormInput>
-                        <FormInput className="form-input">
-                            <Label htmlFor="password-confirm">Nhập lại mật khẩu</Label>
-                            <Input type="password" ref={this.matKhauConfirmReset} name="matKhauConfirm" onBlur={this.handleError} onKeyUp={this.handleError} id="password-confirm" />
-                            {
-                                error.matKhauConfirm !== "" ? (<Error>{error.matKhauConfirm}</Error>) : ""
-                            }
-                        </FormInput>
-                        <DivTiltle>
-                            <Submit type="submit" onClick={this.handleSubmit} disabled={!this.state.formValid}>
-                                Đăng kí
-                        </Submit>
-                        </DivTiltle>
-                    </form>
-                    <NotificationContainer />
-                </div>
-            </Content>
-        )
-    }
+    return (
+        <Container component="main" maxWidth="xs">
+            <CssBaseline />
+            <div className={classes.paper}>
+                <Avatar className={classes.avatar}>
+                    <LockOutlinedIcon />
+                </Avatar>
+                <Typography component="h1" variant="h5">
+                    Đăng kí
+        </Typography>
+                <form className={classes.form} noValidate>
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="email"
+                        label="Tài khoản"
+                        name="taiKhoan"
+                        autoComplete="email"
+                        autoFocus
+                        onChange={handleOnchange}
+                        onKeyUp={handleError}
+                        onBlur={handleError}
+                        error={error.taiKhoan !== "" ? true : false} helperText={error.taiKhoan !== "" ? error.taiKhoan : " "}
+                    />
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="email"
+                        label="Email"
+                        type="email"
+                        id="email"
+                        autoComplete="email"
+                        onChange={handleOnchange}
+                        onKeyUp={handleError}
+                        onBlur={handleError}
+                        error={error.email !== "" ? true : false} helperText={error.email !== "" ? error.email : " "}
+                    />
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="hoTen"
+                        label="Họ và tên"
+                        type="text"
+                        id="hoTen"
+                        autoComplete=""
+                        onChange={handleOnchange}
+                        onKeyUp={handleError}
+                        onBlur={handleError}
+                        error={error.hoTen !== "" ? true : false} helperText={error.hoTen !== "" ? error.hoTen : " "}
+                    />
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="soDt"
+                        label="Số điện thoại"
+                        type="text"
+                        id="soDT"
+                        autoComplete="current-password"
+                        onChange={handleOnchange}
+                        onKeyUp={handleError}
+                        onBlur={handleError}
+                        error={error.soDt !== "" ? true : false} helperText={error.soDt !== "" ? error.soDt : " "}
+                    />
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="matKhau"
+                        label="Mật khẩu"
+                        type="password"
+                        id="password"
+                        autoComplete="current-password"
+                        onChange={handleOnchange}
+                        onKeyUp={handleError}
+                        onBlur={handleError}
+                        error={error.matKhau !== "" ? true : false} helperText={error.matKhau !== "" ? error.matKhau : " "}
+                    />
+                    <Button
+                        type="submit"
+                        onClick={handleOnsubmit}
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                        className={classes.submit}
+                        disabled={!formValid}
+                    >
+                        Đăng kí
+          </Button>
+                </form>
+            </div>
+            <NotificationContainer />
+        </Container>
+    );
 }
+export default Register
 
-const mapDispatchToProps = dispatch => {
-    return {
-        postUser: (data, history) => {
-            dispatch(actionApi.actPostUserRegisterApi(data, history))
-        }
-    }
-}
-
-export default connect(null, mapDispatchToProps)(Register);
 
 

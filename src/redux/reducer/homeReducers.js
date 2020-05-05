@@ -4,24 +4,44 @@ const initalState = {
     listImgCarousel: [
         {
             index: 0,
-            img: "./img/carousel/wild-15834618796245.jpg",
+            img: "http://demo.amytheme.com/movie/demo/book-ticket/wp-content/uploads/2016/12/img_3-1.jpg",
             href: "https://www.youtube.com/embed/gn5QmllRCn4"
         },
         {
             index: 1,
-            img: "./img/carousel/bloodshot-sneak-2048x682-1583483072373-2.jpg",
+            img: "http://demo.amytheme.com/movie/demo/book-ticket/wp-content/uploads/2016/12/img_8-1.jpg",
             href: "https://www.youtube.com/embed/6-T5-Tohan0"
         },
         {
             index: 2,
-            img: "./img/carousel/nang-3-15834617419228.jpg",
+            img: "http://demo.amytheme.com/movie/demo/book-ticket/wp-content/uploads/2016/12/img_4-1.jpg",
             href: "https://www.youtube.com/embed/DymKqNH_m8w"
         },
         {
             index: 3,
-            img: "./img/carousel/wild-15822193320074.gif",
+            img: "http://demo.amytheme.com/movie/demo/book-ticket/wp-content/uploads/2016/12/img_5-1.jpg",
             href: "https://www.youtube.com/embed/UH_67fgOrj0"
-        }
+        },
+        {
+            index: 4,
+            img: "http://demo.amytheme.com/movie/demo/book-ticket/wp-content/uploads/2016/12/img_6-1.jpg",
+            href: "https://www.youtube.com/embed/UH_67fgOrj0"
+        },
+        {
+            index: 5,
+            img: "http://demo.amytheme.com/movie/demo/book-ticket/wp-content/uploads/2016/12/img_2-1.jpg",
+            href: "https://www.youtube.com/embed/"
+        },
+        // {
+        //     index: 6,
+        //     img: "http://demo.amytheme.com/movie/demo/book-ticket/wp-content/uploads/2016/12/img_8-1.jpg",
+        //     href: "https://www.youtube.com/embed/"
+        // },
+        // {
+        //     index: 7,
+        //     img: "http://demo.amytheme.com/movie/demo/book-ticket/wp-content/uploads/2016/12/img_1-1.jpg",
+        //     href: "https://www.youtube.com/embed/"
+        // }
     ],
     listHomeMovie: [
     ],
@@ -29,36 +49,36 @@ const initalState = {
     ],
     listSoonMovie: [
         {
-            img: "./img/home-movie/movie-soon/HO00001886.jfif",
-            nameFilm: "Scoob"
+            hinhAnh: "./img/home-movie/movie-soon/HO00001886.jfif",
+            tenPhim: "Scoob"
         },
         {
-            img: "./img/home-movie/movie-soon/HO00002017.jfif",
-            nameFilm: "The invisible man"
+            hinhAnh: "./img/home-movie/movie-soon/HO00002017.jfif",
+            tenPhim: "The invisible man"
         },
         {
-            img: "./img/home-movie/show-movie/HO00001973.jfif",
-            nameFilm: "The protector"
+            hinhAnh: "./img/home-movie/show-movie/HO00001973.jfif",
+            tenPhim: "The protector"
         },
         {
-            img: "./img/home-movie/movie-soon/HO00002019.jfif",
-            nameFilm: "The call of the wild"
+            hinhAnh: "./img/home-movie/movie-soon/HO00002019.jfif",
+            tenPhim: "The call of the wild"
         },
         {
-            img: "./img/home-movie/show-movie/HO00002018.jfif",
-            nameFilm: "Onward"
+            hinhAnh: "./img/home-movie/show-movie/HO00002018.jfif",
+            tenPhim: "Onward"
         },
         {
-            img: "./img/home-movie/show-movie/HO00002044.jfif",
-            nameFilm: "Bloodshot"
+            hinhAnh: "./img/home-movie/show-movie/HO00002044.jfif",
+            tenPhim: "Bloodshot"
         },
         {
-            img: "./img/home-movie/movie-soon/HO00002025.jfif",
-            nameFilm: "I still believe"
+            hinhAnh: "./img/home-movie/movie-soon/HO00002025.jfif",
+            tenPhim: "I still believe"
         },
         {
-            img: "./img/home-movie/movie-soon/HO00002024.jfif",
-            nameFilm: "Heartbeat"
+            hinhAnh: "./img/home-movie/movie-soon/HO00002024.jfif",
+            tenPhim: "Heartbeat"
         }
     ],
     listUser: [

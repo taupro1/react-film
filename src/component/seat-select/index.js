@@ -7,6 +7,8 @@ import * as callApi from "../../redux/action/action-api/index"
 import LottieAnimation from "../../animation/index"
 import * as action from "../../redux/action/action-redux/index"
 import * as actionType from "../../redux/actionType/index"
+import { Typography } from "@material-ui/core"
+import CountTime from './count-time'
 
 class SeatBooking extends Component {
     renderHtml = () => {
@@ -18,12 +20,16 @@ class SeatBooking extends Component {
                 <section id="dat-ve-film">
                     <div className="content-left">
                         <div className="tiltle">
-                            <h3>Chọn ghế</h3>
+                            <Typography variant="h5">
+                                Chọn ghế
+                            </Typography>
                             <div className="count-time">
                                 <div>
-                                    <span>Thời gian còn lại</span>
+                                    <Typography variant="subtitle1">
+                                        Thời gian còn lại
+                                    </Typography>
                                     <div className="count">
-                                        <span>5:00</span>
+                                        {/* <CountTime /> */}
                                     </div>
                                 </div>
                             </div>

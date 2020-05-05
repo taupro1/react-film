@@ -1,6 +1,9 @@
-import React, { Component, PureComponent } from 'react'
+import React, { PureComponent } from 'react'
 import { connect } from "react-redux"
 import classNames from "classnames"
+import AOS from "aos"
+import "aos/dist/aos.css"
+import { Typography, Box } from "@material-ui/core"
 
 class LocationCinema extends PureComponent {
     // 1. Nhận maCumRap từ hàm RenderHtml( khi onlick vào 1 content cụm rạp)
@@ -34,12 +37,16 @@ class LocationCinema extends PureComponent {
                 cinema[item].map((list, index) => {
                     listContent.push(
                         <div className={classNames(this.renderOpacityCinema(list.maCumRap, index), "cinema")} onClick={() => this.handleOpacityCinema(list.maCumRap)}>
-                            <img src="./img/cinema/img-item-cinema/bhd/bhd-star-vincom-thao-dien-15379553942188.jpg" alt />
+                            <img alt="" src="./img/cinema/img-item-cinema/bhd/bhd-star-vincom-thao-dien-15379553942188.jpg" />
                             <div className="info-cinema">
                                 <div className="info">
-                                    <span className={this.props.name}> {list.tenCumRap}</span>
+                                    <Typography variant="subtitle1" className={this.props.name}>
+                                        <Box fontWeight="fontWeightBold">
+                                            {list.tenCumRap}
+                                        </Box>
+                                    </Typography>
+                                    <Typography variant="body2">{list.diaChi}</Typography>
                                 </div>
-                                <span>{list.diaChi}</span>
                             </div>
                         </div>
                     )
@@ -51,8 +58,9 @@ class LocationCinema extends PureComponent {
     }
 
     render() {
+        AOS.init();
         return (
-            <div class="col-sm-5 location-cinema">
+            <div data-aos="fade-right" data-aos-duration="1000" class="col-sm-12 col-lg-6 col-12 location-cinema">
                 {this.renderHtml()}
             </div>
         )

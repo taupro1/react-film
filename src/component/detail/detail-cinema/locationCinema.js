@@ -1,6 +1,9 @@
-import React, { Component, PureComponent } from 'react'
+import React, { PureComponent } from 'react'
 import { connect } from "react-redux"
 import classNames from "classnames"
+import { Typography, Box } from "@material-ui/core"
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 class LocationCinemaDetail extends PureComponent {
     // 1. Nhận maCumRap từ hàm RenderHtml( khi onlick vào 1 content cụm rạp)
@@ -32,12 +35,15 @@ class LocationCinemaDetail extends PureComponent {
                     return item.cumRapChieu.map((list, index) => {
                         return (
                             <div className={classNames(this.renderOpacityCinema(list.maCumRap, index), "cinema")} onClick={() => this.handleOpacityCinema(list.maCumRap)}>
-                                <img src={item.logo} alt />
+                                <img alt="" src={item.logo} />
                                 <div className="info-cinema">
                                     <div className="info">
-                                        <span className={this.props.maHeThongRap}> {list.tenCumRap}</span>
+                                        <Typography className={this.props.maHeThongRap}>
+                                            <Box fontWeight="fontWeightBold">
+                                                {list.tenCumRap}
+                                            </Box>
+                                        </Typography>
                                     </div>
-                                    {/* <span>{list.diaChi}</span> */}
                                 </div>
                             </div>
                         )
@@ -48,8 +54,9 @@ class LocationCinemaDetail extends PureComponent {
     }
 
     render() {
+        AOS.init()
         return (
-            <div class="col-sm-5 location-cinema">
+            <div data-aos="fade-right" data-aos-duration="600" class="col-sm-5 location-cinema">
                 {this.renderHtml()}
             </div>
         )

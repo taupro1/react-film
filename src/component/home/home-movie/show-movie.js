@@ -5,6 +5,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import * as callApi from "../../../redux/action/action-api/index"
+import AOS from "aos"
+import "aos/dist/aos.css"
 
 
 class ShowMovie extends Component {
@@ -20,10 +22,11 @@ class ShowMovie extends Component {
         })
     }
     render() {
+        AOS.init()
         const settings = {
             infinite: true,
             speed: 500,
-            slidesToShow: 4,
+            slidesToShow: 5,
             slidesToScroll: 1,
             autoplay: true,
             autoplaySpeed: 3000,
@@ -54,7 +57,7 @@ class ShowMovie extends Component {
             ]
         }
         return (
-            <div className="show-movie">
+            <div data-aos="fade-up" data-aos-duration="600" className="show-movie">
                 <Slider {...settings} className="my-movie">
                     {this.renderHtml()}
                 </Slider>

@@ -34,6 +34,7 @@ export const actPostUserLoginApi = (data, history) => {
                 if (rs.data.maLoaiNguoiDung === "QuanTri") {
                     localStorage.setItem("userAdmin", JSON.stringify(rs.data));
                     history.push("/admin/dashboard")
+                    dispatch(action.actGetUser("GET-ISVALID-LOGIN-ADMIN", true))
                 }
                 else {
                     alert("Bạn không có quyền truy cập")

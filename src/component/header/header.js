@@ -2,22 +2,21 @@ import React, { Component, Fragment } from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
-import { NotificationContainer, NotificationManager } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
-import * as callApi from "../../redux/action/callAPI/index"
 import Account from './account';
 import { Link, animateScroll as scroll } from "react-scroll";
 import styled from "styled-components"
 import variable from "../../scss/_variable.scss"
+import { Typography, Box } from '@material-ui/core';
 
 const ContentMenu = styled.div`
     z-index:3;
     display:none;
     position: absolute;
-    background-color: ${variable.colorTwo};
-    width: 50%;
-    left: ${props => props.marginLeft ? "-100%" : "0"};
-    transition:left .5s;
+    background-color: black;
+    width: 100%;
+    right: ${props => props.marginLeft ? "-100%" : "0"};
+    transition:right .5s;
     @media (max-width: 1152px){
         display:block
     }
@@ -28,8 +27,6 @@ const ContentMenuUl = styled.ul`
 `
 const ContentMenuLi = styled.li`
     cursor: pointer;
-    font-size: 22px;
-    font-weight: 600;
     &:hover{
         color:${variable.colorOne};
         transition:all .3s
@@ -47,46 +44,11 @@ class Header extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            display: "none",
+            transform: "-300px",
             isValid: true,
-            user: {
-                taiKhoan: "",
-                matKhau: ""
-            },
             marginLeft: true
         }
     }
-
-    handleSubmit = event => {
-        event.preventDefault();
-        callApi.callApiQuanLyNguoiDung("POST", `DangNhap`, this.state.user)
-            .then((rs) => {
-                NotificationManager.success("Login success")
-                localStorage.setItem("login", JSON.stringify(rs.data));
-                this.props.editStatusLogin(true);
-                this.setState({
-                    display: "none"
-                })
-            })
-            .catch((er) => {
-                NotificationManager.error(er.response.data)
-            })
-        this.setState({
-            user: {
-                taiKhoan: "",
-                matKhau: ""
-            }
-        })
-
-    }
-
-    handleOnchage = event => {
-        let { name, value } = event.target;
-        this.setState({
-            user: { ...this.state.user, [name]: value }
-        })
-    }
-
     handleRemoveLocal = () => {
         localStorage.removeItem("login");
         this.props.editStatusLogin(false)
@@ -95,7 +57,7 @@ class Header extends Component {
         })
     }
     renderLogin = () => {
-        if (localStorage.getItem("login")) {
+        if (localStorage.getItem("login") || this.props.statusLogin) {
             const user = JSON.parse(localStorage.getItem("login"))
             return (
                 <Account user={user} remove={this.handleRemoveLocal} />
@@ -103,27 +65,15 @@ class Header extends Component {
         }
         if (!localStorage.getItem("login")) {
             return (
-                <li className="nav-item color-item-login">
-                    <a className="nav-link active" onClick={this.handleClickLogin} id="login-logo">ĐĂNG NHẬP</a>
+                <li className="nav-item color-item">
+                    <Typography variant="overline">
+                        <NavLink to={"/login"} className="nav-link" id="login-logo">Đăng nhập</NavLink>
+                    </Typography>
                 </li>
             )
         }
     }
 
-    handleClickLogin = () => {
-        this.state.display === "none" ?
-            this.setState({
-                display: "block"
-            })
-            :
-            this.setState({
-                display: "none"
-            })
-    }
-
-    scrollToTop = () => {
-        scroll.scrollToTop();
-    }
 
     handleOnclickContentMenu = () => {
         console.log("1");
@@ -138,99 +88,83 @@ class Header extends Component {
             })
     }
     render() {
-        const { display, user } = this.state
         return (
             <header>
                 <div className="header">
                     <div className="container-fluid header-container">
                         <div className="row padding-header">
-                            <div className="col-xl-4 col-sm-6 col-6 header-left justify-content-center align-items-center">
-                                <ul className="nav left-ul position-absolute">
+                            <div className="col-xl-4 col-sm-4 header-left">
+                                <Typography variant="h3">
+                                    <Box fontFamily="Monospace" fontStyle="oblique" fontWeight="fontWeightBold" m={1}>
+                                        <NavLink className="logo" to="/">
+                                            Cybersoft
+                                        </NavLink>
+                                    </Box>
+                                </Typography>
+                            </div>
+                            <div className="col-xl-8 col-sm-8 header-right">
+                                <ul className="nav left-ul">
                                     <li className="nav-item color-item">
-                                        <Link
-                                            className="nav-link"
-                                            activeClass="active"
-                                            to="home-movie"
-                                            spy={true}
-                                            smooth={true}
-                                            offset={-50}
-                                            duration={500}
-                                        >
-                                            Lịch chiếu
-                                        </Link>
+                                        <Typography variant="overline">
+                                            <Link
+                                                className="nav-link"
+                                                activeClass="active"
+                                                to="home-movie"
+                                                spy={true}
+                                                smooth={true}
+                                                offset={-50}
+                                                duration={500}
+                                            >
+                                                Lịch chiếu
+                                            </Link>
+                                        </Typography>
                                     </li>
                                     <li className="nav-item color-item">
-                                        <Link
-                                            className="nav-link"
-                                            activeClass="active"
-                                            to="cinema"
-                                            spy={true}
-                                            smooth={true}
-                                            offset={-50}
-                                            duration={500}
-                                        >
-                                            Cụm rạp
+                                        <Typography variant="overline">
+                                            <Link
+                                                className="nav-link"
+                                                activeClass="active"
+                                                to="cinema"
+                                                spy={true}
+                                                smooth={true}
+                                                offset={-50}
+                                                duration={500}
+                                            >
+                                                Cụm rạp
                                         </Link>
+                                        </Typography>
                                     </li>
                                     <li className="nav-item color-item">
-                                        <Link
-                                            className="nav-link"
-                                            activeClass="active"
-                                            to="news-review"
-                                            spy={true}
-                                            smooth={true}
-                                            offset={-50}
-                                            duration={500}
-                                        >
-                                            Đánh giá
+                                        <Typography variant="overline">
+                                            <Link
+                                                className="nav-link"
+                                                activeClass="active"
+                                                to="news-review"
+                                                spy={true}
+                                                smooth={true}
+                                                offset={-50}
+                                                duration={500}
+                                            >
+                                                Tin tức
                                         </Link>
+                                        </Typography>
                                     </li>
                                     <li className="menu" onClick={this.handleOnclickContentMenu}>
                                         <div>
                                             <FontAwesomeIcon className="icon-menu" icon="bars" />
                                         </div>
                                     </li>
+                                    <li className="nav-item color-item">
+                                        <Typography variant="overline">
+                                            <NavLink className="nav-link" to={"/register"}>Đăng ký</NavLink>
+                                        </Typography>
+                                    </li>
+                                    <li>
+                                        <ul className="nav">
+                                            {this.renderLogin()}
+                                        </ul>
+                                    </li>
                                 </ul>
-                            </div>
-                            <div className="col-xl-4 header-between justify-content-around">
-                                <a className="d-flex align-items-center" target="_blank" href="https://www.facebook.com/profile.php?id=100004391253792">
-                                    <FontAwesomeIcon icon={["fab", "facebook-square"]} className="i-facebook" />
-                                </a>
-                                <NavLink to="/" className="logo-header">
-                                    <img src="./img/logo-header/logo.png"></img>
-                                </NavLink>
-                                <div className="d-flex align-items-center">
-                                    <FontAwesomeIcon icon="phone-square" className="i-phone" />
-                                    <span>:123456</span>
-                                </div>
-                            </div>
-                            <div className="col-xl-4 col-sm-6 col-6 content-header-right">
-                                <div className="row header-right h-100 justify-content-center">
-                                    <ul className="nav logo-login">
-                                        {this.renderLogin()}
-                                    </ul>
-                                    <div id="login" style={{ display: display }}>
-                                        <form action className="form-login">
-                                            <div className="form-input">
-                                                <input type="text" name="taiKhoan" autoFocus value={user.taiKhoan} onChange={this.handleOnchage} id="taikhoan" placeholder="Tài khoản" />
-                                            </div>
-                                            <div className="form-input">
-                                                <input type="password" name="matKhau" value={user.matKhau} onChange={this.handleOnchage} id="password" placeholder="Mật khẩu" />
-                                            </div>
-                                            <div>
-                                                <button type="submit" onClick={this.handleSubmit} id="logo-submit">
-                                                    Đăng nhập
-                  </button>
-                                            </div>
-                                            <div>
-                                                <button id="register">
-                                                    <NavLink to={"/register"}>Đăng ký</NavLink>
-                                                </button>
-                                            </div>
-                                            <NotificationContainer />
-                                        </form>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -280,7 +214,7 @@ class Header extends Component {
                                     offset={-50}
                                     duration={500}
                                 >
-                                    Đánh giá
+                                    Tin tức
                                         </Link>
                             </ContentMenuLi>
                         </ContentMenuUl>
@@ -306,7 +240,8 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
     return {
-        listUser: state.homeReducers.listUser
+        listUser: state.homeReducers.listUser,
+        statusLogin: state.homeReducers.statusLogin,
     }
 }
 

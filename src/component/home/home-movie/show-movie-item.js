@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from "react-router-dom";
+import { Typography, Box } from "@material-ui/core"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 export default class ShowMovieItem extends Component {
     render() {
@@ -7,15 +9,22 @@ export default class ShowMovieItem extends Component {
         return (
             <div className="movie">
                 <div className="film-item">
-                    <Link to={`/detail/${item.maPhim}`}>
-                        <img src={item.hinhAnh} alt />
-                    </Link>
-                    <Link to={`/detail/${item.maPhim}`} className="name-movie">
-                        <span>{item.tenPhim}</span>
-                    </Link>
-                    <div className="mua-ve">
+                    <a href>
+                        <img src={item.hinhAnh} alt="film" />
+                    </a>
+                    <a href className="name-movie">
+                        <Typography variant="subtitle1">
+                            <Box fontWeight="fontWeightBold">
+                                {item.tenPhim}
+                            </Box>
+                        </Typography>
+                    </a>
+                </div>
+                <div className="overplay-movies">
+                    <div className="icon-overplay">
+                        <FontAwesomeIcon className="icon" icon={['fab', 'youtube']} />
                         <Link to={`/detail/${item.maPhim}`}>
-                            <span>MUA VÉ</span>
+                            <FontAwesomeIcon className="icon" icon="info-circle" />
                         </Link>
                     </div>
                 </div>

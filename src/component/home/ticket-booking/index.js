@@ -1,21 +1,25 @@
 import React, { Component } from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { rotateInDownLeft, rotateInDownRight } from "react-animations"
-import styled, { keyframes } from "styled-components"
+// import { rotateInDownLeft, rotateInDownRight } from "react-animations"
+// import styled, { keyframes } from "styled-components"
 import { connect } from "react-redux"
 import * as callApi from "../../../redux/action/action-api/index"
 import { Link } from 'react-router-dom';
 import { NotificationContainer, NotificationManager } from "react-notifications"
+import AOS from "aos"
+import 'aos/dist/aos.css';
+import { Parallax } from "react-materialize"
+import 'materialize-css';
 
 
-const rotateLeftAnimation = keyframes`${rotateInDownLeft}`;
-const rotateRightAnimation = keyframes`${rotateInDownRight}`;
-const RorateDivLeft = styled.div`
-    animation:5s ${rotateLeftAnimation}
-`
-const RorateDivRight = styled.div`
-    animation:5s ${rotateRightAnimation}
-`
+// const rotateLeftAnimation = keyframes`${rotateInDownLeft}`;
+// const rotateRightAnimation = keyframes`${rotateInDownRight}`;
+// const RorateDivLeft = styled.div`
+//     animation:5s ${rotateLeftAnimation}
+// `
+// const RorateDivRight = styled.div`
+//     animation:5s ${rotateRightAnimation}
+// `
 
 
 class TicketBooking extends Component {
@@ -192,18 +196,16 @@ class TicketBooking extends Component {
     }
 
     render() {
+        AOS.init()
         return (
             <section id="dat-ve">
                 <div className=" row w-100">
-                    <RorateDivLeft className="content-left col-lg-6">
-                        <h2>
-                            <img src="./img/dat-ve/icon-ticket.png" alt />
-                            <span>Đặt vé</span>
-                        </h2>
-                    </RorateDivLeft>
-                    <RorateDivRight className="content-right col-lg-6 col-12">
+                    <div className="content-left col-lg-6">
+
+                    </div>
+                    <div className="content-right col-lg-6 col-12">
                         <form action>
-                            <div className="select-item">
+                            <div data-aos="fade-left" data-aos-duration="500" className="select-item">
                                 <div className="select-tiltle">
                                     <FontAwesomeIcon icon="film" />
                                 </div>
@@ -214,7 +216,7 @@ class TicketBooking extends Component {
                                     </select>
                                 </div>
                             </div>
-                            <div className="select-item">
+                            <div data-aos="fade-left" data-aos-duration="600" className="select-item">
                                 <div className="select-tiltle">
                                     <FontAwesomeIcon icon="home" />
                                 </div>
@@ -226,7 +228,7 @@ class TicketBooking extends Component {
                                     </select>
                                 </div>
                             </div>
-                            <div className="select-item">
+                            <div data-aos="fade-left" data-aos-duration="700" className="select-item">
                                 <div className="select-tiltle">
                                     <FontAwesomeIcon icon="calendar-plus" />
                                 </div>
@@ -238,7 +240,7 @@ class TicketBooking extends Component {
                                     </select>
                                 </div>
                             </div>
-                            <div className="select-item">
+                            <div data-aos="fade-left" data-aos-duration="800" className="select-item">
                                 <div className="select-tiltle">
                                     <FontAwesomeIcon icon="calendar-alt" />
                                 </div>
@@ -250,11 +252,11 @@ class TicketBooking extends Component {
                                     </select>
                                 </div>
                             </div>
-                            <div className="center">
+                            <div data-aos="fade-left" data-aos-duration="900" className="center">
                                 {this.renderSubmit()}
                             </div>
                         </form>
-                    </RorateDivRight>
+                    </div>
                 </div>
                 <NotificationContainer />
             </section>

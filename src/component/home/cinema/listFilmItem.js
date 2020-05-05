@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux"
 import { Link } from 'react-router-dom';
+import { Typography } from "@material-ui/core"
 
 class ListFilmItem extends Component {
 
@@ -27,21 +28,14 @@ class ListFilmItem extends Component {
                         list.danhSachPhim.map(item => {
                             listContentFilm.push(
                                 <Link className="film" to={`/detail/${item.maPhim}`}>
-                                    <img src={this.duyetMangPhim(item.maPhim)} />
+                                    <img alt="img" src={this.duyetMangPhim(item.maPhim)} />
                                     <div className="date-film">
                                         <ul>
-                                            <li>
-                                                <div className="type">
-                                                    <p className="classify">2D SUB</p>
-                                                    <p className="rating">C16</p>
-                                                </div>
-                                            </li>
                                             <li className="time-name">
                                                 <div className="name-time">
-                                                    <div className="name-film">
+                                                    <Typography variant="h5">
                                                         {item.tenPhim}
-                                                    </div>
-                                                </div>
+                                                    </Typography>                                                </div>
                                             </li>
                                         </ul>
                                     </div>

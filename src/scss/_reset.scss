@@ -8,3 +8,15 @@ h3,
 div {
   letter-spacing: 1px;
 }
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: black;
+  border: 1px solid black;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb {
+  background: $color-1;
+  border-radius: 2px;
+}

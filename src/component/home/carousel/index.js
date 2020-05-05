@@ -28,9 +28,14 @@ class Carousel extends Component {
         };
         return (
             <section id="carousel">
-                <Slider {...settings} className="my-carousel">
+                <div className="content-carousel">
+                    <div className="bunshopp-carrousel">
+                        {this.renderCarousel()}
+                    </div>
+                </div>
+                {/* <Slider {...settings} className="my-carousel">
                     {this.renderCarousel()}
-                </Slider>
+                </Slider> */}
             </section >
 
         )

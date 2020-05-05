@@ -1,12 +1,13 @@
 .user-admin {
     width: 85%;
     float: right;
+    position: relative;
     h6 {
         font-size: 24px;
     }
     .content-search {
         position: fixed;
-        width: 85%;
+        width: 100%;
         z-index: 3;
         .toolbar {
             display: flex;
@@ -30,9 +31,6 @@
                 text-align: center;
             }
         }
-    }
-    .content-user {
-        margin-top: 10%;
     }
     .tiltle {
         text-align: center;

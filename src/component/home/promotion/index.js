@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PromotionItem from './promotionItem'
+import { Typography } from "@material-ui/core"
 
 export default class Promotion extends Component {
     render() {
@@ -7,8 +8,10 @@ export default class Promotion extends Component {
             <section id="promotion">
                 <div className="promotion-content">
                     <div className="tiltle">
-                        Khuyến mãi
-    </div>
+                        <Typography variant="h4">
+                            Khuyến mãi
+                        </Typography>
+                    </div>
                     <PromotionItem />
                 </div>
             </section>

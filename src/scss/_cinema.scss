@@ -1,40 +1,36 @@
 #cinema {
-  background-color: $color-2;
-  padding-top: 4%;
+  position: relative;
+  &::before {
+    content: "";
+    background-image: url("http://demo.amytheme.com/movie/demo/watch-online/wp-content/themes/amy-movie/images/frontend/footer_bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
   padding-bottom: 5%;
   .active {
     opacity: 1 !important;
   }
   .title-cinema {
+    padding-top: 2%;
     text-align: center;
     width: 26%;
     margin: 0 auto;
     margin-bottom: 8%;
-    @include tiltle();
-    background-color: $color-3;
-    padding: 2% 0;
-    box-shadow: rgba(0, 0, 0, 0.9) 6px 7px 5px;
+    color: white;
   }
   .title {
     position: relative;
-    height: 14rem;
     @include flex(center);
     list-style: none;
     padding-left: 0;
-    padding-top: 3rem;
-    a {
-      @include Element-a();
-      @include tiltle();
-    }
-    li {
-      width: 26%;
-      @include flex(center);
-      height: 50%;
-      box-shadow: rgba(0, 0, 0, 0.9) 6px 7px 5px;
-      position: relative;
-    }
+    padding-top: 5%;
+    margin-bottom: 5%;
     .movie-play {
-      margin-right: 3rem;
+      margin-right: 6%;
       cursor: pointer;
     }
     .movie-soon {
@@ -65,7 +61,6 @@
   }
   .item-cinema {
     margin: 4% 5%;
-    background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
     .item {
       width: 97%;
       margin: 0 auto;
@@ -73,15 +68,6 @@
       .location-cinema {
         height: 30rem;
         overflow: auto;
-        &::before {
-          content: "";
-          width: 1%;
-          height: 90%;
-          position: absolute;
-          right: 0;
-          background: $color-2;
-          border-radius: 2px;
-        }
         .cinema {
           display: flex;
           margin-bottom: 7%;
@@ -91,35 +77,33 @@
             opacity: 1;
           }
           img {
-            width: 18%;
+            width: 6rem;
           }
           .info-cinema {
-            margin-left: 4%;
-            margin-top: 3%;
-            span {
-              color: white;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            color: white;
+          }
+          .info {
+            margin-left: 6%;
+            .BHDStar {
+              color: green;
             }
-            .info {
-              font-size: 138%;
-              font-weight: 600;
-              .BHDStar {
-                color: green;
-              }
-              .CGV {
-                color: red;
-              }
-              .CineStar {
-                color: #ff8300;
-              }
-              .Galaxy {
-                color: #fdb813;
-              }
-              .LotteCinima {
-                color: #ed1b24;
-              }
-              .MegaGS {
-                color: #ffd62f;
-              }
+            .CGV {
+              color: red;
+            }
+            .CineStar {
+              color: #ff8300;
+            }
+            .Galaxy {
+              color: #fdb813;
+            }
+            .LotteCinima {
+              color: #ed1b24;
+            }
+            .MegaGS {
+              color: #ffd62f;
             }
           }
         }
@@ -129,14 +113,13 @@
         height: 30rem;
         overflow: auto;
         .date-cinema {
-          border-bottom: 2px solid $color-3;
           .date {
-            width: 90%;
-            margin: 0 auto;
+            display: flex;
+            overflow: auto;
+            padding: 2% 0;
             .date-item {
-              text-align: center;
               cursor: pointer;
-              outline: none;
+              margin-right: 5%;
               opacity: 0.5;
               p {
                 color: white;
@@ -151,7 +134,8 @@
             cursor: pointer;
             text-decoration: none;
             img {
-              width: 17%;
+              width: 8rem;
+              height: 9rem;
             }
             .date-film {
               width: 100%;
@@ -179,40 +163,40 @@
                 .time-name {
                   width: 100%;
                   height: 100%;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  &:hover {
+                    color: $color-1;
+                    transition: all 0.3s;
+                  }
+                }
+                .time-name-detail {
+                  width: 100%;
+                  height: 100%;
+                  display: flex;
+                  justify-content: space-between;
                   .name-time {
-                    height: 100%;
-                    padding-top: 5%;
-                    padding-left: 4%;
-                    .name-film {
-                      font-size: 156%;
-                      font-weight: 600;
-                      text-transform: uppercase;
+                    width: 100%;
+                  }
+                  .time-name-detail-div {
+                    padding: 0;
+                    align-items: normal;
+                    margin-top: 8%;
+                    width: 100%;
+                    padding-left: 3%;
+                    .time-name-detail-col {
+                      border: 1px solid $color-1;
+                      text-align: center;
+                      margin-bottom: 2%;
+                      padding: 1% 0;
                       &:hover {
-                        color: $color-1;
-                        transition: all 0.3s;
+                        background-color: $color-1;
+                        transition: ease-in-out 0.5s;
                       }
-                    }
-                    ul {
-                      padding-left: 0;
-                      align-items: baseline;
-                      padding-top: 2%;
-                      li {
-                        height: 32%;
-                        width: 23%;
-                        font-weight: 600;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        border: 2px solid $color-1;
-                        margin-right: 5%;
-                        &:hover {
-                          background-color: $color-1;
-                          transition: all 0.5s;
-                          cursor: pointer;
-                        }
-                        a {
-                          @include Element-a();
-                        }
+                      a {
+                        text-decoration: none;
+                        color: white;
                       }
                     }
                   }

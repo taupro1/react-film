@@ -6,6 +6,7 @@ import seatBookingReducers from "./seatBookingReducers"
 import usersReducers from "./admin/usersReducers"
 import moviesReducers from "./admin/moviesReducers"
 import cinemaAdminReducers from "./admin/cinemaReducers"
+import loginReducers from "./admin/loginReducers"
 
 const rootReducers = combineReducers({
     homeReducers,
@@ -15,6 +16,7 @@ const rootReducers = combineReducers({
     usersReducers,
     moviesReducers,
     cinemaAdminReducers,
+    loginReducers,
 })
 
 export default rootReducers

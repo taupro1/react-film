@@ -1,17 +1,7 @@
 #home-movie {
   position: relative;
   padding-bottom: 2rem;
-  &::before {
-    content: "";
-    background-image: url(../img/home-movie/movie-details-bg.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    position: absolute;
-    background-attachment: fixed;
-    background-position: top;
-    width: 100%;
-    height: 100%;
-  }
+  background-color: black;
   .title {
     position: relative;
     @include flex(center);
@@ -19,18 +9,6 @@
     padding-left: 0;
     padding-top: 5%;
     margin-bottom: 5%;
-    a {
-      @include Element-a();
-      @include tiltle();
-    }
-    li {
-      width: 30%;
-      @include flex(center);
-      height: 50%;
-      box-shadow: rgba(0, 0, 0, 0.9) 6px 7px 5px;
-      position: relative;
-      padding: 3% 0;
-    }
     .movie-play {
       margin-right: 6%;
       cursor: pointer;
@@ -52,19 +30,44 @@
       width: 90%;
       margin: 0 auto;
       .movie {
+        position: relative;
+        &:hover {
+          .overplay-movies {
+            transform: rotateX(0);
+            transition: 0.5s ease-in-out;
+            cursor: pointer;
+          }
+        }
         .film-item {
           position: relative;
         }
-        img {
-          width: 91%;
-          height: 80%;
-          margin: 0 auto;
-          &:hover {
-            transition: delay 0.5s;
-            transform: scale(1.1);
-            transition: ease-in-out 0.5s;
-            cursor: pointer;
+        .overplay-movies {
+          position: absolute;
+          width: 100%;
+          top: 0;
+          height: 20rem;
+          background: #ec7532d1;
+          transform: rotateX(90deg);
+          .icon-overplay {
+            height: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            .icon {
+              font-size: 3rem;
+              color: white;
+              &:hover {
+                color: black;
+                transition: 0.5s linear;
+              }
+            }
           }
+        }
+
+        img {
+          width: 100%;
+          height: 20rem;
+          margin: 0 auto;
         }
         .name-movie {
           @include Element-a();
@@ -81,27 +84,25 @@
             cursor: pointer;
           }
         }
-        .mua-ve {
-          text-align: center;
-          width: 91%;
-          color: white;
-          background-color: #ec753273;
-          padding: 5% 0;
-          border-radius: 5px;
-          margin: 0 auto;
-          margin-top: 10%;
-          a {
-            text-decoration: none;
-            color: white;
-            font-size: 130%;
-            font-weight: 700;
-          }
-          &:hover {
-            background-color: $color-1;
-            transition: ease-out 1s;
-            cursor: pointer;
-          }
-        }
+      }
+      .slick-next {
+        top: 30%;
+        transform: translateX(15px);
+      }
+      .slick-next::before,
+      .slick-prev::before {
+        color: #f55c05;
+        border: 2px solid;
+        height: 55px;
+        width: 55px;
+        display: block;
+        border-radius: 50%;
+        font-size: 44px;
+        font-family: none;
+      }
+      .slick-prev {
+        top: 30%;
+        transform: translateX(-50px);
       }
     }
   }
@@ -110,18 +111,44 @@
       width: 90%;
       margin: 0 auto;
       .movie {
+        position: relative;
+        &:hover {
+          .overplay-movies {
+            transform: rotateX(0);
+            transition: 0.5s ease-in-out;
+            cursor: pointer;
+          }
+        }
         .film-item {
           position: relative;
         }
-        img {
-          width: 91%;
-          height: 80%;
-          margin: 0 auto;
-          &:hover {
-            transform: scale(1.1);
-            transition: ease-in-out 0.5s;
-            cursor: pointer;
+        .overplay-movies {
+          position: absolute;
+          width: 100%;
+          top: 0;
+          height: 20rem;
+          background: #ec7532d1;
+          transform: rotateX(90deg);
+          .icon-overplay {
+            height: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            .icon {
+              font-size: 3rem;
+              color: white;
+              &:hover {
+                color: black;
+                transition: 0.5s linear;
+              }
+            }
           }
+        }
+
+        img {
+          width: 100%;
+          height: 20rem;
+          margin: 0 auto;
         }
         .name-movie {
           @include Element-a();
@@ -129,63 +156,51 @@
           display: flex;
           justify-content: center;
           text-transform: uppercase;
+          font-size: 109%;
           margin: 0 auto;
           margin-top: 10%;
-          font-size: 109%;
           &:hover {
             color: $color-1;
             transition: ease-in-out 0.3s;
             cursor: pointer;
           }
         }
-        .mua-ve {
-          text-align: center;
-          width: 91%;
-          color: white;
-          background-color: #ec753273;
-          padding: 5% 0;
-          border-radius: 5px;
-          margin: 0 auto;
-          margin-top: 10%;
-          a {
-            text-decoration: none;
-            color: white;
-            font-size: 130%;
-            font-weight: 700;
-          }
-          &:hover {
-            background-color: $color-1;
-            transition: ease-out 1s;
-            cursor: pointer;
-          }
+      }
+      .slick-next {
+        top: 30%;
+        transform: translateX(15px);
+      }
+      .slick-next::before,
+      .slick-prev::before {
+        color: #f55c05;
+        border: 2px solid;
+        height: 55px;
+        width: 55px;
+        display: block;
+        border-radius: 50%;
+        font-size: 44px;
+        font-family: none;
+      }
+      .slick-prev {
+        top: 30%;
+        transform: translateX(-50px);
+      }
+    }
+  }
+}
+@media (max-width: 700px) {
+  #home-movie {
+    .title {
+      .movie-soon {
+        display: none;
+      }
+    }
+    .show-movie {
+      .my-movie {
+        .slick-next::before,
+        .slick-prev::before {
+          content: none;
         }
-      }
-    }
-  }
-}
-@media (max-width: 960px) {
-  #home-movie {
-    .title {
-      a {
-        font-size: 100%;
-      }
-    }
-  }
-}
-@media (max-width: 600px) {
-  #home-movie {
-    .title {
-      a {
-        font-size: 70%;
-      }
-    }
-  }
-}
-@media (max-width: 375px) {
-  #home-movie {
-    .title {
-      li {
-        width: 50%;
       }
     }
   }

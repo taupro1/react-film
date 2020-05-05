@@ -4,14 +4,17 @@ import ListCinema from './listCinema';
 import LocationCinema from './locationCinema';
 import ListFilm from './listFilm';
 import * as callApi from "../../../redux/action/action-api";
-import { rubberBand, tada } from "react-animations"
-import styled, { keyframes } from "styled-components"
+// import { rubberBand, tada } from "react-animations"
+// import styled, { keyframes } from "styled-components"
 import * as action from "../../../redux/action/action-redux/index"
+import AOS from "aos"
+import "aos/dist/aos.css"
+import { Typography } from "@material-ui/core"
 
-const hingeAnimation = keyframes`${rubberBand}`;
-const HingeDiv = styled.div`
-    animation:10s ${hingeAnimation};
-`
+// const hingeAnimation = keyframes`${rubberBand}`;
+// const HingeDiv = styled.div`
+//     animation:10s ${hingeAnimation};
+// `
 
 class Cinema extends Component {
     constructor(props) {
@@ -53,14 +56,17 @@ class Cinema extends Component {
     }
 
     render() {
+        AOS.init()
         return (
             <section id="cinema">
                 <div className="container-fuild">
-                    <HingeDiv className="title-cinema">
-                        Cụm rạp
-    </HingeDiv>
+                    <div data-aos="fade-down" data-aos-duration="700" className="title-cinema">
+                        <Typography variant="h4">
+                            Cụm rạp
+                        </Typography>
+                    </div>
                     <div className="list-cinema">
-                        <ul>
+                        <ul data-aos="zoom-in" data-aos-duration="700">
                             {this.renderListCinema()}
                         </ul>
                     </div>

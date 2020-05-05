@@ -1,10 +1,8 @@
-import React, { Component, PureComponent } from 'react';
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import React, { PureComponent } from 'react';
 import { connect } from "react-redux"
 import * as action from "../../../redux/action/action-redux/index"
 import classNames from "classnames"
+import { Typography } from "@material-ui/core"
 
 class DateCinema extends PureComponent {
 
@@ -35,7 +33,7 @@ class DateCinema extends PureComponent {
                                     date = new Date(item.ngayChieuGioChieu).toLocaleDateString()
                                     return (
                                         <div className={classNames(this.renderOpacity(new Date(item.ngayChieuGioChieu).toLocaleDateString(), index), "date-item")} key={index} onClick={() => this.hanleOnclick(new Date(item.ngayChieuGioChieu).toLocaleDateString())}>
-                                            <p>{new Date(item.ngayChieuGioChieu).toLocaleDateString()}</p>
+                                            <Typography variant="body1">{new Date(item.ngayChieuGioChieu).toLocaleDateString()}</Typography>
                                         </div>
                                     )
                                 }
@@ -47,17 +45,11 @@ class DateCinema extends PureComponent {
         }
     }
     render() {
-        const settings = {
-            infinite: true,
-            speed: 500,
-            slidesToShow: 1,
-            slidesToScroll: 1,
-        }
         return (
             <div className="date-cinema">
-                <Slider {...settings} className="date">
+                <div className="date">
                     {this.renderHtml()}
-                </Slider>
+                </div>
             </div>
         )
     }

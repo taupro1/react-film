@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import * as callApi from "../../../redux/action/action-api/index"
 
 
 class ContentRight extends Component {
@@ -9,7 +10,7 @@ class ContentRight extends Component {
             return listCinema.map(item => {
                 return (
                     <li>
-                        <img src={item.logo} alt />
+                        <img alt="" src={item.logo} />
                     </li>
                 )
             })
@@ -27,6 +28,16 @@ class ContentRight extends Component {
             </div>
         )
     }
+    componentDidMount() {
+        this.props.getListCinema()
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        getListCinema: () => {
+            dispatch(callApi.actGetListCinemaApi())
+        }
+    }
 }
 
 const mapStateToProps = state => {
@@ -34,4 +45,4 @@ const mapStateToProps = state => {
         listCinema: state.cinemaReducers.listCinema,
     }
 }
-export default connect(mapStateToProps, null)(ContentRight)
+export default connect(mapStateToProps, mapDispatchToProps)(ContentRight)

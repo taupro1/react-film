@@ -1,12 +1,16 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
+import { Typography } from "@material-ui/core"
+import AOS from "aos"
+import "aos/dist/aos.css"
 
-export default class News extends Component {
+export default class News extends PureComponent {
     render() {
+        AOS.init()
         return (
             <div className="col-sm-12 col-12 col-lg-6 news">
-                <h3 className="tiltle">Tin tức</h3>
-                <div className="news-film">
-                    <img src="./img/news-review/news/sau-mot-bo-phim-ho-tro-thanh-con-sen.jpg" alt />
+                <Typography variant="h4" className="tiltle">Tin tức</Typography>
+                <div data-aos="fade-right" data-aos-duration="600" className="news-film">
+                    <img src="./img/news-review/news/sau-mot-bo-phim-ho-tro-thanh-con-sen.jpg" alt="" />
                     <div className="news-item">
                         <div className="tiltle-film">
                             <a href>
@@ -20,7 +24,7 @@ export default class News extends Component {
                         </p>
                     </div>
                 </div>
-                <div className="news-film">
+                <div data-aos="fade-right" data-aos-duration="700" className="news-film">
                     <img src="./img/news-review/news/450x300-nang_1583823710226.jpeg" alt />
                     <div className="news-item">
                         <div className="tiltle-film">
@@ -35,7 +39,7 @@ export default class News extends Component {
                         </p>
                     </div>
                 </div>
-                <div className="news-film">
+                <div data-aos="fade-right" data-aos-duration="800" className="news-film">
                     <img src="./img/news-review/news/450x300-can-ho_1583741812707.jpg" alt />
                     <div className="news-item">
                         <div className="tiltle-film">

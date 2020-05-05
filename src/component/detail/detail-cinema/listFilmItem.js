@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from "react-redux"
 import { Link } from 'react-router-dom';
 import { NotificationContainer, NotificationManager } from "react-notifications"
+import { Typography } from "@material-ui/core"
 
 
 class ListFilmItemDetail extends Component {
@@ -43,9 +44,11 @@ class ListFilmItemDetail extends Component {
                                 return list.lichChieuPhim.map((item, index) => {
                                     if ((new Date(item.ngayChieuGioChieu).toLocaleDateString()) === this.props.dateFilm) {
                                         return (
-                                            <li key={index}>
-                                                {this.kiemTraLogin(new Date(item.ngayChieuGioChieu).toLocaleTimeString(), item.maLichChieu)}
-                                            </li>
+                                            <div className="col-lg-3 time-name-detail-col" key={index}>
+                                                <Typography variant="subtitle2">
+                                                    {this.kiemTraLogin(new Date(item.ngayChieuGioChieu).toLocaleTimeString(), item.maLichChieu)}
+                                                </Typography>
+                                            </div>
                                         )
                                     }
                                 })
@@ -62,30 +65,23 @@ class ListFilmItemDetail extends Component {
             const { listDetailFilm } = this.props;
             return (
                 <div className="list">
-                    <a className="film">
-                        <img src={this.duyetMangPhim(listDetailFilm.maPhim)} />
+                    <a href className="film">
+                        <img alt="film" src={listDetailFilm.hinhAnh} />
                         <div className="date-film">
                             <ul>
-                                <li>
-                                    <div className="type">
-                                        <p className="classify">2D</p>
-                                        <p className="rating">C16</p>
-                                    </div>
-                                </li>
-                                <li className="time-name">
+                                <li className="time-name-detail">
                                     <div className="name-time">
-                                        <div className="name-film">
+                                        <Typography variant="h5">
                                             {listDetailFilm.tenPhim}
-                                        </div>
-                                        <ul>
+                                        </Typography>
+                                        <div className="row time-name-detail-div">
                                             {this.renderSuatChieu()}
-                                        </ul>
+                                        </div>
                                     </div>
                                 </li>
                             </ul>
                         </div>
                     </a>
-                    <NotificationContainer />
                 </div>
             )
         }
@@ -95,6 +91,7 @@ class ListFilmItemDetail extends Component {
         return (
             <div>
                 {this.renderHtml()}
+                <NotificationContainer />
             </div>
         )
     }
@@ -103,7 +100,6 @@ class ListFilmItemDetail extends Component {
 const mapStateToProps = state => {
     return {
         listDetailFilm: state.detailReducers.listDetailFilm,
-        listFilm: state.homeReducers.listHomeMovie,
         dateFilm: state.detailReducers.dateFilm,
         statusLogin: state.homeReducers.statusLogin,
         maCumRap: state.detailReducers.maCumRapDetail,

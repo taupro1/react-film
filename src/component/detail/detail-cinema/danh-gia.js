@@ -82,7 +82,7 @@ class DanhGiaPhim extends Component {
         if (danhGia.length !== 0) {
             let content = []
             for (let i = danhGia.length - 1; i >= 0; i--) {
-                content.push(<div className="row justify-content-center">
+                content.push(<div className="row justify-content-center" style={{ position: "relative" }}>
                     <ContentComment>
                         <ContentUserStar>
                             <span>{danhGia[i].nameUser.hoTen}</span>
@@ -118,7 +118,7 @@ class DanhGiaPhim extends Component {
                     <ModalDanhGia />
                 </div>
                 {this.renderHtml()}
-                <div className="row justify-content-center">
+                <div className="row justify-content-center" style={{ position: "relative" }}>
                     <ContentComment>
                         <ContentUserStar>
                             <span>Dr.Stone</span>
@@ -133,7 +133,7 @@ class DanhGiaPhim extends Component {
                         </Comment>
                     </ContentComment>
                 </div>
-                <div className="row justify-content-center">
+                <div className="row justify-content-center" style={{ position: "relative" }}>
                     <ContentComment>
                         <ContentUserStar>
                             <span>Iron Man</span>

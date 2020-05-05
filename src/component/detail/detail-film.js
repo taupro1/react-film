@@ -1,76 +1,122 @@
 import React, { Component } from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import styled from "styled-components"
-import Button from "@material-ui/core/Button"
-import variable from "../../scss/_variable.scss"
+import { Typography, Box, Button } from "@material-ui/core"
 
-const CloseBtn = styled(Button)`
-    float:right;
-    background:${variable.colorThree} !important;
-    outline: none !important;
-    color:white !important;
-`
-const ContentTrailer = styled.div`
-    position: absolute;
-    top: 0;
-    width: 80%;
-    height: 110%;
-    transition: margin .5s;
-    margin-left: ${props => props.margin ? "200%" : "0"};
-`
-const Iframe = styled.iframe`
-    width: 100%;
-    height: 100%;
-`
 
 export default class DetailFilm extends Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            isValid: true
+    renderStar = () => {
+        if (this.props.detailFilm) {
+            let content = [];
+            for (let i = 0; i < this.props.detailFilm.danhGia; i++) {
+                content.push(
+                    <FontAwesomeIcon className="i-star" icon="star" />
+                )
+            }
+            return content
         }
     }
-
     render() {
         let { detailFilm } = this.props
         return (
             <section id="film">
+                <div className="bg-film">
+                    <img src="http://demo.amytheme.com/movie/demo/book-ticket/wp-content/uploads/2016/12/img_21.jpg" alt="" />
+                </div>
                 <div className="container">
                     <div className="row content-film">
-                        <div className="col-12 col-sm-12 col-md-5 content-left">
+                        <div className="col-12 col-sm-12 col-md-4 content-left">
                             <div>
-                                <img src={detailFilm.hinhAnh} alt />
+                                <img alt="" src={detailFilm.hinhAnh} />
                             </div>
                         </div>
-                        <div className="col-12 col-sm-12 col-md-7 content-right">
-                            <div>
-                                <h3>{detailFilm.tenPhim}</h3>
+                        <div className="col-12 col-sm-12 col-md-8 content-right">
+                            <div className="content-right-padding">
+                                <Typography style={{ marginBottom: "2%" }} variant="h4">
+                                    <Box fontWeight="fontWeightBold">
+                                        {detailFilm.tenPhim}
+                                    </Box>
+                                </Typography>
                                 <div className="chi-tiet">
-                                    <div className="thoi-luong">
-                                        Thời lượng: <span>110 phút</span>
+                                    <div className="chi-tiet-div">
+                                        <Typography className="chi-tiet-subtitle1" variant="subtitle1">
+                                            <Box fontWeight="fontWeightBold">
+                                                Thời lượng:
+                                            </Box>
+                                        </Typography>
+                                        <Typography variant="body1" className="chi-tiet-body1">
+                                            120 phút
+                                        </Typography>
                                     </div>
-                                    <div className="mo-ta">
-                                        Nội dung: <span>{detailFilm.moTa}</span>
+                                    <div className="chi-tiet-div">
+                                        <Typography className="chi-tiet-subtitle1" variant="subtitle1">
+                                            <Box fontWeight="fontWeightBold">
+                                                Thể loại:
+                                            </Box>
+                                        </Typography>
+                                        <Typography variant="body1" className="chi-tiet-body1">
+                                            Hài hước, tấu hài
+                                        </Typography>
                                     </div>
-                                    <div className="danh-gia-sao">
-                                        Đánh giá: <span>{detailFilm.danhGia}<FontAwesomeIcon icon="star" className="i-star" /></span>
+                                    <div className="chi-tiet-div">
+                                        <Typography className="chi-tiet-subtitle1" variant="subtitle1">
+                                            <Box fontWeight="fontWeightBold">
+                                                Độ tuổi:
+                                            </Box>
+                                        </Typography>
+                                        <Typography variant="body1" className="chi-tiet-body1">
+                                            Ai cũng xem được
+                                        </Typography>
+                                    </div>
+                                    <div className="chi-tiet-div">
+                                        <Typography className="chi-tiet-subtitle1" variant="subtitle1">
+                                            <Box fontWeight="fontWeightBold">
+                                                Ra mắt:
+                                            </Box>
+                                        </Typography>
+                                        <Typography variant="body1" className="chi-tiet-body1">
+                                            Không biết
+                                        </Typography>
+                                    </div>
+                                    <div className="chi-tiet-div">
+                                        <Typography className="chi-tiet-subtitle1" variant="subtitle1">
+                                            <Box fontWeight="fontWeightBold">
+                                                Đánh giá:
+                                            </Box>
+                                        </Typography>
+                                        <Typography variant="body1" className="chi-tiet-body1">
+                                            {this.renderStar()}
+                                        </Typography>
                                     </div>
                                 </div>
                                 <div className="btn-trailer">
-                                    <button onClick={() => this.setState({ isValid: false })}>
-                                        <a>Xem Trailer</a>
-                                    </button>
+                                    <Button style={{ outline: "none" }} variant="contained" color="default">
+                                        <Typography style={{ color: "black" }} variant="button">
+                                            Xem Trailer
+                                        </Typography>
+                                    </Button>
                                 </div>
-                                <ContentTrailer margin={this.state.isValid}>
-                                    <CloseBtn variant="contained" onClick={() => this.setState({ isValid: true })}>Close</CloseBtn>
-                                    <Iframe src={detailFilm.trailer} frameborder="0" allowfullscreen></Iframe>
-                                </ContentTrailer>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row content-synopsis">
+                        <div className="col-12 col-sm-12 col-md-4">
+
+                        </div>
+                        <div className="col-12 col-sm-12 col-md-8" style={{ padding: "0" }}>
+                            <div>
+                                <Typography variant="subtitle1">
+                                    <Box className="synopsis-subtitle1" fontWeight="fontWeightBold">
+                                        Nội dung:
+                                    </Box>
+                                </Typography>
+                                <Typography className="synopsis-body2" variant="body2">
+                                    {detailFilm.moTa}
+                                </Typography>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </section >
         )
     }
 }

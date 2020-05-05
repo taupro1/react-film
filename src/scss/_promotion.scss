@@ -4,23 +4,39 @@
     padding-top: 4%;
     padding-bottom: 5%;
     .tiltle {
-      @include tiltle();
       text-align: center;
       width: 24%;
       margin: 0 auto;
-      background: $color-1;
       padding: 2% 0;
       margin-bottom: 5%;
-      border-radius: 50%;
-      box-shadow: rgba(0, 0, 0, 0.9) 6px 7px 5px;
+      color: white;
     }
     .promotion-item {
       width: 80%;
       margin: 0 auto;
+      .slick-next {
+        top: 30%;
+        transform: translateX(15px);
+      }
+      .slick-next::before,
+      .slick-prev::before {
+        color: #f55c05;
+        border: 2px solid;
+        height: 55px;
+        width: 55px;
+        display: block;
+        border-radius: 50%;
+        font-size: 44px;
+        font-family: none;
+      }
+      .slick-prev {
+        top: 30%;
+        transform: translateX(-50px);
+      }
       .item-promotion {
         img {
-          width: 85%;
-          height: 40%;
+          width: 13rem;
+          height: 15rem;
           margin: 0 auto;
         }
       }
@@ -42,6 +58,12 @@
     .promotion-content {
       .tiltle {
         font-size: 60%;
+      }
+      .promotion-item {
+        .slick-next::before,
+        .slick-prev::before {
+          content: none;
+        }
       }
     }
   }

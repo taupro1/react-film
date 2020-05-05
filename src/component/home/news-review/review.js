@@ -1,12 +1,16 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
+import { Typography } from "@material-ui/core"
+import AOS from "aos"
+import "aos/dist/aos.css"
 
-export default class Review extends Component {
+export default class Review extends PureComponent {
     render() {
+        AOS.init()
         return (
             <div className="col-sm-12 col-12 col-lg-6 news review">
-                <h3 className="tiltle">Đánh giá phim</h3>
-                <div className="news-film">
-                    <img src="./img/news-review/review/bloooshot.jpg" alt />
+                <Typography variant="h4" className="tiltle">Đánh giá phim</Typography>
+                <div data-aos="fade-left" data-aos-duration="600" className="news-film">
+                    <img src="./img/news-review/review/bloooshot.jpg" alt="" />
                     <div className="news-item">
                         <div className="tiltle-film">
                             <a href>
@@ -20,7 +24,7 @@ export default class Review extends Component {
                         </p>
                     </div>
                 </div>
-                <div className="news-film">
+                <div data-aos="fade-left" data-aos-duration="700" className="news-film">
                     <img src="./img/news-review/review/onward.jpg" alt />
                     <div className="news-item">
                         <div className="tiltle-film">
@@ -35,7 +39,7 @@ export default class Review extends Component {
                         </p>
                     </div>
                 </div>
-                <div className="news-film">
+                <div data-aos="fade-left" data-aos-duration="800" className="news-film">
                     <img src="./img/news-review/review/a quiet palce 2.jpg" alt />
                     <div className="news-item">
                         <div className="tiltle-film">
