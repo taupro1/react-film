@@ -29,7 +29,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>Cybersoft</title>
   </head>
 
   <body>
@@ -46,5 +46,19 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
     <script src="path/to/your/bundle.js"></script>
+    <script>
+      $(document).ready(function () {
+        $(".venobox").venobox({
+          // framewidth: "400px", // default: ''
+          // frameheight: "300px", // default: ''
+          // border: "10px", // default: '0'
+          // bgcolor: "#5dff5e", // default: '#fff'
+          // titleattr: "data-title", // default: 'title'
+          // numeratio: true, // default: false
+          // infinigall: true, // default: false
+          // share: ["facebook", "twitter", "download"], // default: []
+        });
+      });
+    </script>
   </body>
 </html>

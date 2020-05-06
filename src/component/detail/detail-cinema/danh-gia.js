@@ -28,6 +28,9 @@ const ContentFirstStar = styled.div`
     font-size: 25px;
     width: 30%;
     text-align: center;
+    @media (max-width:800px){
+        display:none;
+    }
 `
 const Star = styled(FontAwesomeIcon)`
     margin-right:2%;

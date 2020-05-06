@@ -120,7 +120,7 @@ class ModalBooking extends Component {
                         </div>
                         <div className="thong-tin-div">
                             <Typography className="thong-tin-subtitle1" variant="subtitle1">Ghế: </Typography>
-                            <Typography variant="body2" className="ghe">{this.renderSearSelect()}</Typography>
+                            <Typography style={{ display: "flex" }} variant="body2">{this.renderSearSelect()}</Typography>
                         </div>
                         <div className="thong-tin-div">
                             <Typography className="thong-tin-subtitle1" variant="subtitle1">Tổng tiền: </Typography>

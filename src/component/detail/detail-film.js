@@ -9,7 +9,7 @@ export default class DetailFilm extends Component {
             let content = [];
             for (let i = 0; i < this.props.detailFilm.danhGia; i++) {
                 content.push(
-                    <FontAwesomeIcon className="i-star" icon="star" />
+                    <FontAwesomeIcon key={i} className="i-star" icon="star" />
                 )
             }
             return content

@@ -13,7 +13,9 @@ class DetailMovie extends Component {
         let id = this.props.match.params.id;
         this.props.getDetailFilm(id)
     }
-
+    componentDidUpdate(prevProps) {
+        document.title = this.props.detailFilm.tenPhim
+    }
     renderHtmml = () => {
         const { detailFilm } = this.props
         if (this.props.isValid) {
@@ -22,7 +24,7 @@ class DetailMovie extends Component {
         if (!this.props.isValid) {
             return (
                 <Fragment>
-                    <DetailFilm detailFilm={detailFilm} />
+                    <DetailFilm key={1} detailFilm={detailFilm} />
                     <DetailCinema />
                 </Fragment>
             )

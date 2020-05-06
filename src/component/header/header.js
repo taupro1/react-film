@@ -73,6 +73,23 @@ class Header extends Component {
             )
         }
     }
+    renderLoginResponsive = () => {
+        if (localStorage.getItem("login") || this.props.statusLogin) {
+            const user = JSON.parse(localStorage.getItem("login"))
+            return (
+                <Account user={user} remove={this.handleRemoveLocal} />
+            )
+        }
+        if (!localStorage.getItem("login")) {
+            return (
+                <li className="nav-item color-item">
+                    <Typography variant="overline">
+                        <ContentMenuNavLink to={"/login"} className="nav-link" id="login-logo">Đăng nhập</ContentMenuNavLink>
+                    </Typography>
+                </li>
+            )
+        }
+    }
 
 
     handleOnclickContentMenu = () => {
@@ -159,7 +176,7 @@ class Header extends Component {
                                             <NavLink className="nav-link" to={"/register"}>Đăng ký</NavLink>
                                         </Typography>
                                     </li>
-                                    <li>
+                                    <li className='color-item-login'>
                                         <ul className="nav">
                                             {this.renderLogin()}
                                         </ul>
@@ -175,8 +192,10 @@ class Header extends Component {
                                     className="nav-link"
                                     to="/"
                                 >
-                                    Trang chủ
-                                        </ContentMenuNavLink>
+                                    <Typography variant="overline">
+                                        Trang chủ
+                                    </Typography>
+                                </ContentMenuNavLink>
                             </ContentMenuLi>
                             <ContentMenuLi>
                                 <Link
@@ -188,8 +207,10 @@ class Header extends Component {
                                     offset={-50}
                                     duration={500}
                                 >
-                                    Lịch chiếu
-                                        </Link>
+                                    <Typography variant="overline">
+                                        Lịch chiếu
+                                    </Typography>
+                                </Link>
                             </ContentMenuLi>
                             <ContentMenuLi>
                                 <Link
@@ -201,8 +222,10 @@ class Header extends Component {
                                     offset={-50}
                                     duration={500}
                                 >
-                                    Cụm rạp
-                                        </Link>
+                                    <Typography variant="overline">
+                                        Cụm rạp
+                                    </Typography>
+                                </Link>
                             </ContentMenuLi>
                             <ContentMenuLi>
                                 <Link
@@ -214,8 +237,18 @@ class Header extends Component {
                                     offset={-50}
                                     duration={500}
                                 >
-                                    Tin tức
-                                        </Link>
+                                    <Typography variant="overline">
+                                        Tin tức
+                                    </Typography>
+                                </Link>
+                            </ContentMenuLi>
+                            <ContentMenuLi>
+                                <Typography variant="overline">
+                                    <ContentMenuNavLink className="nav-link" to={"/register"}>Đăng ký</ContentMenuNavLink>
+                                </Typography>
+                            </ContentMenuLi>
+                            <ContentMenuLi>
+                                {this.renderLoginResponsive()}
                             </ContentMenuLi>
                         </ContentMenuUl>
                     </ContentMenu>

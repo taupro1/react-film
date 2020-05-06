@@ -17,8 +17,8 @@ class SeatBooking extends Component {
         }
         if (!this.props.isValid) {
             return (
-                <section id="dat-ve-film">
-                    <div className="content-left">
+                <section className="row" id="dat-ve-film">
+                    <div className="col-12 col-sm-12 col-lg-8 content-left">
                         <div className="tiltle">
                             <Typography variant="h5">
                                 Chọn ghế
@@ -41,7 +41,7 @@ class SeatBooking extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="content-right">
+                    <div className="col-12 col-sm-12 col-lg-4 content-right">
                         <DetailBooking />
                     </div>
                 </section>
