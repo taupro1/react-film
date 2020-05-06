@@ -34,7 +34,7 @@ class LocationCinemaDetail extends PureComponent {
                 if (item.maHeThongRap === this.props.maHeThongRap) {
                     return item.cumRapChieu.map((list, index) => {
                         return (
-                            <div className={classNames(this.renderOpacityCinema(list.maCumRap, index), "cinema")} onClick={() => this.handleOpacityCinema(list.maCumRap)}>
+                            <div key={index} className={classNames(this.renderOpacityCinema(list.maCumRap, index), "cinema")} onClick={() => this.handleOpacityCinema(list.maCumRap)}>
                                 <img alt="" src={item.logo} />
                                 <div className="info-cinema">
                                     <div className="info">

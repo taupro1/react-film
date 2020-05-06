@@ -6,7 +6,7 @@ import SystemUpdateIcon from '@material-ui/icons/SystemUpdate';
 import CloseIcon from '@material-ui/icons/Close';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import { connect } from 'react-redux';
-import { NotificationContainer, NotificationManager } from "react-notifications"
+import { NotificationContainer } from "react-notifications"
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import {

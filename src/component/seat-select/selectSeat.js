@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from "react-redux"
 import styled from "styled-components"
 import variable from "../../scss/_variable.scss"
+import { Typography } from "@material-ui/core"
 
 const ContentSeatDiv = styled.div`
     width:100%;
@@ -105,7 +106,9 @@ class SelectSeat extends Component {
             <div className="col-sm-12 col-12 col-lg-9 select-seat">
                 <div className="man-hinh" />
                 <div className="ghe-ngoi">
-                    <h5>Màn hình</h5>
+                    <Typography className="man-hinh-h5" variant="h5">
+                        Màn hình
+                    </Typography>
                     <ContentSeatDiv className="vi-tri-ghe row">
                         {this.renderHtml()}
                     </ContentSeatDiv>

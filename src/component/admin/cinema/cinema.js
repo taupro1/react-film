@@ -7,8 +7,9 @@ import * as action from "../../../redux/action/action-redux/index"
 import Table from "@material-ui/core/Table"
 import TableContainer from "@material-ui/core/TableContainer"
 import TableRow from "@material-ui/core/TableRow"
+import { Typography, Box } from "@material-ui/core"
+import InfoIcon from "@material-ui/icons/Info"
 
-import EditIcon from '@material-ui/icons/Edit';
 import SearchIcon from '@material-ui/icons/Search';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import TextField from '@material-ui/core/TextField';
@@ -78,7 +79,7 @@ class CinemaAdmin extends Component {
                                     id="panel1a-header"
                                     className="btn-chi-tiet"
                                 >
-                                    <Button onClick={() => { this.props.getListCumRap(item.maHeThongRap) }} variant="contained" color="primary">
+                                    <Button startIcon={<InfoIcon />} onClick={() => { this.props.getListCumRap(item.maHeThongRap) }} variant="contained" color="primary">
                                         Chi tiết rạp
                                     </Button>
                                 </ExpansionPanelSummary>
@@ -95,10 +96,12 @@ class CinemaAdmin extends Component {
                             </ExpansionPanel>
                         </div>
                         <div className="col-sm-4 item item-tiltle">
-                            {item.tenHeThongRap}
+                            <Typography variant="body1">
+                                {item.tenHeThongRap}
+                            </Typography>
                         </div>
                         <div className="col-sm-4 item item-img">
-                            <img src={item.logo} />
+                            <img alt="Lỗi hình" src={item.logo} />
                         </div>
                     </div>
                 )
@@ -114,9 +117,11 @@ class CinemaAdmin extends Component {
                 <Paper className="content-search">
                     <Toolbar className="toolbar">
                         <div>
-                            <h6>
-                                List cinema
-                        </h6>
+                            <Typography variant="h5">
+                                <Box fontWeight="fontWeightBold">
+                                    Danh sách rạp
+                                </Box>
+                            </Typography>
                         </div>
                         <div className="content-form">
                             <FormControl className="item-form">
@@ -129,26 +134,31 @@ class CinemaAdmin extends Component {
                                 }}>
                                 </TextField>
                             </FormControl>
-                            <div className="item-icon">
-                                <Tooltip title="Add movie">
-                                    <ButtonBase onClick={() => this.props.editMoviesEdit(null)} style={{ outline: "none" }}>
-                                        <AddBoxIcon />
-                                    </ButtonBase>
-                                </Tooltip>
-                            </div>
                         </div>
                     </Toolbar>
                     <div>
                         <div className="row tiltle-user">
                             <div className="col-sm-4">
-                                Chi tiết
-                        </div>
+                                <Typography variant="subtitle1">
+                                    <Box fontWeight="fontWeightBold">
+                                        Chi tiết
+                                    </Box>
+                                </Typography>
+                            </div>
                             <div className="col-sm-4">
-                                Tên rạp
-                        </div>
+                                <Typography variant="subtitle1">
+                                    <Box fontWeight="fontWeightBold">
+                                        Tên rạp
+                                    </Box>
+                                </Typography>
+                            </div>
                             <div className="col-sm-4">
-                                Hình ảnh
-                        </div>
+                                <Typography variant="subtitle1">
+                                    <Box fontWeight="fontWeightBold">
+                                        Logo
+                                    </Box>
+                                </Typography>
+                            </div>
                         </div>
                     </div>
                 </Paper>

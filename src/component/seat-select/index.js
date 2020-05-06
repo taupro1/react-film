@@ -29,7 +29,7 @@ class SeatBooking extends Component {
                                         Thời gian còn lại
                                     </Typography>
                                     <div className="count">
-                                        {/* <CountTime /> */}
+                                        <CountTime />
                                     </div>
                                 </div>
                             </div>

@@ -1,21 +1,19 @@
 .cinema-admin {
     width: 85%;
     float: right;
-    h6 {
-        font-size: 24px;
-    }
+    position: relative;
     .content-search {
-        position: fixed;
-        width: 85%;
+        position: sticky;
+        width: 100%;
         z-index: 3;
         .toolbar {
             display: flex;
             justify-content: space-between;
             .content-form {
                 display: flex;
-                width: 37%;
+                width: 40%;
                 .item-form {
-                    width: 70%;
+                    width: 80%;
                 }
                 .item-icon {
                     margin-left: 5%;
@@ -23,6 +21,7 @@
             }
         }
         .tiltle-user {
+            margin: 0;
             background-color: black;
             color: white;
             padding: 1% 0;
@@ -30,9 +29,6 @@
                 text-align: center;
             }
         }
-    }
-    .content-user {
-        margin-top: 10%;
     }
     .tiltle {
         text-align: center;
@@ -52,23 +48,29 @@
     .item-user {
         border-bottom: 2px solid;
         padding: 1% 0;
+        margin: 0;
         .item {
             text-align: center;
             padding-top: 1%;
             .content-chi-tiet {
                 box-shadow: none;
                 .btn-chi-tiet {
-                    div {
-                        justify-content: center;
-                    }
+                    display: flex;
+                    justify-content: center;
+                    padding: 0;
                     button {
                         outline: none;
+                        background-color: black;
+                        color: white;
+                    }
+                    .MuiExpansionPanelSummary-content {
+                        justify-content: center;
                     }
                 }
                 .list-chi-tiet {
-                    background-color: $color-2;
+                    background-color: black;
                     width: 34rem;
-                    height: 20rem;
+                    height: 16rem;
                     .chi-tiet {
                         width: 30%;
                         color: white;
@@ -80,11 +82,6 @@
                     }
                 }
             }
-            .btn-action {
-                outline: none;
-                margin-right: 3%;
-                font-size: 11px;
-            }
         }
         .item-chi-tiet {
             padding-top: 0 !important;
@@ -93,11 +90,11 @@
         .item-img {
             margin-bottom: 2%;
             img {
-                width: 40%;
+                width: 35%;
             }
         }
         .item-tiltle {
-            font-size: 25px;
+            font-size: 21px;
             font-weight: 600;
             height: 20%;
         }

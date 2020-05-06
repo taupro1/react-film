@@ -5,41 +5,27 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Button from "@material-ui/core/Button"
 import variable from "../../scss/_variable.scss"
 import { Link } from 'react-router-dom'
+import { Typography, Box } from "@material-ui/core"
 
-const ModalBody = styled.div`
-    color: black;
-    text-align: center;
-    font-size: 20px;
-    font-weight: 600;
-`
-const ModalHeader = styled(ModalBody)`
-    display:block;
-    font-size:2rem
-`
 const Icon = styled(FontAwesomeIcon)`
     font-size:4rem
 `
 const ItemHeader = styled.div`
     margin-top:2%;
 `
-const ButtonChiTiet = styled(Button)`
-    font-weight: 600 !important;
-    color: white !important;
-    background: ${variable.colorThree} !important;
-    outline:none !important;
-`
 const ContentDetail = styled.div`
-    background: ${variable.colorTwo};
+    background: white;
     position: fixed;
     top: 10%;
     width: 60%;
+    color:black;
     right: ${props => props.right ? "-100%" : "25%"};
     transition:right .6s;
     z-index:4
 `
-const ButtonClose = styled(ButtonChiTiet)`
-    float: right !important;
-    margin: 2% !important;
+const ModalHeader = styled.div`
+    display: block;
+    text-align: center;
 `
 
 class ModalBooking extends Component {
@@ -57,33 +43,41 @@ class ModalBooking extends Component {
                     <Fragment>
                         <ModalHeader className="modal-header">
                             <Icon icon="check-circle" ></Icon>
-                            <ItemHeader>Đặt vé thành công</ItemHeader>
+                            <ItemHeader>
+                                <Typography variant="h4">
+                                    <Box fontWeight="fontWeightBold">
+                                        Đặt vé thành công
+                                    </Box>
+                                </Typography>
+                            </ItemHeader>
                         </ModalHeader>
-                        <ModalBody className="modal-body">
-                            <p>Chúc quý khách xem phim vui vẻ bên gấu (-_-)</p>
-                            <p>Chúc các bạn FA sớm có gấu ! Fighting</p>
-                        </ModalBody>
+                        <div style={{ textAlign: 'center' }} className="modal-body">
+                            <Typography variant="subtitle1">Chúc quý khách xem phim vui vẻ bên gấu (-_-)</Typography>
+                            <Typography variant="subtitle1">Chúc các bạn FA sớm có gấu ! Fighting</Typography>
+                        </div>
                         <div className="modal-footer">
-                            <ButtonChiTiet data-dismiss="modal" variant="contained" onClick={() => this.setState({ right: false })}>
+                            <Button color="primary" data-dismiss="modal" variant="contained" onClick={() => this.setState({ right: false })}>
                                 Xem chi tiết đặt vé
-                            </ButtonChiTiet>
+                            </Button>
                         </div>
                     </Fragment>
                 )
             }
             else {
                 return (
-                    <ModalBody className="modal-body">
-                        <p>Vui lòng đặt ghế xem phim</p>
-                    </ModalBody>
+                    <Typography style={{ color: "black", textAlign: "center" }} variant="h5" className="modal-body">
+                        <Box fontWeight="fontWeightBold">
+                            Vui lòng đặt ghế xem phim
+                        </Box>
+                    </Typography>
                 )
             }
         }
         else {
             return (
-                <ModalBody className="modal-body">
-                    <p>Vui lòng đăng nhập</p>
-                </ModalBody>
+                <Typography style={{ color: "black", textAlign: "center" }} variant="h5" className="modal-body">
+                    <Box fontWeight="fontWeightBold">Vui lòng đăng nhập</Box>
+                </Typography>
             )
         }
 
@@ -104,26 +98,33 @@ class ModalBooking extends Component {
             return (
                 <Fragment>
                     <div className="thong-tin-dat-ve">
-                        <div>
-                            <span>Tên phim: </span><span className="chi-tiet">{item.tenPhim}</span>
+                        <div className="thong-tin-div">
+                            <Typography className="thong-tin-subtitle1" variant="subtitle1">Tên phim: </Typography>
+                            <Typography variant="body2" className="chi-tiet">{item.tenPhim}</Typography>
                         </div>
-                        <div>
-                            <span>Rạp: </span><span className="chi-tiet">{item.tenCumRap}</span>
+                        <div className="thong-tin-div">
+                            <Typography className="thong-tin-subtitle1" variant="subtitle1">Rạp: </Typography>
+                            <Typography variant="body2" className="chi-tiet">{item.tenCumRap}</Typography>
                         </div>
-                        <div>
-                            <span>Địa chỉ rạp: </span><span className="chi-tiet">{item.diaChi}</span>
+                        <div className="thong-tin-div">
+                            <Typography className="thong-tin-subtitle1" variant="subtitle1">Địa chỉ rạp: </Typography>
+                            <Typography variant="body2" className="chi-tiet">{item.diaChi}</Typography>
                         </div>
-                        <div>
-                            <span>Ngày chiếu: </span><span className="chi-tiet">{item.ngayChieu}</span>
+                        <div className="thong-tin-div">
+                            <Typography className="thong-tin-subtitle1" variant="subtitle1">Ngày chiếu: </Typography>
+                            <Typography variant="body2" className="chi-tiet">{item.ngayChieu}</Typography>
                         </div>
-                        <div>
-                            <span>Giờ chiếu: </span><span className="chi-tiet">{item.gioChieu}</span>
+                        <div className="thong-tin-div">
+                            <Typography className="thong-tin-subtitle1" variant="subtitle1">Giờ chiếu: </Typography>
+                            <Typography variant="body2" className="chi-tiet">{item.gioChieu}</Typography>
                         </div>
-                        <div>
-                            <span>Ghế: </span>{this.renderSearSelect()}
+                        <div className="thong-tin-div">
+                            <Typography className="thong-tin-subtitle1" variant="subtitle1">Ghế: </Typography>
+                            <Typography variant="body2" className="ghe">{this.renderSearSelect()}</Typography>
                         </div>
-                        <div>
-                            <span>Tổng tiền: </span><span className="chi-tiet">{this.props.tongTien}</span>
+                        <div className="thong-tin-div">
+                            <Typography className="thong-tin-subtitle1" variant="subtitle1">Tổng tiền: </Typography>
+                            <Typography variant="body2" className="chi-tiet">{this.props.tongTien}</Typography>
                         </div>
                     </div>
                 </Fragment>
@@ -135,22 +136,34 @@ class ModalBooking extends Component {
             <Fragment>
                 <div id="myModal" className="modal fade" role="dialog">
                     <div className="modal-dialog">
-                        <div className="modal-content">
+                        <div style={{ color: "black" }} className="modal-content">
                             {this.renderHtml()}
                         </div>
                     </div>
                 </div>
                 <ContentDetail right={this.state.right} className="detail-dat-ve">
                     <div>
-                        <h3>Thông tin đặt vé</h3>
+                        <Typography variant="h5">
+                            <Box fontWeight="fontWeightBold">
+                                Thông tin đặt vé
+                            </Box>
+                        </Typography>
                         {this.renderListDetail()}
-                        <div>
-                            <ButtonClose onClick={() => this.setState({ right: true })} variant="contained">Close</ButtonClose>
-                        </div>
-                        <div>
-                            <ButtonClose variant="contained">
-                                <Link to="/">Quay về trang chủ</Link>
-                            </ButtonClose>
+                        <div className="thong-tin-button">
+                            <div>
+                                <Button className="btn-close" color="secondary" onClick={() => this.setState({ right: true })} variant="contained">
+                                    <Typography variant="button">
+                                        Close
+                                    </Typography>
+                                </Button>
+                            </div>
+                            <div>
+                                <Button variant="contained" color="primary">
+                                    <Typography variant="button">
+                                        <Link to="/">Quay về trang chủ</Link>
+                                    </Typography>
+                                </Button>
+                            </div>
                         </div>
                     </div>
                 </ContentDetail>

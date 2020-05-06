@@ -14,6 +14,7 @@ import MoviesAdmin from "../component/admin/movies/film"
 
 const HomePage = lazy(() => import("../pages/home"));
 const Detail = lazy(() => import("../pages/Detail"));
+const AccountPage = lazy(() => import("../pages/account"));
 
 const routesHome = [
     {
@@ -40,6 +41,11 @@ const routesHome = [
         path: "/login",
         exact: false,
         component: Login
+    },
+    {
+        path: "/account",
+        exact: false,
+        component: AccountPage
     }
 ]
 

@@ -21,10 +21,6 @@ export default class TypeSeat extends Component {
                         <span className="seat-dang-chon" />
                         <span className="phan-loai"> Ghế đang chọn</span>
                     </div>
-                    {/* <div className="seat">
-                        <span className="seat-disable" />
-                        <span className="phan-loai">Ghế không thể chọn</span>
-                    </div> */}
                 </div>
             </div>
         )

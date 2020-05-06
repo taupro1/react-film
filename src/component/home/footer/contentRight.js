@@ -7,9 +7,9 @@ class ContentRight extends Component {
     renderHtml = () => {
         const { listCinema } = this.props
         if (listCinema) {
-            return listCinema.map(item => {
+            return listCinema.map((item, index) => {
                 return (
-                    <li>
+                    <li key={index}>
                         <img alt="" src={item.logo} />
                     </li>
                 )

@@ -5,7 +5,7 @@ export default class CarouselItem extends Component {
         const { item } = this.props;
         return (
             <figure className="shadow">
-                <img src={item.img} />
+                <img alt="" src={item.img} />
             </figure>
         )
     }

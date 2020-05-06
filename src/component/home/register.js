@@ -7,9 +7,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { connect } from 'react-redux';
 import Axios from 'axios';
-import * as action from "../../redux/action/action-redux/index"
 import { NotificationManager, NotificationContainer } from "react-notifications"
 
 const useStyles = makeStyles((theme) => ({

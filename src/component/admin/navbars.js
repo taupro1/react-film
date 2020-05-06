@@ -33,15 +33,14 @@ class Navbars extends Component {
             <div className="navbars-admin">
                 <ul className="navbar-ul">
                     <li className="navbar-li">
-                        <NavLink activeClassName="activeAdmin" className="a-navbars" to="/admin/account">
+                        <div className="a-navbars">
                             <Button className="btn-navbars">
                                 <PersonIcon className="icon" />
                                 <Typography className="btn-subtitle1" variant="subtitle1">
                                     {this.renderAccount()}
                                 </Typography>
                             </Button>
-                        </NavLink>
-
+                        </div>
                     </li>
                     <li className="navbar-li">
                         <NavLink activeClassName="activeAdmin" className="a-navbars" to="/admin/dashboard">

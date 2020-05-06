@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import CarouselItem from './carouselItem';
 // import "react-flex-slider/assets/index.css";
 // import Slider from "react-flex-slider";
-import Slider from "react-slick";
+// import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -18,14 +18,14 @@ class Carousel extends Component {
 
     }
     render() {
-        const settings = {
-            infinite: true,
-            speed: 500,
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            // autoplay: true,
-            autoplaySpeed: 3000
-        };
+        // const settings = {
+        //     infinite: true,
+        //     speed: 500,
+        //     slidesToShow: 1,
+        //     slidesToScroll: 1,
+        //     // autoplay: true,
+        //     autoplaySpeed: 3000
+        // };
         return (
             <section id="carousel">
                 <div className="content-carousel">

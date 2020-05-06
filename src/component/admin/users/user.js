@@ -2,17 +2,19 @@ import React, { Component } from 'react';
 import EditIcon from '@material-ui/icons/Edit';
 import SearchIcon from '@material-ui/icons/Search';
 import AddBoxIcon from '@material-ui/icons/AddBox';
+import InfoIcon from '@material-ui/icons/Info';
 import TextField from '@material-ui/core/TextField';
 import Tooltip from "@material-ui/core/Tooltip";
 import DeleteIcon from '@material-ui/icons/Delete';
 import ModalUsers from "./modalUsers"
 
+import { Typography, Box } from "@material-ui/core";
 import Paper from '@material-ui/core/Paper';
-import { Toolbar, FormControl, InputAdornment, ButtonBase } from '@material-ui/core';
+import { Toolbar, FormControl, InputAdornment, Button } from '@material-ui/core';
 import Table from "@material-ui/core/Table"
 import TableContainer from "@material-ui/core/TableContainer"
 import TableRow from "@material-ui/core/TableRow"
-import { TableCell, Button, TableBody } from "@material-ui/core"
+import { TableCell, TableBody } from "@material-ui/core"
 
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
@@ -22,6 +24,7 @@ import * as action from "../../../redux/action/action-redux/index"
 import { connect } from 'react-redux';
 import LottieAnimation from "../../../animation/index"
 import { Fragment } from "react"
+
 
 class UserAdmin extends Component {
     constructor(props) {
@@ -89,8 +92,10 @@ class UserAdmin extends Component {
                                     id="panel1a-header"
                                     className="btn-chi-tiet"
                                 >
-                                    <Button variant="contained" color="primary">
-                                        Chi tiết người dùng
+                                    <Button variant="contained" startIcon={<InfoIcon />}>
+                                        <Typography variant="button">
+                                            Chi tiết người dùng
+                                        </Typography>
                                     </Button>
                                 </ExpansionPanelSummary>
                                 <ExpansionPanelDetails className="list-chi-tiet">
@@ -98,7 +103,6 @@ class UserAdmin extends Component {
                                         <Table>
                                             <TableBody>
                                                 {this.renderTable(item)}
-
                                             </TableBody>
                                         </Table>
                                     </TableContainer>
@@ -106,26 +110,30 @@ class UserAdmin extends Component {
                             </ExpansionPanel>
                         </div>
                         <div className="col-sm-3 item item-tiltle">
-                            {item.hoTen}
+                            <Typography variant="body1">
+                                {item.hoTen}
+                            </Typography>
                         </div>
                         <div className="col-sm-3 item item-tiltle">
-                            {item.maLoaiNguoiDung}
+                            <Typography variant="body1">
+                                {item.maLoaiNguoiDung}
+                            </Typography>
                         </div>
                         <div className="col-sm-3 item">
                             <Button
                                 variant="contained"
                                 color="secondary"
                                 startIcon={<DeleteIcon />}
-                                className="btn-action"
                                 onClick={() => {
                                     this.props.editIsValidUser(true)
                                     this.props.deleteUser(item.taiKhoan)
                                 }}
                             >
-                                Delete
-              </Button>
+                                <Typography variant="button">
+                                    Delete
+                                </Typography>
+                            </Button>
                             <Button
-                                className="btn-action"
                                 variant="contained"
                                 color="primary"
                                 endIcon={<EditIcon />}
@@ -133,8 +141,10 @@ class UserAdmin extends Component {
                                 data-target="#myModalUser"
                                 onClick={() => this.props.editUserEdit(item)}
                             >
-                                Edit
-              </Button>
+                                <Typography variant="button">
+                                    Edit
+                               </Typography>
+                            </Button>
                         </div>
                     </div>
                 )
@@ -149,9 +159,11 @@ class UserAdmin extends Component {
                 <Paper className="content-search">
                     <Toolbar className="toolbar">
                         <div>
-                            <h6>
-                                List user
-                        </h6>
+                            <Typography variant="h5">
+                                <Box fontWeight="fontWeightBold">
+                                    Danh sách người dùng
+                                </Box>
+                            </Typography>
                         </div>
                         <div className="content-form">
                             <FormControl className="item-form">
@@ -166,9 +178,11 @@ class UserAdmin extends Component {
                             </FormControl>
                             <div className="item-icon">
                                 <Tooltip title="Add user">
-                                    <ButtonBase onClick={() => this.handleOnclickEdit(null)} data-toggle="modal" data-target="#myModalUser" style={{ outline: "none" }}>
-                                        <AddBoxIcon />
-                                    </ButtonBase>
+                                    <Button variant="contained" startIcon={<AddBoxIcon />} onClick={() => this.handleOnclickEdit(null)} data-toggle="modal" data-target="#myModalUser" style={{ outline: "none" }}>
+                                        <Typography variant="button">
+                                            Thêm người dùng
+                                        </Typography>
+                                    </Button>
                                 </Tooltip>
                             </div>
                         </div>
@@ -176,17 +190,33 @@ class UserAdmin extends Component {
                     <div>
                         <div className="row tiltle-user">
                             <div className="col-sm-3">
-                                Chi tiết
-                        </div>
+                                <Typography variant="subtitle1">
+                                    <Box fontWeight="fontWeightBold">
+                                        Chi tiết
+                                    </Box>
+                                </Typography>
+                            </div>
                             <div className="col-sm-3">
-                                Họ tên
-                        </div>
+                                <Typography variant="subtitle1">
+                                    <Box fontWeight="fontWeightBold">
+                                        Họ tên
+                                    </Box>
+                                </Typography>
+                            </div>
                             <div className="col-sm-3">
-                                Loại người dùng
-                        </div>
+                                <Typography variant="subtitle1">
+                                    <Box fontWeight="fontWeightBold">
+                                        Loại người dùng
+                                    </Box>
+                                </Typography>
+                            </div>
                             <div className="col-sm-3">
-                                Action
-                        </div>
+                                <Typography variant="subtitle1">
+                                    <Box fontWeight="fontWeightBold">
+                                        Action
+                                    </Box>
+                                </Typography>
+                            </div>
                         </div>
                     </div>
                 </Paper>

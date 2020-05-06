@@ -14,8 +14,8 @@ export default function LottieAnimation(props) {
     return (
         <Lottie
             options={option}
-            width={400}
-            height={400}
+            width={300}
+            height={300}
         />
     )
 }

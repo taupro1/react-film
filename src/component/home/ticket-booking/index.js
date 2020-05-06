@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 import { NotificationContainer, NotificationManager } from "react-notifications"
 import AOS from "aos"
 import 'aos/dist/aos.css';
-import { Parallax } from "react-materialize"
 import 'materialize-css';
 
 

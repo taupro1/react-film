@@ -2,11 +2,8 @@
     width: 85%;
     float: right;
     position: relative;
-    h6 {
-        font-size: 24px;
-    }
     .content-search {
-        position: fixed;
+        position: sticky;
         width: 100%;
         z-index: 3;
         .toolbar {
@@ -14,9 +11,9 @@
             justify-content: space-between;
             .content-form {
                 display: flex;
-                width: 37%;
+                width: 60%;
                 .item-form {
-                    width: 70%;
+                    width: 60%;
                 }
                 .item-icon {
                     margin-left: 5%;
@@ -24,6 +21,7 @@
             }
         }
         .tiltle-user {
+            margin: 0;
             background-color: black;
             color: white;
             padding: 1% 0;
@@ -50,6 +48,7 @@
     .item-user {
         border-bottom: 2px solid;
         padding: 1% 0;
+        margin: 0;
         .item {
             text-align: center;
             padding-top: 1%;
@@ -61,10 +60,15 @@
                     padding: 0;
                     button {
                         outline: none;
+                        background-color: black;
+                        color: white;
+                    }
+                    .MuiExpansionPanelSummary-content {
+                        justify-content: center;
                     }
                 }
                 .list-chi-tiet {
-                    background-color: $color-2;
+                    background-color: black;
                     width: 34rem;
                     height: 16rem;
                     .chi-tiet {
@@ -77,11 +81,6 @@
                         overflow: hidden;
                     }
                 }
-            }
-            .btn-action {
-                outline: none;
-                margin-right: 3%;
-                font-size: 11px;
             }
         }
         .item-chi-tiet {

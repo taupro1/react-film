@@ -25,6 +25,9 @@ export default function Account(props) {
                         <Link to={"/admin/dashboard"} class="dropdown-item" href>Dashboard</Link>
                     </Typography>
                     <Typography variant="subtitle2" style={{ color: "black", cursor: "pointer" }}>
+                        <Link to={"/account"} class="dropdown-item" href>Thông tin tài khoản</Link>
+                    </Typography>
+                    <Typography variant="subtitle2" style={{ color: "black", cursor: "pointer" }}>
                         <a class="dropdown-item" href onClick={props.remove}>Đăng xuất</a>
                     </Typography>
                 </Fragment>
@@ -32,9 +35,14 @@ export default function Account(props) {
         }
         else {
             return (
-                <Typography variant="subtitle2" style={{ color: "black", cursor: "pointer" }}>
-                    <a class="dropdown-item" href onClick={props.remove}>Đăng xuất</a>
-                </Typography>
+                <Fragment>
+                    <Typography variant="subtitle2" style={{ color: "black", cursor: "pointer" }}>
+                        <Link to={"/account"} class="dropdown-item" href>Thông tin tài khoản</Link>
+                    </Typography>
+                    <Typography variant="subtitle2" style={{ color: "black", cursor: "pointer" }}>
+                        <a class="dropdown-item" href onClick={props.remove}>Đăng xuất</a>
+                    </Typography>
+                </Fragment>
             )
         }
     }

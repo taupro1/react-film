@@ -7,7 +7,7 @@ import * as action from "../../../redux/action/action-redux/index"
 import Table from "@material-ui/core/Table"
 import TableContainer from "@material-ui/core/TableContainer"
 import TableRow from "@material-ui/core/TableRow"
-
+import InfoIcon from '@material-ui/icons/Info';
 import EditIcon from '@material-ui/icons/Edit';
 import SearchIcon from '@material-ui/icons/Search';
 import AddBoxIcon from '@material-ui/icons/AddBox';
@@ -17,6 +17,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Button from "@material-ui/core/Button"
 import ModalMovies from "./modalMovies"
 import ModalUploadHinh from "./modalUploadHinh"
+import { Typography, Box } from "@material-ui/core";
 
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
@@ -24,7 +25,7 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 
 
 import Paper from '@material-ui/core/Paper';
-import { Toolbar, FormControl, InputAdornment, ButtonBase, TableBody, TableCell } from '@material-ui/core';
+import { Toolbar, FormControl, InputAdornment, TableBody, TableCell } from '@material-ui/core';
 import CloudUploadIcon from "@material-ui/icons/CloudUpload"
 import { connect } from 'react-redux'
 
@@ -41,58 +42,86 @@ class MoviesAdmin extends Component {
             <Fragment>
                 <TableRow>
                     <TableCell className="chi-tiet" >
-                        Mã phim
-                </TableCell>
+                        <Typography variant="subtitle1">
+                            Mã phim
+                        </Typography>
+                    </TableCell>
                     <TableCell className="chi-tiet-item" >
-                        {item.maPhim}
+                        <Typography variant="body2">
+                            {item.maPhim}
+                        </Typography>
                     </TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell className="chi-tiet" >
-                        Bí danh
-                 </TableCell>
+                        <Typography variant="subtitle1">
+                            Bí danh
+                        </Typography>
+                    </TableCell>
                     <TableCell className="chi-tiet-item" >
-                        {item.biDanh}
+                        <Typography variant="body2">
+                            {item.biDanh}
+                        </Typography>
                     </TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell className="chi-tiet" >
-                        Trailer
-             </TableCell>
+                        <Typography variant="subtitle1">
+                            Trailer
+                        </Typography>
+                    </TableCell>
                     <TableCell className="chi-tiet-item" >
-                        {item.trailer}
+                        <Typography variant="body2">
+                            {item.trailer}
+                        </Typography>
                     </TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell className="chi-tiet" >
-                        Mô tả
-          </TableCell>
+                        <Typography variant="subtitle1">
+                            Mô tả
+                        </Typography>
+                    </TableCell>
                     <TableCell className="chi-tiet-item" >
-                        {item.moTa}
+                        <Typography variant="body2">
+                            {item.moTa}
+                        </Typography>
                     </TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell className="chi-tiet" >
-                        Mã nhóm
-       </TableCell>
+                        <Typography variant="subtitle1">
+                            Mã nhóm
+                        </Typography>
+                    </TableCell>
                     <TableCell className="chi-tiet-item" >
-                        {item.maNhom}
+                        <Typography variant="body2">
+                            {item.maNhom}
+                        </Typography>
                     </TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell className="chi-tiet" >
-                        Ngày khởi chiếu
-    </TableCell>
+                        <Typography variant="subtitle1">
+                            Ngày khởi chiếu
+                        </Typography>
+                    </TableCell>
                     <TableCell className="chi-tiet-item" >
-                        {item.ngayKhoiChieu}
+                        <Typography variant="body2">
+                            {item.ngayKhoiChieu}
+                        </Typography>
                     </TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell className="chi-tiet" >
-                        Đánh giá
- </TableCell>
+                        <Typography variant="subtitle1">
+                            Đánh giá
+                        </Typography>
+                    </TableCell>
                     <TableCell className="chi-tiet-item" >
-                        {item.danhGia}
+                        <Typography variant="body2">
+                            {item.danhGia}
+                        </Typography>
                     </TableCell>
                 </TableRow>
             </Fragment>
@@ -114,8 +143,10 @@ class MoviesAdmin extends Component {
                                     id="panel1a-header"
                                     className="btn-chi-tiet"
                                 >
-                                    <Button variant="contained" color="primary">
-                                        Chi tiết phim
+                                    <Button variant="contained" startIcon={<InfoIcon />}>
+                                        <Typography variant="button">
+                                            Chi tiết phim
+                                        </Typography>
                                     </Button>
                                 </ExpansionPanelSummary>
                                 <ExpansionPanelDetails className="list-chi-tiet">
@@ -131,17 +162,18 @@ class MoviesAdmin extends Component {
                             </ExpansionPanel>
                         </div>
                         <div className="col-sm-3 item item-tiltle">
-                            {item.tenPhim}
+                            <Typography variant="body1">
+                                {item.tenPhim}
+                            </Typography>
                         </div>
                         <div className="col-sm-3 item item-img">
-                            <img src={item.hinhAnh} />
+                            <img alt="Lỗi hình" src={item.hinhAnh} />
                         </div>
                         <div className="col-sm-3 item">
                             <Button
                                 variant="contained"
                                 color="secondary"
                                 startIcon={<DeleteIcon />}
-                                className="btn-action"
                                 onClick={() => {
                                     this.props.editIsValidUser(true)
                                     this.props.deleteMovies(item.maPhim)
@@ -150,7 +182,6 @@ class MoviesAdmin extends Component {
                                 Delete
               </Button>
                             <Button
-                                className="btn-action"
                                 variant="contained"
                                 color="primary"
                                 endIcon={<EditIcon />}
@@ -160,7 +191,7 @@ class MoviesAdmin extends Component {
                             >
                                 Edit
                             </Button>
-                            <Button style={{ fontSize: "11px", marginTop: "5%" }} onClick={() => this.props.editUploadHinh(item)} data-toggle="modal" data-target="#modalUpload" variant="contained" color="default" startIcon={<CloudUploadIcon />}>
+                            <Button onClick={() => this.props.editUploadHinh(item)} data-toggle="modal" data-target="#modalUpload" variant="contained" color="default" startIcon={<CloudUploadIcon />}>
                                 Upload hình
         </Button>
                         </div>
@@ -178,9 +209,11 @@ class MoviesAdmin extends Component {
                 <Paper className="content-search">
                     <Toolbar className="toolbar">
                         <div>
-                            <h6>
-                                List movies
-                        </h6>
+                            <Typography variant="h5">
+                                <Box fontWeight="fontWeightBold">
+                                    Danh sách phim
+                                </Box>
+                            </Typography>
                         </div>
                         <div className="content-form">
                             <FormControl className="item-form">
@@ -195,9 +228,11 @@ class MoviesAdmin extends Component {
                             </FormControl>
                             <div className="item-icon">
                                 <Tooltip title="Add movie">
-                                    <ButtonBase onClick={() => this.props.editMoviesEdit(null)} data-toggle="modal" data-target="#myModalMovies" style={{ outline: "none" }}>
-                                        <AddBoxIcon />
-                                    </ButtonBase>
+                                    <Button variant="contained" startIcon={<AddBoxIcon />} onClick={() => this.props.editMoviesEdit(null)} data-toggle="modal" data-target="#myModalMovies" style={{ outline: "none" }}>
+                                        <Typography variant="button">
+                                            Thêm phim
+                                        </Typography>
+                                    </Button>
                                 </Tooltip>
                             </div>
                         </div>
@@ -205,17 +240,33 @@ class MoviesAdmin extends Component {
                     <div>
                         <div className="row tiltle-user">
                             <div className="col-sm-3">
-                                Chi tiết
-                        </div>
+                                <Typography variant="subtitle1">
+                                    <Box fontWeight="fontWeightBold">
+                                        Chi tiết
+                                    </Box>
+                                </Typography>
+                            </div>
                             <div className="col-sm-3">
-                                Tên phim
-                        </div>
+                                <Typography variant="subtitle1">
+                                    <Box fontWeight="fontWeightBold">
+                                        Tên phim
+                                    </Box>
+                                </Typography>
+                            </div>
                             <div className="col-sm-3">
-                                Hình ảnh
-                        </div>
+                                <Typography variant="subtitle1">
+                                    <Box fontWeight="fontWeightBold">
+                                        Hình ảnh
+                                    </Box>
+                                </Typography>
+                            </div>
                             <div className="col-sm-3">
-                                Action
-                        </div>
+                                <Typography variant="subtitle1">
+                                    <Box fontWeight="fontWeightBold">
+                                        Action
+                                    </Box>
+                                </Typography>
+                            </div>
                         </div>
                     </div>
                 </Paper>

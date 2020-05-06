@@ -1,11 +1,12 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from "react-redux"
 import styled from "styled-components"
-import { NotificationContainer, NotificationManager } from "react-notifications"
+import { NotificationContainer } from "react-notifications"
 import ModalBooking from './modalBooking'
 import { Button } from '@material-ui/core'
 import variable from "../../scss/_variable.scss"
 import * as action from "../../redux/action/action-redux/index"
+import { Typography } from "@material-ui/core"
 
 const WidthImg = styled.img`
     width:30%
@@ -19,8 +20,6 @@ const ContentDiv = styled.div`
 `
 const TenPhimDiv = styled.div`
     margin-left: 4%;
-    font-size: 23px;
-    font-weight: 600;
 `
 const DetailRap = styled.div`
     line-height: 33px;
@@ -32,14 +31,6 @@ const ButtonChiTiet = styled(Button)`
     font-weight: 600 !important;
     color: white !important;
     background: ${variable.colorThree} !important;
-    outline:none !important;
-`
-const ButtonClose = styled(ButtonChiTiet)`
-    float: right !important;
-    margin: 2% !important;
-`
-const ButtonThemBot = styled(Button)`
-    padding: 0 !important;
     outline:none !important;
 `
 const ContentCombo = styled.div`
@@ -73,15 +64,31 @@ class DetailBooking extends Component {
                 <Fragment>
                     <ContentDiv>
                         <WidthImg src={item.hinhAnh}></WidthImg>
-                        <TenPhimDiv>{item.tenPhim}</TenPhimDiv>
+                        <TenPhimDiv>
+                            <Typography variant="h5">
+                                {item.tenPhim}
+                            </Typography>
+                        </TenPhimDiv>
                     </ContentDiv>
                     <DetailRap>
-                        <div>{item.tenCumRap}</div>
-                        <div>{item.diaChi}</div>
-                        <div>Ngày chiếu: <span>{item.ngayChieu}</span></div>
-                        <div>Giờ chiếu: <span>{item.gioChieu}</span></div>
+                        <div className="detail-film-div">
+                            <Typography className="detail-film-subtitle1" variant="subtitle1">Rạp:</Typography>
+                            <Typography className="" variant="body2">{item.tenCumRap}</Typography>
+                        </div>
+                        <div className="detail-film-div">
+                            <Typography className="detail-film-subtitle1" variant="subtitle1">Địa chỉ:</Typography>
+                            <Typography variant="body2">{item.diaChi}</Typography>
+                        </div>
+                        <div className="detail-film-div">
+                            <Typography className="detail-film-subtitle1" variant="subtitle1">Ngày chiếu:</Typography>
+                            <Typography variant="body2">{item.ngayChieu}</Typography>
+                        </div>
+                        <div className="detail-film-div">
+                            <Typography className="detail-film-subtitle1" variant="subtitle1">Giờ chiếu:</Typography>
+                            <Typography variant="body2">{item.gioChieu}</Typography>
+                        </div>
                     </DetailRap>
-                </Fragment>
+                </Fragment >
             )
         }
 
@@ -152,51 +159,67 @@ class DetailBooking extends Component {
         return (
             <Fragment>
                 <div className="thong-tin">
-                    <div className="tong-tien">{this.renderTongTien()}<span>đ</span></div>
+                    <div className="tong-tien">
+                        <Typography variant="h4" style={{ display: "inline-block" }}>
+                            {this.renderTongTien()}
+                        </Typography>
+                        <span>đ</span>
+                    </div>
                     <div className="detail-film">
                         {this.renderHtml()}
                     </div>
                     <div className="seat-select">
-                        <div><span>Ghế:</span> {this.renderSearSelect()}</div>
-                        <div className="gia-tien"> {this.renderTienGhe()} <span>đ</span></div>
+                        <Typography variant="subtitle1">Ghế:</Typography>
+                        <Typography variant="body2">{this.renderSearSelect()}</Typography>
+                        <Typography variant="subtitle2" className="gia-tien"> {this.renderTienGhe()} <span>đ</span></Typography>
                     </div>
                     <div className="combo">
-                        <div className="chon-combo" onClick={() => this.setState({ left: false })}>Chọn Combo</div>
-                        <div className="gia-tien-combo">{this.renderTienCombo()}<span>đ</span></div>
+                        <Typography variant="subtitle1" className="chon-combo" onClick={() => this.setState({ left: false })}>Chọn Combo</Typography>
+                        <Typography variant="body2" className="gia-tien-combo">{this.renderTienCombo()}<span>đ</span></Typography>
                     </div>
                     <div className="btn-dat-ve">
-                        <button>
-                            <a data-toggle="modal" data-target="#myModal">Đặt vé</a>
+                        <button data-toggle="modal" data-target="#myModal">
+                            <Typography variant="button" className="btn-dat-ve-button" >Đặt vé</Typography>
                         </button>
                     </div>
                     <NotificationContainer />
                 </div>
                 <ContentCombo left={this.state.left} className="listCombo">
-                    <h3>Combo</h3>
+                    <Typography variant="h5">
+                        Combo
+                    </Typography>
                     <div className="content-combo">
                         <div className="chi-tiet-combo">
-                            <span>Nước coca (10k)</span>
+                            <Typography variant="subtitle1">Nước coca (10k)</Typography>
                             <div className="them-bot">
-                                <ButtonThemBot onClick={() => this.handleOnclickButton(true, "nuoc")} variant="contained"><span>+</span></ButtonThemBot>
-                                <ButtonThemBot onClick={() => this.handleOnclickButton(false, "nuoc")} variant="contained"><span>-</span></ButtonThemBot>
+                                <Button variant="contained" color="primary" className="" onClick={() => this.handleOnclickButton(true, "nuoc")}><span>+</span></Button>
+                                <Button variant="contained" color="secondary" className="" onClick={() => this.handleOnclickButton(false, "nuoc")}><span>-</span></Button>
                             </div>
                         </div>
                         <div className="chi-tiet-combo">
-                            <span>Bắp rang (20k)</span>
+                            <Typography variant="subtitle1">Bắp rang (20k)</Typography>
                             <div className="them-bot">
-                                <ButtonThemBot onClick={() => this.handleOnclickButton(true, "baprang")} variant="contained"><span>+</span></ButtonThemBot>
-                                <ButtonThemBot onClick={() => this.handleOnclickButton(false, "baprang")} variant="contained"><span>-</span></ButtonThemBot>
+                                <Button variant="contained" color="primary" className="" onClick={() => this.handleOnclickButton(true, "baprang")}><span>+</span></Button>
+                                <Button variant="contained" color="secondary" className="" onClick={() => this.handleOnclickButton(false, "baprang")}><span>-</span></Button>
                             </div>
                         </div>
                     </div>
                     <div>
-                        <ButtonClose onClick={() => this.setState({ left: true })} variant="contained">Close</ButtonClose>
+                        <Button style={{ float: "right" }} variant="contained" color="default" onClick={() => this.setState({ left: true })}>Close</Button>
                     </div>
                 </ContentCombo>
                 <ModalBooking />
             </Fragment>
         )
     }
+    // hanleWindowClickClose = () => {
+    //     this.setState({
+    //         left: true
+    //     })
+    // }
+    // componentDidUpdate() {
+    //     window.addEventListener('click', this.hanleWindowClickClose)
+    // }
 
     componentWillUnmount() {
         this.props.getSeatSelect([])

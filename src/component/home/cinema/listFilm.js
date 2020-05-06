@@ -1,5 +1,4 @@
-import React, { Component, PureComponent } from 'react'
-import DateCinema from './dateCinema'
+import React, { PureComponent } from 'react'
 import ListFilmItem from './listFilmItem'
 import AOS from "aos"
 import "aos/dist/aos.css"
