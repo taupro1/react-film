@@ -110,7 +110,7 @@ class Header extends Component {
                 <div className="header">
                     <div className="container-fluid header-container">
                         <div className="row padding-header">
-                            <div className="col-xl-4 col-sm-4 header-left">
+                            <div className="col-xl-4 col-sm-4 col-6 header-left">
                                 <Typography variant="h3">
                                     <Box fontFamily="Monospace" fontStyle="oblique" fontWeight="fontWeightBold" m={1}>
                                         <NavLink className="logo" to="/">
@@ -119,7 +119,7 @@ class Header extends Component {
                                     </Box>
                                 </Typography>
                             </div>
-                            <div className="col-xl-8 col-sm-8 header-right">
+                            <div className="col-xl-8 col-sm-8 col-6 header-right">
                                 <ul className="nav left-ul">
                                     <li className="nav-item color-item">
                                         <Typography variant="overline">

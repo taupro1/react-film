@@ -1,0 +1,97 @@
+#account-page {
+    .bg-top-account {
+        position: relative;
+        height: 32rem;
+        .bg-top-particles {
+            background-color: black;
+            position: relative;
+            height: 100%;
+        }
+        .scroll-down {
+            position: absolute;
+            bottom: 1%;
+            text-align: center;
+            width: 100%;
+            .scroll-down-i {
+                position: relative;
+                animation: bounce 3s infinite;
+                border: 2px solid $color-1;
+                height: 50px;
+                display: inline-block;
+                width: 50px;
+                border-radius: 50%;
+                cursor: pointer;
+                &::after {
+                    content: "";
+                    position: absolute;
+                    background-color: #ec7532;
+                    width: 4px;
+                    height: 20px;
+                    top: 27px;
+                    left: 20px;
+                }
+            }
+        }
+        @keyframes bounce {
+            0%,
+            20%,
+            53%,
+            80%,
+            100% {
+                animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+                transform: translateZ(0);
+            }
+            40%,
+            43% {
+                animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+                transform: translate3d(0, -30px, 0);
+            }
+            70% {
+                animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+                transform: translate3d(0, -15px, 0);
+            }
+            90% {
+                transform: translate3d(0, -4px, 0);
+            }
+        }
+    }
+    .content-account {
+        .title-page {
+            text-align: center;
+            margin-top: 1%;
+            margin-bottom: 2%;
+            h4 {
+                font-family: Nunito, sans-serif;
+            }
+        }
+        .content-detail-account {
+            margin-left: 3%;
+            .detail-account-div {
+                display: flex;
+                align-items: center;
+                padding: 3% 0;
+                h5 {
+                    font-family: Nunito, sans-serif;
+                }
+                h5:nth-child(1) {
+                    width: 40%;
+                }
+            }
+        }
+        .btn-edit-account {
+            float: right;
+            .btn-edit {
+                animation: rotate 2s infinite linear;
+                background-color: $color-1;
+            }
+            @keyframes rotate {
+                from {
+                    transform: rotate(0deg);
+                }
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+        }
+    }
+}
