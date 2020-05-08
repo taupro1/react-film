@@ -155,85 +155,87 @@ class UserAdmin extends Component {
         return this.props.isValidUser ?
             <LottieAnimation />
             :
-            <div className="user-admin">
-                <Paper className="content-search">
-                    <Toolbar className="toolbar">
-                        <div>
-                            <Typography variant="h5">
-                                <Box fontWeight="fontWeightBold">
-                                    Danh sách người dùng
+            <div id="section-user">
+                <div className="table-user">
+                    <Paper className="content-search">
+                        <Toolbar className="toolbar">
+                            <div>
+                                <Typography style={{ color: "white" }} variant="h5">
+                                    <Box fontWeight="fontWeightBold">
+                                        Danh sách người dùng
                                 </Box>
-                            </Typography>
-                        </div>
-                        <div className="content-form">
-                            <FormControl className="item-form">
-                                <TextField onChange={e => this.setState({ keyword: e.target.value })} placeholder="Search" InputProps={{
-                                    startAdornment: <InputAdornment position="start">
-                                        <Tooltip title="Search">
-                                            <SearchIcon />
-                                        </Tooltip>
-                                    </InputAdornment>,
-                                }}>
-                                </TextField>
-                            </FormControl>
-                            <div className="item-icon">
-                                <Tooltip title="Add user">
-                                    <Button variant="contained" startIcon={<AddBoxIcon />} onClick={() => this.handleOnclickEdit(null)} data-toggle="modal" data-target="#myModalUser" style={{ outline: "none" }}>
-                                        <Typography variant="button">
-                                            Thêm người dùng
+                                </Typography>
+                            </div>
+                            <div className="content-form">
+                                <FormControl className="item-form">
+                                    <TextField onChange={e => this.setState({ keyword: e.target.value })} placeholder="Search" InputProps={{
+                                        startAdornment: <InputAdornment style={{ color: "white" }} position="start">
+                                            <Tooltip title="Search">
+                                                <SearchIcon style={{ color: "white" }} />
+                                            </Tooltip>
+                                        </InputAdornment>,
+                                    }}>
+                                    </TextField>
+                                </FormControl>
+                                <div className="item-icon">
+                                    <Tooltip title="Add user">
+                                        <Button variant="contained" startIcon={<AddBoxIcon />} onClick={() => this.handleOnclickEdit(null)} data-toggle="modal" data-target="#myModalUser" style={{ outline: "none" }}>
+                                            <Typography variant="button">
+                                                Thêm người dùng
                                         </Typography>
-                                    </Button>
-                                </Tooltip>
+                                        </Button>
+                                    </Tooltip>
+                                </div>
+                            </div>
+                        </Toolbar>
+                        <div>
+                            <div className="row tiltle-user">
+                                <div className="col-sm-3">
+                                    <Typography variant="subtitle1">
+                                        <Box fontWeight="fontWeightBold">
+                                            Chi tiết
+                                    </Box>
+                                    </Typography>
+                                </div>
+                                <div className="col-sm-3">
+                                    <Typography variant="subtitle1">
+                                        <Box fontWeight="fontWeightBold">
+                                            Họ tên
+                                    </Box>
+                                    </Typography>
+                                </div>
+                                <div className="col-sm-3">
+                                    <Typography variant="subtitle1">
+                                        <Box fontWeight="fontWeightBold">
+                                            Loại người dùng
+                                    </Box>
+                                    </Typography>
+                                </div>
+                                <div className="col-sm-3">
+                                    <Typography variant="subtitle1">
+                                        <Box fontWeight="fontWeightBold">
+                                            Action
+                                    </Box>
+                                    </Typography>
+                                </div>
                             </div>
                         </div>
-                    </Toolbar>
-                    <div>
-                        <div className="row tiltle-user">
-                            <div className="col-sm-3">
-                                <Typography variant="subtitle1">
-                                    <Box fontWeight="fontWeightBold">
-                                        Chi tiết
-                                    </Box>
-                                </Typography>
-                            </div>
-                            <div className="col-sm-3">
-                                <Typography variant="subtitle1">
-                                    <Box fontWeight="fontWeightBold">
-                                        Họ tên
-                                    </Box>
-                                </Typography>
-                            </div>
-                            <div className="col-sm-3">
-                                <Typography variant="subtitle1">
-                                    <Box fontWeight="fontWeightBold">
-                                        Loại người dùng
-                                    </Box>
-                                </Typography>
-                            </div>
-                            <div className="col-sm-3">
-                                <Typography variant="subtitle1">
-                                    <Box fontWeight="fontWeightBold">
-                                        Action
-                                    </Box>
-                                </Typography>
-                            </div>
-                        </div>
+                    </Paper>
+                    <div className="content-user">
+                        {this.renderListUser()}
                     </div>
-                </Paper>
-                <div className="content-user">
-                    {this.renderListUser()}
+                    <ModalUsers />
                 </div>
-                <ModalUsers />
             </div>
     }
     render() {
         return (
-            <Fragment>
+            <div className="user-admin">
                 {this.renderHtml()}
-            </Fragment>
+            </div>
+
         )
     }
-
     componentDidMount() {
         this.props.getListUser()
     }

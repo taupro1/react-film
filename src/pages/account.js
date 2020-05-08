@@ -147,16 +147,16 @@ export default function AccountPage(props) {
             maNhom: false,
         })
     }
-    useEffect(() => {
-        setUserEdit(userEdit => ({
-            ...userEdit,
-            hoTen: user.hoTen,
-            taiKhoan: user.taiKhoan,
-            maLoaiNguoiDung: user.maLoaiNguoiDung,
-            soDt: user.soDT,
-            email: user.email
-        }))
-    }, [])
+    // useEffect(() => {
+    //     setUserEdit(userEdit => ({
+    //         ...userEdit,
+    //         hoTen: user.hoTen,
+    //         taiKhoan: user.taiKhoan,
+    //         maLoaiNguoiDung: user.maLoaiNguoiDung,
+    //         soDt: user.soDT,
+    //         email: user.email
+    //     }))
+    // }, [])
     return (
         <Fragment>
             <div id="account-page">

@@ -40,6 +40,7 @@ class DetailMovie extends Component {
 
     componentWillUnmount() {
         this.props.reset()
+        console.log("1");
     }
 }
 

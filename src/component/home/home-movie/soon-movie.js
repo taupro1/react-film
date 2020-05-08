@@ -4,6 +4,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import SoonMovieItem from './soon-movie-item';
+import AOS from "aos"
+import "aos/dist/aos.css"
 
 class SoonMovie extends Component {
 
@@ -15,6 +17,7 @@ class SoonMovie extends Component {
         })
     }
     render() {
+        AOS.init()
         const settings = {
             infinite: true,
             speed: 500,
@@ -49,7 +52,7 @@ class SoonMovie extends Component {
             ]
         }
         return (
-            <div className="soon-movie">
+            <div data-aos="fade-down" data-aos-duration="600" className="soon-movie">
                 <Slider {...settings} className="my-movie">
                     {this.renderHtml()}
                 </Slider>

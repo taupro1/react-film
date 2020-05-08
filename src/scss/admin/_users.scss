@@ -1,102 +1,109 @@
 .user-admin {
-    width: 85%;
+    width: 100%;
     float: right;
     position: relative;
-    .content-search {
-        position: sticky;
-        width: 100%;
-        z-index: 3;
-        .toolbar {
-            display: flex;
-            justify-content: space-between;
-            .content-form {
-                display: flex;
-                width: 60%;
-                .item-form {
-                    width: 60%;
+    #section-user {
+        .table-user {
+            width: 85%;
+            float: right;
+            .content-search {
+                position: sticky;
+                width: 100%;
+                z-index: 3;
+                background: none;
+                .toolbar {
+                    display: flex;
+                    justify-content: space-between;
+                    .content-form {
+                        display: flex;
+                        width: 60%;
+                        .item-form {
+                            width: 60%;
+                        }
+                        .item-icon {
+                            margin-left: 5%;
+                        }
+                    }
                 }
-                .item-icon {
-                    margin-left: 5%;
+                .tiltle-user {
+                    margin: 0;
+                    background-color: black;
+                    color: white;
+                    padding: 1% 0;
+                    div {
+                        text-align: center;
+                    }
                 }
             }
-        }
-        .tiltle-user {
-            margin: 0;
-            background-color: black;
-            color: white;
-            padding: 1% 0;
-            div {
+            .tiltle {
+                text-align: center;
+                font-size: 17px;
+            }
+            .data {
                 text-align: center;
             }
-        }
-    }
-    .tiltle {
-        text-align: center;
-        font-size: 17px;
-    }
-    .data {
-        text-align: center;
-    }
-    .data-action {
-        button {
-            font-size: 9px;
-            margin-right: 2%;
-            outline: none;
-        }
-    }
+            .data-action {
+                button {
+                    font-size: 9px;
+                    margin-right: 2%;
+                    outline: none;
+                }
+            }
 
-    .item-user {
-        border-bottom: 2px solid;
-        padding: 1% 0;
-        margin: 0;
-        .item {
-            text-align: center;
-            padding-top: 1%;
-            .content-chi-tiet {
-                box-shadow: none;
-                .btn-chi-tiet {
-                    display: flex;
-                    justify-content: center;
-                    padding: 0;
-                    button {
-                        outline: none;
-                        background-color: black;
-                        color: white;
-                    }
-                    .MuiExpansionPanelSummary-content {
-                        justify-content: center;
+            .item-user {
+                border-bottom: 2px solid;
+                padding: 1% 0;
+                margin: 0;
+                .item {
+                    text-align: center;
+                    padding-top: 1%;
+                    .content-chi-tiet {
+                        box-shadow: none;
+                        .btn-chi-tiet {
+                            display: flex;
+                            justify-content: center;
+                            padding: 0;
+                            button {
+                                outline: none;
+                                background-color: black;
+                                color: white;
+                            }
+                            .MuiExpansionPanelSummary-content {
+                                justify-content: center;
+                            }
+                        }
+                        .list-chi-tiet {
+                            background-color: black;
+                            width: 34rem;
+                            height: 16rem;
+                            .chi-tiet {
+                                width: 30%;
+                                color: white;
+                                padding: 0;
+                            }
+                            .chi-tiet-item {
+                                color: white;
+                                overflow: hidden;
+                            }
+                        }
                     }
                 }
-                .list-chi-tiet {
-                    background-color: black;
-                    width: 34rem;
-                    height: 16rem;
-                    .chi-tiet {
-                        width: 30%;
-                        color: white;
-                        padding: 0;
-                    }
-                    .chi-tiet-item {
-                        color: white;
-                        overflow: hidden;
+                .item-chi-tiet {
+                    padding-top: 0 !important;
+                    padding-left: 3%;
+                }
+                .item-img {
+                    margin-bottom: 2%;
+                    img {
+                        width: 50%;
                     }
                 }
+                .item-tiltle {
+                    font-size: 21px;
+                    font-weight: 600;
+                    height: 20%;
+                }
             }
-        }
-        .item-chi-tiet {
-            padding-top: 0 !important;
-            padding-left: 3%;
-        }
-        .item-img {
-            margin-bottom: 2%;
-            img {
-                width: 50%;
-            }
-        }
-        .item-tiltle {
-            font-size: 21px;
-            font-weight: 600;
-            height: 20%;
         }
     }
 }

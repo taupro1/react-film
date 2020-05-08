@@ -1,3 +1,14 @@
-.dashboard-admin {
+#dashboard-admin {
     float: right;
+    width: 100%;
+    height: 37rem;
+    .bg-top-account {
+        position: relative;
+        height: 37rem;
+        .bg-top-particles {
+            background-color: black;
+            position: relative;
+            height: 100%;
+        }
+    }
 }
