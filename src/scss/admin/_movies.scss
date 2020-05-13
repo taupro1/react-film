@@ -1,103 +1,160 @@
 .movies-admin {
-    width: 85%;
+    width: 100%;
     float: right;
     position: relative;
-    .content-search {
-        position: sticky;
+    &::before {
+        content: "";
+        background-image: url("https://images.pexels.com/photos/1402787/pexels-photo-1402787.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260");
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-size: cover;
         width: 100%;
-        z-index: 3;
-        .toolbar {
-            display: flex;
-            justify-content: space-between;
-            .content-form {
+        position: absolute;
+        height: 100%;
+    }
+    .overplay {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background: #0000008f;
+    }
+    h5 {
+        color: white;
+    }
+    .content-movie {
+        width: 80%;
+        float: right;
+        #movie-search {
+            position: relative;
+            width: 100%;
+            transition: all 0.5s;
+            background: none;
+            .toolbar {
                 display: flex;
-                width: 60%;
-                .item-form {
-                    width: 60%;
-                }
-                .item-icon {
-                    margin-left: 5%;
-                }
-            }
-        }
-        .tiltle-user {
-            margin: 0;
-            background-color: black;
-            color: white;
-            padding: 1% 0;
-            div {
-                text-align: center;
-            }
-        }
-    }
-    .tiltle {
-        text-align: center;
-        font-size: 17px;
-    }
-    .data {
-        text-align: center;
-    }
-    .data-action {
-        button {
-            font-size: 9px;
-            margin-right: 2%;
-            outline: none;
-        }
-    }
-
-    .item-user {
-        border-bottom: 2px solid;
-        padding: 1% 0;
-        margin: 0;
-        .item {
-            text-align: center;
-            padding-top: 1%;
-            .content-chi-tiet {
-                box-shadow: none;
-                .btn-chi-tiet {
+                justify-content: space-between;
+                .content-form {
                     display: flex;
-                    justify-content: center;
-                    padding: 0;
-                    button {
-                        outline: none;
-                        background-color: black;
-                        color: white;
+                    width: 60%;
+                    .item-form {
+                        width: 60%;
+                        .MuiInputAdornment-positionStart {
+                            color: white;
+                        }
                     }
-                    .MuiExpansionPanelSummary-content {
+                    .item-icon {
+                        margin-left: 5%;
+                    }
+                }
+            }
+            .tiltle-user {
+                margin: 0;
+                color: white;
+                padding: 1% 0;
+                div {
+                    text-align: center;
+                }
+            }
+        }
+        #movie-search.header-movie-animation {
+            position: fixed;
+            top: 0;
+            width: 80%;
+            z-index: 10;
+            animation: headerMovieAnimation 0.5s ease forwards;
+            box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.1);
+            background-color: black;
+        }
+        @keyframes headerMovieAnimation {
+            0% {
+                transform: translateY(-100%);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+        .tiltle {
+            text-align: center;
+            font-size: 17px;
+            color: white;
+        }
+        .data {
+            text-align: center;
+        }
+        .data-action {
+            button {
+                font-size: 9px;
+                margin-right: 2%;
+                outline: none;
+            }
+        }
+
+        .item-user {
+            border-bottom: 2px solid;
+            padding: 1% 0;
+            margin: 0;
+            .item {
+                text-align: center;
+                padding-top: 1%;
+                .content-chi-tiet {
+                    box-shadow: none;
+                    .btn-chi-tiet {
+                        display: flex;
                         justify-content: center;
-                    }
-                }
-                .list-chi-tiet {
-                    background-color: black;
-                    width: 34rem;
-                    height: 16rem;
-                    .chi-tiet {
-                        width: 30%;
-                        color: white;
                         padding: 0;
+                        button {
+                            outline: none;
+                            background-color: black;
+                            color: white;
+                        }
+                        .MuiExpansionPanelSummary-content {
+                            justify-content: center;
+                        }
                     }
-                    .chi-tiet-item {
-                        color: white;
-                        overflow: hidden;
+                    .list-chi-tiet {
+                        background-color: black;
+                        width: 34rem;
+                        height: 16rem;
+                        .chi-tiet {
+                            width: 30%;
+                            color: white;
+                            padding: 0;
+                        }
+                        .chi-tiet-item {
+                            color: white;
+                            overflow: hidden;
+                        }
                     }
                 }
             }
-        }
-        .item-chi-tiet {
-            padding-top: 0 !important;
-            padding-left: 3%;
-        }
-        .item-img {
-            margin-bottom: 2%;
-            img {
-                width: 8rem;
-                height: 11em;
+            .item-chi-tiet {
+                padding-top: 0 !important;
+                padding-left: 3%;
+                .content-chi-tiet {
+                    background: none;
+                }
+            }
+            .item-img {
+                margin-bottom: 2%;
+                img {
+                    width: 8rem;
+                    height: 11em;
+                }
+            }
+            .item-tiltle {
+                h6 {
+                    color: white;
+                    font-family: Nunito, sans-serif;
+                }
             }
         }
-        .item-tiltle {
-            font-size: 21px;
-            font-weight: 600;
-            height: 20%;
+    }
+}
+
+@media (max-width: 1000px) {
+    .movies-admin {
+        width: 100%;
+        .content-movie {
+            width: 95%;
         }
     }
 }

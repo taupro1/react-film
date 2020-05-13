@@ -28,14 +28,15 @@ export default function AccountPage(props) {
         type: "Khách hàng",
         value: "KhachHang"
     }]
+
     const [userEdit, setUserEdit] = useState({
-        hoTen: "",
-        taiKhoan: "",
+        hoTen: user.hoTen,
+        taiKhoan: user.taiKhoan,
         matKhau: "",
-        email: "",
-        soDt: "",
+        email: user.email,
+        soDt: user.soDT,
         maNhom: "GP01",
-        maLoaiNguoiDung: "",
+        maLoaiNguoiDung: user.maLoaiNguoiDung
     })
     const [error, setError] = useState({
         hoTen: "",
@@ -147,16 +148,19 @@ export default function AccountPage(props) {
             maNhom: false,
         })
     }
-    // useEffect(() => {
-    //     setUserEdit(userEdit => ({
-    //         ...userEdit,
-    //         hoTen: user.hoTen,
-    //         taiKhoan: user.taiKhoan,
-    //         maLoaiNguoiDung: user.maLoaiNguoiDung,
-    //         soDt: user.soDT,
-    //         email: user.email
-    //     }))
-    // }, [])
+    useEffect(() => {
+        // if (Object.keys(userEdit).length !== 0) {
+        //     setUserEdit(userEdit => ({
+        //         ...userEdit,
+        //         hoTen: user.hoTen,
+        //         taiKhoan: user.taiKhoan,
+        //         maLoaiNguoiDung: user.maLoaiNguoiDung,
+        //         soDt: user.soDT,
+        //         email: user.email
+        //     }))
+        // }
+    }, [])
+
     return (
         <Fragment>
             <div id="account-page">
@@ -280,7 +284,7 @@ export default function AccountPage(props) {
                                 <TextFieldContent value={userEdit.email} name="email" onChange={handleOnchange} onBlur={handleError} onKeyUp={handleError} error={error.email !== "" ? true : false} helperText={error.email !== "" ? error.email : " "} id="filled-basic" label="Email" variant="filled" />
                             </div>
                             <div>
-                                <TextFieldContent value={userEdit.soDT} name="soDt" onChange={handleOnchange} onBlur={handleError} onKeyUp={handleError} error={error.soDt !== "" ? true : false} helperText={error.soDt !== "" ? error.soDt : " "} id="filled-basic" label="Số điện thoại" variant="filled" />
+                                <TextFieldContent value={userEdit.soDt} name="soDt" onChange={handleOnchange} onBlur={handleError} onKeyUp={handleError} error={error.soDt !== "" ? true : false} helperText={error.soDt !== "" ? error.soDt : " "} id="filled-basic" label="Số điện thoại" variant="filled" />
                             </div>
                             <div>
                                 <TextFieldContent value={userEdit.matKhau} type="password" name="matKhau" onChange={handleOnchange} onBlur={handleError} onKeyUp={handleError} error={error.matKhau !== "" ? true : false} helperText={error.matKhau !== "" ? error.matKhau : " "} id="filled-basic" label="Mật khẩu" variant="filled" />

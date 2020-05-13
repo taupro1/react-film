@@ -5,9 +5,10 @@ import { Link, animateScroll as scroll } from "react-scroll";
 import EditIcon from '@material-ui/icons/Edit';
 import { Fragment } from 'react';
 import styled from "styled-components"
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import SystemUpdateIcon from '@material-ui/icons/SystemUpdate';
 import CloseIcon from '@material-ui/icons/Close';
+import SnowStorm from 'react-snowstorm';
 
 const TextFieldContent = styled(TextField)`
     width:100%;
@@ -19,7 +20,7 @@ const ContentButton = styled(Button)`
 `
 
 export default function AccountPage(props) {
-    const user = JSON.parse(localStorage.getItem("userAdmin"));
+    const user = JSON.parse(localStorage.getItem("login"));
     const loaiNguoiDung = [{
         type: "Quản trị",
         value: "QuanTri"
@@ -112,11 +113,6 @@ export default function AccountPage(props) {
     }
     const handleSubmit = () => {
         console.log(userEdit);
-
-        // let user = { ...this.state.user, maNhom: "GP01" }
-        // this.setState({
-        //     user
-        // }, () => { this.checkHandleSubmit() })
     }
     const handleOnclickClose = () => {
         setUserEdit({
@@ -147,118 +143,95 @@ export default function AccountPage(props) {
             maNhom: false,
         })
     }
-    // useEffect(() => {
-    //     setUserEdit(userEdit => ({
-    //         ...userEdit,
-    //         hoTen: user.hoTen,
-    //         taiKhoan: user.taiKhoan,
-    //         maLoaiNguoiDung: user.maLoaiNguoiDung,
-    //         soDt: user.soDT,
-    //         email: user.email
-    //     }))
-    // }, [])
     return (
         <Fragment>
+            <SnowStorm />
             <div id="account-admin">
                 <div className="bg-top-account">
                     <Particles className="bg-top-particles">
-                        <div className="overplay">
-                        </div>
                     </Particles>
-                    <div className="scroll-down">
-                        <Link
-                            activeClass="active"
-                            to="content-account"
-                            spy={true}
-                            smooth={true}
-                            offset={-30}
-                            duration={500}
-                        >
-                            <i className="scroll-down-i"></i>
-                        </Link>
-                    </div>
-                </div>
-                <div className="row content-account">
-                    <div className="col-lg-7">
-                        <div className="title-page">
-                            <Typography variant="h4">
-                                <Box fontWeight="fontWeightBold">
-                                    Thông tin tài khoản
+                    <div className="row content-account">
+                        <div className="col-lg-7">
+                            <div className="title-page">
+                                <Typography variant="h4">
+                                    <Box fontWeight="fontWeightBold">
+                                        Thông tin tài khoản
                         </Box>
-                            </Typography>
+                                </Typography>
+                            </div>
+                            <div class="content-detail-account">
+                                <div className="detail-account-div">
+                                    <Typography variant="h5">
+                                        <Box fontWeight="fontWeightBold">
+                                            Tài khoản:
+                            </Box>
+                                    </Typography>
+                                    <Typography variant="h5">
+                                        {user.taiKhoan}
+                                    </Typography>
+                                </div>
+                                <div className="detail-account-div">
+                                    <Typography variant="h5">
+                                        <Box fontWeight="fontWeightBold">
+                                            Họ tên:
+                            </Box>
+                                    </Typography>
+                                    <Typography variant="h5">
+                                        {user.hoTen}
+                                    </Typography>
+                                </div>
+                                <div className="detail-account-div">
+                                    <Typography variant="h5">
+                                        <Box fontWeight="fontWeightBold">
+                                            Email:
+                            </Box>
+                                    </Typography>
+                                    <Typography variant="h5">
+                                        {user.email}
+                                    </Typography>
+                                </div>
+                                <div className="detail-account-div">
+                                    <Typography variant="h5">
+                                        <Box fontWeight="fontWeightBold">
+                                            Số điện thoại:
+                            </Box>
+                                    </Typography>
+                                    <Typography variant="h5">
+                                        {user.soDT}
+                                    </Typography>
+                                </div>
+                                <div className="detail-account-div">
+                                    <Typography variant="h5">
+                                        <Box fontWeight="fontWeightBold">
+                                            Nhóm:
+                            </Box>
+                                    </Typography>
+                                    <Typography variant="h5">
+                                        {user.maNhom}
+                                    </Typography>
+                                </div>
+                                <div className="detail-account-div">
+                                    <Typography variant="h5">
+                                        <Box fontWeight="fontWeightBold">
+                                            Loại người dùng:
+                            </Box>
+                                    </Typography>
+                                    <Typography variant="h5">
+                                        {user.maLoaiNguoiDung}
+                                    </Typography>
+                                </div>
+                            </div>
+                            <div className="btn-edit-account">
+                                <Tooltip title="Thay đổi thông tin" aria-label="add">
+                                    <Fab data-toggle="modal" data-target="#myModalAccount" className="btn-edit" color="primary">
+                                        <EditIcon />
+                                    </Fab>
+                                </Tooltip>
+                            </div>
                         </div>
-                        <div class="content-detail-account">
-                            <div className="detail-account-div">
-                                <Typography variant="h5">
-                                    <Box fontWeight="fontWeightBold">
-                                        Tài khoản:
-                            </Box>
-                                </Typography>
-                                <Typography variant="h5">
-                                    {user.taiKhoan}
-                                </Typography>
-                            </div>
-                            <div className="detail-account-div">
-                                <Typography variant="h5">
-                                    <Box fontWeight="fontWeightBold">
-                                        Họ tên:
-                            </Box>
-                                </Typography>
-                                <Typography variant="h5">
-                                    {user.hoTen}
-                                </Typography>
-                            </div>
-                            <div className="detail-account-div">
-                                <Typography variant="h5">
-                                    <Box fontWeight="fontWeightBold">
-                                        Email:
-                            </Box>
-                                </Typography>
-                                <Typography variant="h5">
-                                    {user.email}
-                                </Typography>
-                            </div>
-                            <div className="detail-account-div">
-                                <Typography variant="h5">
-                                    <Box fontWeight="fontWeightBold">
-                                        Số điện thoại:
-                            </Box>
-                                </Typography>
-                                <Typography variant="h5">
-                                    {user.soDT}
-                                </Typography>
-                            </div>
-                            <div className="detail-account-div">
-                                <Typography variant="h5">
-                                    <Box fontWeight="fontWeightBold">
-                                        Nhóm:
-                            </Box>
-                                </Typography>
-                                <Typography variant="h5">
-                                    {user.maNhom}
-                                </Typography>
-                            </div>
-                            <div className="detail-account-div">
-                                <Typography variant="h5">
-                                    <Box fontWeight="fontWeightBold">
-                                        Loại người dùng:
-                            </Box>
-                                </Typography>
-                                <Typography variant="h5">
-                                    {user.maLoaiNguoiDung}
-                                </Typography>
-                            </div>
+                        <div className="col-lg-5 account-page-bg">
+                            <img src="https://images.pexels.com/photos/4171211/pexels-photo-4171211.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="" />
                         </div>
-                        <div className="btn-edit-account">
-                            <Tooltip title="Thay đổi thông tin" aria-label="add">
-                                <Fab data-toggle="modal" data-target="#myModalAccount" className="btn-edit" color="primary">
-                                    <EditIcon />
-                                </Fab>
-                            </Tooltip>
-                        </div>
-                    </div>
-                    <div className="col-lg-5 account-page-bg">
-                        <img src="https://images.pexels.com/photos/4171211/pexels-photo-4171211.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="" />
                     </div>
                 </div>
             </ div>
@@ -329,6 +302,6 @@ export default function AccountPage(props) {
                     </div>
                 </div>
             </div>
-        </Fragment>
+        </Fragment >
     )
 }

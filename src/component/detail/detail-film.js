@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Typography, Box, Button } from "@material-ui/core"
+import ModalTrailer from '../../shared/Modal/modalTrailer';
+import { connect } from 'react-redux';
+import * as action from "../../redux/action/action-redux/index"
 
 
-export default class DetailFilm extends Component {
+class DetailFilm extends Component {
     renderStar = () => {
         if (this.props.detailFilm) {
             let content = [];
@@ -89,7 +92,7 @@ export default class DetailFilm extends Component {
                                     </div>
                                 </div>
                                 <div className="btn-trailer">
-                                    <Button style={{ outline: "none" }} variant="contained" color="default">
+                                    <Button onClick={() => this.props.getTrailer(detailFilm.trailer)} data-toggle="modal" data-target="#modalTrailer" style={{ outline: "none" }} variant="contained" color="default">
                                         <Typography style={{ color: "black" }} variant="button">
                                             Xem Trailer
                                         </Typography>
@@ -116,8 +119,16 @@ export default class DetailFilm extends Component {
                         </div>
                     </div>
                 </div>
+                <ModalTrailer />
             </section >
         )
     }
 }
+
+const mapDispatchToProps = dispatch => {
+    return {
+        getTrailer: data => dispatch(action.actGetUser("GET-LINK-TRAILER", data))
+    }
+}
+export default connect(null, mapDispatchToProps)(DetailFilm)
 

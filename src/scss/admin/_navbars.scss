@@ -1,16 +1,16 @@
 .navbars-admin {
-    width: 15%;
+    width: 20%;
     position: fixed;
     height: 100%;
     z-index: 10;
-    background: black;
     .navbar-ul {
         list-style: none;
-        padding: 5% 6%;
+        padding: 6% 6%;
         .navbar-li {
             width: 90%;
             margin: 0 auto;
-            padding: 12% 0;
+            padding: 8% 0;
+            margin-left: 0;
             .activeAdmin {
                 button {
                     transition: all 0.5s ease-in-out;
@@ -39,6 +39,78 @@
                     }
                 }
             }
+        }
+    }
+    .navbar-responsive {
+        display: none;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        .navbar-ul-responsive {
+            padding: 6% 6%;
+            list-style: none;
+            .navbar-li {
+                width: 90%;
+                margin: 0 auto;
+                padding: 8% 0;
+                margin-left: 0;
+                .activeAdmin {
+                    button {
+                        h6 {
+                            color: $color-1;
+                            transition: all 0.5s ease-in-out;
+                        }
+                    }
+                }
+                .a-navbars {
+                    display: flex;
+                    justify-content: center;
+                    &:hover {
+                        text-decoration: none;
+                    }
+                    .btn-navbars {
+                        color: white;
+                        font-size: 13px;
+                        text-transform: inherit;
+                        outline: none;
+                        width: 100%;
+                        display: flex;
+                        justify-content: space-between;
+                        padding: 4% 3%;
+                        .btn-subtitle1 {
+                            width: 100%;
+                            text-align: center;
+                        }
+                    }
+                }
+            }
+        }
+        .menu-icon {
+            color: white;
+            position: absolute;
+            top: 2%;
+            right: 0;
+            cursor: pointer;
+        }
+    }
+}
+.overplay-navbars {
+    background: #000000a6;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+}
+
+@media (max-width: 1000px) {
+    .navbars-admin {
+        transition: left 0.3s ease-in-out;
+        .navbar-ul {
+            display: none;
+        }
+        .navbar-responsive {
+            display: block;
         }
     }
 }

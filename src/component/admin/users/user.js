@@ -24,6 +24,7 @@ import * as action from "../../../redux/action/action-redux/index"
 import { connect } from 'react-redux';
 import LottieAnimation from "../../../animation/index"
 import { Fragment } from "react"
+import SnowStorm from 'react-snowstorm';
 
 
 class UserAdmin extends Component {
@@ -110,12 +111,12 @@ class UserAdmin extends Component {
                             </ExpansionPanel>
                         </div>
                         <div className="col-sm-3 item item-tiltle">
-                            <Typography variant="body1">
+                            <Typography variant="subtitle1">
                                 {item.hoTen}
                             </Typography>
                         </div>
                         <div className="col-sm-3 item item-tiltle">
-                            <Typography variant="body1">
+                            <Typography variant="subtitle1">
                                 {item.maLoaiNguoiDung}
                             </Typography>
                         </div>
@@ -151,13 +152,18 @@ class UserAdmin extends Component {
             })
         }
     }
+    setTime = () => {
+
+    }
     renderHtml = () => {
         return this.props.isValidUser ?
             <LottieAnimation />
             :
-            <div id="section-user">
-                <div className="table-user">
-                    <Paper className="content-search">
+            <div className="user-admin">
+                <SnowStorm />
+                <div className="overplay"></div>
+                <div className="content-user-bg">
+                    <Paper id="user-search">
                         <Toolbar className="toolbar">
                             <div>
                                 <Typography style={{ color: "white" }} variant="h5">
@@ -224,22 +230,30 @@ class UserAdmin extends Component {
                     <div className="content-user">
                         {this.renderListUser()}
                     </div>
-                    <ModalUsers />
+                    {/* <ModalUsers /> */}
                 </div>
             </div>
     }
     render() {
         return (
-            <div className="user-admin">
+            <Fragment>
                 {this.renderHtml()}
-            </div>
-
+            </Fragment>
         )
+    }
+    scrollHeaderUser = event => {
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            document.getElementById("user-search").classList.add("header-user-animation")
+        }
+        else {
+            document.getElementById("user-search").classList.remove("header-user-animation")
+        }
     }
     componentDidMount() {
         this.props.getListUser()
     }
     componentWillUnmount() {
+        // window.removeEventListener('scroll', this.scrollHeaderUser)
         this.props.editIsValidUser(true)
     }
 }

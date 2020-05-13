@@ -9,6 +9,7 @@ import { NotificationContainer, NotificationManager } from "react-notifications"
 import AOS from "aos"
 import 'aos/dist/aos.css';
 import 'materialize-css';
+import { Typography, Box } from "@material-ui/core"
 
 
 // const rotateLeftAnimation = keyframes`${rotateInDownLeft}`;
@@ -105,8 +106,12 @@ class TicketBooking extends Component {
         }
     }
     renderRap = () => {
+        console.log(this.props.listDetailFilm);
+
         if (this.props.listDetailFilm.heThongRapChieu && this.state.statusFilm) {
             return this.props.listDetailFilm.heThongRapChieu.map((item, index) => {
+                console.log("2");
+
                 return (
                     <option key={index} value={item.maHeThongRap}>{item.tenHeThongRap}</option>
                 )
@@ -195,7 +200,6 @@ class TicketBooking extends Component {
     }
 
     render() {
-        AOS.init()
         return (
             <section id="dat-ve">
                 <div className=" row w-100">
@@ -204,18 +208,20 @@ class TicketBooking extends Component {
                     </div>
                     <div className="content-right col-lg-6 col-12">
                         <form action>
-                            <div data-aos="fade-left" data-aos-duration="500" className="select-item">
+                            <div className="select-item">
                                 <div className="select-tiltle">
                                     <FontAwesomeIcon icon="film" />
                                 </div>
                                 <div className="select-group">
                                     <select onChange={this.handleOnchangeFilm} className="form-control select-dat-ve">
-                                        <option value="chon-phim" style={{ display: "none" }}>Chọn phim</option>
+                                        <option value="chon-phim" style={{ display: "none" }}>
+                                            Chọn phim
+                                        </option>
                                         {this.renderListFilm()}
                                     </select>
                                 </div>
                             </div>
-                            <div data-aos="fade-left" data-aos-duration="600" className="select-item">
+                            <div className="select-item">
                                 <div className="select-tiltle">
                                     <FontAwesomeIcon icon="home" />
                                 </div>
@@ -227,7 +233,7 @@ class TicketBooking extends Component {
                                     </select>
                                 </div>
                             </div>
-                            <div data-aos="fade-left" data-aos-duration="700" className="select-item">
+                            <div className="select-item">
                                 <div className="select-tiltle">
                                     <FontAwesomeIcon icon="calendar-plus" />
                                 </div>
@@ -239,7 +245,7 @@ class TicketBooking extends Component {
                                     </select>
                                 </div>
                             </div>
-                            <div data-aos="fade-left" data-aos-duration="800" className="select-item">
+                            <div className="select-item">
                                 <div className="select-tiltle">
                                     <FontAwesomeIcon icon="calendar-alt" />
                                 </div>
@@ -251,7 +257,7 @@ class TicketBooking extends Component {
                                     </select>
                                 </div>
                             </div>
-                            <div data-aos="fade-left" data-aos-duration="900" className="center">
+                            <div className="center">
                                 {this.renderSubmit()}
                             </div>
                         </form>

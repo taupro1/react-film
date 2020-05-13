@@ -8,7 +8,6 @@ const HomeComponent = props => {
         <Fragment>
             <Header />
             {props.children}
-            <Footer />
         </Fragment>
     )
 }

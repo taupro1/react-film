@@ -5,6 +5,7 @@ import DetailFilm from './detail-film';
 import LottieAnimation from "../../animation/index"
 import * as action from "../../redux/action/action-redux/index"
 import DetailCinema from "./detail-cinema/detail-cinema"
+import Footer from '../home/footer';
 
 
 class DetailMovie extends Component {
@@ -26,6 +27,7 @@ class DetailMovie extends Component {
                 <Fragment>
                     <DetailFilm key={1} detailFilm={detailFilm} />
                     <DetailCinema />
+                    <Footer />
                 </Fragment>
             )
         }

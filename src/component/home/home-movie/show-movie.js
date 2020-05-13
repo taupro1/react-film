@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
-import ShowMovieItem from './show-movie-item';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import * as callApi from "../../../redux/action/action-api/index"
+import { Link } from "react-router-dom";
+import { Typography, Box } from "@material-ui/core"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import ModalTrailer from '../../../shared/Modal/modalTrailer';
+import * as action from "../../../redux/action/action-redux/index"
 import AOS from "aos"
 import "aos/dist/aos.css"
 
@@ -17,7 +21,30 @@ class ShowMovie extends Component {
     renderHtml = () => {
         return this.props.listShowMovie.map((item, index) => {
             return (
-                <ShowMovieItem key={index} item={item} />
+                <div className="movie" key={index}>
+                    <div className="film-item">
+                        <a href>
+                            <img src={item.hinhAnh} alt="film" />
+                        </a>
+                        <a href className="name-movie">
+                            <Typography variant="subtitle1">
+                                <Box fontWeight="fontWeightBold">
+                                    {item.tenPhim}
+                                </Box>
+                            </Typography>
+                        </a>
+                    </div>
+                    <div className="overplay-movies">
+                        <div className="icon-overplay">
+                            <div data-toggle="modal" data-target="#modalTrailer" onClick={() => this.props.getTrailer(item.trailer)}>
+                                <FontAwesomeIcon className="icon" icon={['fab', 'youtube']} />
+                            </div>
+                            <Link to={`/detail/${item.maPhim}`}>
+                                <FontAwesomeIcon className="icon" icon="info-circle" />
+                            </Link>
+                        </div>
+                    </div>
+                </div>
             )
         })
     }
@@ -61,6 +88,7 @@ class ShowMovie extends Component {
                 <Slider {...settings} className="my-movie">
                     {this.renderHtml()}
                 </Slider>
+                <ModalTrailer />
             </div>
         )
     }
@@ -70,6 +98,9 @@ const mapDispatchToProps = dispatch => {
     return {
         getListShowMovie: () => {
             dispatch(callApi.actGetListFilmApi())
+        },
+        getTrailer: data => {
+            dispatch(action.actGetUser("GET-LINK-TRAILER", data))
         }
     }
 }

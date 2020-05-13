@@ -17,16 +17,17 @@ export default function AdminTemplate({ Component, ...props }) {
         <Route
             {...props}
             render={propsCompnent => {
-                if (localStorage.getItem("userAdmin")) {
-                    return (
-                        <AdminLayout>
-                            <Component {...propsCompnent} />
-                        </AdminLayout>
-                    )
-                }
-                else {
-                    return <Redirect to="/admin" />
-                }
+                return (
+                    <AdminLayout>
+                        <Component {...propsCompnent} />
+                    </AdminLayout>
+                )
+                // if (localStorage.getItem("userAdmin")) {
+
+                // }
+                // else {
+                //     return <Redirect to="/admin" />
+                // }
             }}
         />
     )

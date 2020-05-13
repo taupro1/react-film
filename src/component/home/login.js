@@ -51,7 +51,7 @@ function Login(props) {
                 NotificationManager.success("Login success")
                 localStorage.setItem("login", JSON.stringify(rs.data))
                 props.editIsvalidLogin()
-                props.history.push("/")
+                props.history.goBack()
             })
             .catch(er => {
                 NotificationManager.error(er.response.data)

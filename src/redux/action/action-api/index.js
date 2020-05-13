@@ -57,7 +57,7 @@ export const actGetListUser = () => {
             })
     }
 }
-const admin = JSON.parse(localStorage.getItem("userAdmin"))
+const admin = JSON.parse(localStorage.getItem("login"))
 export const actEditUser = data => {
     return dispatch => {
         Axios({
@@ -76,6 +76,7 @@ export const actEditUser = data => {
                     })
                     .catch(er => {
                         alert(er.response)
+                        dispatch(action.actGetUser("GET-ISVALID-USER-ADMIN", false))
                     })
             })
             .catch(er => {
@@ -120,14 +121,17 @@ export const actDeleteUser = data => {
             .then(rs => {
                 callApi.callApiQuanLyNguoiDung("GET", `LayDanhSachNguoiDung?MaNhom=GP01`, null)
                     .then(rs => {
-                        dispatch(action.actGetUser("GET-LIST-USER-ADMIN", rs.data))
                         dispatch(action.actGetUser("GET-ISVALID-USER-ADMIN", false))
+                        dispatch(action.actGetUser("GET-LIST-USER-ADMIN", rs.data))
                     })
                     .catch(er => {
+                        dispatch(action.actGetUser("GET-ISVALID-USER-ADMIN", false))
                         alert(er.response.data)
+
                     })
             })
             .catch(er => {
+                dispatch(action.actGetUser("GET-ISVALID-USER-ADMIN", false))
                 alert(er.response.data);
             })
     }
@@ -210,7 +214,7 @@ export const actDeleteMoviesAdmin = data => {
                         dispatch(action.actGetUser("GET-ISVALID-USER-ADMIN", false))
                     })
                     .catch(() => {
-
+                        dispatch(action.actGetUser("GET-ISVALID-USER-ADMIN", false))
                     })
             })
             .catch(er => {

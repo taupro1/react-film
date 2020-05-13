@@ -8,9 +8,18 @@ import LottieAnimation from "../../animation/index"
 import * as action from "../../redux/action/action-redux/index"
 import * as actionType from "../../redux/actionType/index"
 import { Typography } from "@material-ui/core"
-import CountTime from './count-time'
+import CountTime from './count-time';
+import styled from "styled-components"
+
+const DivOverlay = styled.div`
+    display:${ props => props.display ? "block" : "none"}
+`
 
 class SeatBooking extends Component {
+    hanleOnclickOverplay = () => {
+        this.props.editIsvalidClose(false)
+        this.props.editIsvalidOverplay(false)
+    }
     renderHtml = () => {
         if (this.props.isValid) {
             return <LottieAnimation />
@@ -18,6 +27,7 @@ class SeatBooking extends Component {
         if (!this.props.isValid) {
             return (
                 <section className="row" id="dat-ve-film">
+                    <DivOverlay display={this.props.isValidOverplay} className="overplay" onClick={this.hanleOnclickOverplay}></DivOverlay>
                     <div className="col-12 col-sm-12 col-lg-8 content-left">
                         <div className="tiltle">
                             <Typography variant="h5">
@@ -70,7 +80,8 @@ class SeatBooking extends Component {
 
 const mapStateToProps = state => {
     return {
-        isValid: state.seatBookingReducers.isValid
+        isValid: state.seatBookingReducers.isValid,
+        isValidOverplay: state.seatBookingReducers.isValidOverplay
     }
 }
 
@@ -87,6 +98,12 @@ const mapDispatchToProps = dispatch => {
         },
         deleteTongTien: data => {
             dispatch(action.actGetListDetailBooking(data, "GET-TONG-TIEN"))
+        },
+        editIsvalidClose: data => {
+            dispatch(action.actGetListDetailBooking(data, "EDIT-ISVALID-CLOSE-DETAIL"))
+        },
+        editIsvalidOverplay: data => {
+            dispatch(action.actGetListDetailBooking(data, "EDIT-ISVALID-OVERLAY"))
         }
     }
 }

@@ -3,6 +3,7 @@ import LottieAnimation from "../../../animation/index"
 import { Fragment } from "react"
 import * as callApi from "../../../redux/action/action-api/index"
 import * as action from "../../../redux/action/action-redux/index"
+import SnowStorm from 'react-snowstorm';
 
 import Table from "@material-ui/core/Table"
 import TableContainer from "@material-ui/core/TableContainer"
@@ -162,7 +163,7 @@ class MoviesAdmin extends Component {
                             </ExpansionPanel>
                         </div>
                         <div className="col-sm-3 item item-tiltle">
-                            <Typography variant="body1">
+                            <Typography variant="subtitle1">
                                 {item.tenPhim}
                             </Typography>
                         </div>
@@ -206,76 +207,88 @@ class MoviesAdmin extends Component {
             <LottieAnimation />
             :
             <div className="movies-admin">
-                <Paper className="content-search">
-                    <Toolbar className="toolbar">
-                        <div>
-                            <Typography variant="h5">
-                                <Box fontWeight="fontWeightBold">
-                                    Danh sách phim
+                <SnowStorm />
+                <div className="overplay"></div>
+                <div className="content-movie">
+                    <Paper id="movie-search">
+                        <Toolbar className="toolbar">
+                            <div>
+                                <Typography variant="h5">
+                                    <Box fontWeight="fontWeightBold">
+                                        Danh sách phim
                                 </Box>
-                            </Typography>
-                        </div>
-                        <div className="content-form">
-                            <FormControl className="item-form">
-                                <TextField onChange={e => this.setState({ keyword: e.target.value })} placeholder="Search" InputProps={{
-                                    startAdornment: <InputAdornment position="start">
-                                        <Tooltip title="Search">
-                                            <SearchIcon />
-                                        </Tooltip>
-                                    </InputAdornment>,
-                                }}>
-                                </TextField>
-                            </FormControl>
-                            <div className="item-icon">
-                                <Tooltip title="Add movie">
-                                    <Button variant="contained" startIcon={<AddBoxIcon />} onClick={() => this.props.editMoviesEdit(null)} data-toggle="modal" data-target="#myModalMovies" style={{ outline: "none" }}>
-                                        <Typography variant="button">
-                                            Thêm phim
+                                </Typography>
+                            </div>
+                            <div className="content-form">
+                                <FormControl className="item-form">
+                                    <TextField onChange={e => this.setState({ keyword: e.target.value })} placeholder="Search" InputProps={{
+                                        startAdornment: <InputAdornment position="start">
+                                            <Tooltip title="Search">
+                                                <SearchIcon />
+                                            </Tooltip>
+                                        </InputAdornment>,
+                                    }}>
+                                    </TextField>
+                                </FormControl>
+                                <div className="item-icon">
+                                    <Tooltip title="Add movie">
+                                        <Button variant="contained" startIcon={<AddBoxIcon />} onClick={() => this.props.editMoviesEdit(null)} data-toggle="modal" data-target="#myModalMovies" style={{ outline: "none" }}>
+                                            <Typography variant="button">
+                                                Thêm phim
                                         </Typography>
-                                    </Button>
-                                </Tooltip>
+                                        </Button>
+                                    </Tooltip>
+                                </div>
+                            </div>
+                        </Toolbar>
+                        <div>
+                            <div className="row tiltle-user">
+                                <div className="col-sm-3">
+                                    <Typography variant="subtitle1">
+                                        <Box fontWeight="fontWeightBold">
+                                            Chi tiết
+                                    </Box>
+                                    </Typography>
+                                </div>
+                                <div className="col-sm-3">
+                                    <Typography variant="subtitle1">
+                                        <Box fontWeight="fontWeightBold">
+                                            Tên phim
+                                    </Box>
+                                    </Typography>
+                                </div>
+                                <div className="col-sm-3">
+                                    <Typography variant="subtitle1">
+                                        <Box fontWeight="fontWeightBold">
+                                            Hình ảnh
+                                    </Box>
+                                    </Typography>
+                                </div>
+                                <div className="col-sm-3">
+                                    <Typography variant="subtitle1">
+                                        <Box fontWeight="fontWeightBold">
+                                            Action
+                                    </Box>
+                                    </Typography>
+                                </div>
                             </div>
                         </div>
-                    </Toolbar>
-                    <div>
-                        <div className="row tiltle-user">
-                            <div className="col-sm-3">
-                                <Typography variant="subtitle1">
-                                    <Box fontWeight="fontWeightBold">
-                                        Chi tiết
-                                    </Box>
-                                </Typography>
-                            </div>
-                            <div className="col-sm-3">
-                                <Typography variant="subtitle1">
-                                    <Box fontWeight="fontWeightBold">
-                                        Tên phim
-                                    </Box>
-                                </Typography>
-                            </div>
-                            <div className="col-sm-3">
-                                <Typography variant="subtitle1">
-                                    <Box fontWeight="fontWeightBold">
-                                        Hình ảnh
-                                    </Box>
-                                </Typography>
-                            </div>
-                            <div className="col-sm-3">
-                                <Typography variant="subtitle1">
-                                    <Box fontWeight="fontWeightBold">
-                                        Action
-                                    </Box>
-                                </Typography>
-                            </div>
-                        </div>
+                    </Paper>
+                    <div className="content-user">
+                        {this.renderListUser()}
                     </div>
-                </Paper>
-                <div className="content-user">
-                    {this.renderListUser()}
+                    <ModalMovies />
+                    <ModalUploadHinh />
                 </div>
-                <ModalMovies />
-                <ModalUploadHinh />
             </div>
+    }
+    scrollHeaderMovie = event => {
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            document.getElementById("movie-search").classList.add("header-movie-animation")
+        }
+        else {
+            document.getElementById("movie-search").classList.remove("header-movie-animation")
+        }
     }
     render() {
         return (
@@ -288,6 +301,7 @@ class MoviesAdmin extends Component {
         this.props.getListMovie()
     }
     componentWillUnmount() {
+        window.removeEventListener('scroll', this.scrollHeaderMovie)
         this.props.editIsValidUser(true);
     }
 }

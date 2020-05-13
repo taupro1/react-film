@@ -35,9 +35,9 @@ const ButtonChiTiet = styled(Button)`
 `
 const ContentCombo = styled.div`
     position: absolute;
-    left: ${props => props.left ? "0" : "-100%"};
+    left: ${props => props.left ? "-100%" : "0"};
     width: 100%;
-    z-index: 2;
+    z-index: 8;
     background: black;
     padding: 2%;
     margin-top: 70%;
@@ -50,7 +50,7 @@ class DetailBooking extends Component {
         super(props)
 
         this.state = {
-            left: true,
+            left: false,
             giaNuoc: 0,
             giaBaprang: 0
         }
@@ -155,6 +155,10 @@ class DetailBooking extends Component {
         this.props.getTongtien(tongTien)
         return tongTien
     }
+    hanleClickCombo = () => {
+        this.props.editIsvalidOverplay(true)
+        this.props.isValidClose ? this.props.editIsvalidClose(false) : this.props.editIsvalidClose(true)
+    }
     render() {
         return (
             <Fragment>
@@ -174,7 +178,7 @@ class DetailBooking extends Component {
                         <Typography variant="subtitle2" className="gia-tien"> {this.renderTienGhe()} <span>đ</span></Typography>
                     </div>
                     <div className="combo">
-                        <Typography variant="subtitle1" className="chon-combo" onClick={() => this.setState({ left: false })}>Chọn Combo</Typography>
+                        <Typography variant="subtitle1" className="chon-combo" onClick={this.hanleClickCombo}>Chọn Combo</Typography>
                         <Typography variant="body2" className="gia-tien-combo">{this.renderTienCombo()}<span>đ</span></Typography>
                     </div>
                     <div className="btn-dat-ve">
@@ -184,7 +188,7 @@ class DetailBooking extends Component {
                     </div>
                     <NotificationContainer />
                 </div>
-                <ContentCombo left={this.state.left} className="listCombo">
+                <ContentCombo left={this.props.isValidClose} className="listCombo">
                     <Typography variant="h5">
                         Combo
                     </Typography>
@@ -204,23 +208,14 @@ class DetailBooking extends Component {
                             </div>
                         </div>
                     </div>
-                    <div>
-                        <Button style={{ float: "right" }} variant="contained" color="default" onClick={() => this.setState({ left: true })}>Close</Button>
-                    </div>
+                    {/* <div>
+                        <Button style={{ float: "right" }} variant="contained" color="default" onClick={() => this.setState({ left: false })}>Close</Button>
+                    </div> */}
                 </ContentCombo>
                 <ModalBooking />
             </Fragment>
         )
     }
-    // hanleWindowClickClose = () => {
-    //     this.setState({
-    //         left: true
-    //     })
-    // }
-    // componentDidUpdate() {
-    //     window.addEventListener('click', this.hanleWindowClickClose)
-    // }
-
     componentWillUnmount() {
         this.props.getSeatSelect([])
     }
@@ -229,7 +224,8 @@ class DetailBooking extends Component {
 const mapStateToProps = state => {
     return {
         listDetailBooking: state.seatBookingReducers.listDetailBooking,
-        seatSelect: state.seatBookingReducers.seatSelect
+        seatSelect: state.seatBookingReducers.seatSelect,
+        isValidClose: state.seatBookingReducers.isValidClose
     }
 }
 
@@ -244,7 +240,13 @@ const mapDispatchToProps = dispatch => {
         },
         getTongtien: data => {
             dispatch(action.actGetListDetailBooking(data, "GET-TONG-TIEN"))
-        }
+        },
+        editIsvalidOverplay: data => {
+            dispatch(action.actGetListDetailBooking(data, "EDIT-ISVALID-OVERLAY"))
+        },
+        editIsvalidClose: data => {
+            dispatch(action.actGetListDetailBooking(data, "EDIT-ISVALID-CLOSE-DETAIL"))
+        },
     }
 }
 

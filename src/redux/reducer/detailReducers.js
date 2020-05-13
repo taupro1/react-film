@@ -31,7 +31,8 @@ const initalState = {
 
     // Danh gia
     danhGia: [
-    ]
+    ],
+    trailer: "",
 }
 
 const detailReducers = (state = initalState, action) => {
@@ -67,6 +68,9 @@ const detailReducers = (state = initalState, action) => {
             let list = [...state.danhGia];
             list.push(action.data)
             state.danhGia = list;
+            return { ...state }
+        case "GET-LINK-TRAILER":
+            state.trailer = action.data
             return { ...state }
         default:
             return { ...state }

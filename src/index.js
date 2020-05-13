@@ -9,10 +9,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "jquery/dist/jquery.min.js";
 import "popper.js/dist/popper.min.js";
 import "bootstrap/dist/js/bootstrap.min.js";
-// import "./shared/VenoBox/venobox/venobox.min.css";
-// import "./shared/VenoBox/venobox/venobox.js";
-// import "venobox/venobox/venobox.min.css";
-// import "venobox/venobox/venobox.min.js";
 
 import rootReducers from "./redux/reducer/index";
 import { createStore, applyMiddleware, compose } from "redux";

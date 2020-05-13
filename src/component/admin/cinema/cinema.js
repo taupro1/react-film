@@ -11,20 +11,18 @@ import { Typography, Box } from "@material-ui/core"
 import InfoIcon from "@material-ui/icons/Info"
 
 import SearchIcon from '@material-ui/icons/Search';
-import AddBoxIcon from '@material-ui/icons/AddBox';
 import TextField from '@material-ui/core/TextField';
 import Tooltip from "@material-ui/core/Tooltip";
-import DeleteIcon from '@material-ui/icons/Delete';
 import Button from "@material-ui/core/Button"
 
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import SnowStorm from 'react-snowstorm';
 
 
 import Paper from '@material-ui/core/Paper';
-import { Toolbar, FormControl, InputAdornment, ButtonBase, TableBody, TableCell } from '@material-ui/core';
-import CloudUploadIcon from "@material-ui/icons/CloudUpload"
+import { Toolbar, FormControl, InputAdornment, TableBody, TableCell } from '@material-ui/core';
 import { connect } from 'react-redux'
 
 class CinemaAdmin extends Component {
@@ -96,7 +94,7 @@ class CinemaAdmin extends Component {
                             </ExpansionPanel>
                         </div>
                         <div className="col-sm-4 item item-tiltle">
-                            <Typography variant="body1">
+                            <Typography variant="subtitle1">
                                 {item.tenHeThongRap}
                             </Typography>
                         </div>
@@ -114,58 +112,71 @@ class CinemaAdmin extends Component {
             <LottieAnimation />
             :
             <div className="cinema-admin">
-                <Paper className="content-search">
-                    <Toolbar className="toolbar">
-                        <div>
-                            <Typography variant="h5">
-                                <Box fontWeight="fontWeightBold">
-                                    Danh sách rạp
+                <SnowStorm />
+                <div className="overplay">
+                </div>
+                <div className="content-cinema">
+                    <Paper id="cinema-search">
+                        <Toolbar className="toolbar">
+                            <div>
+                                <Typography variant="h5">
+                                    <Box fontWeight="fontWeightBold">
+                                        Danh sách rạp
                                 </Box>
-                            </Typography>
-                        </div>
-                        <div className="content-form">
-                            <FormControl className="item-form">
-                                <TextField onChange={e => this.setState({ keyword: e.target.value })} placeholder="Search" InputProps={{
-                                    startAdornment: <InputAdornment position="start">
-                                        <Tooltip title="Search">
-                                            <SearchIcon />
-                                        </Tooltip>
-                                    </InputAdornment>,
-                                }}>
-                                </TextField>
-                            </FormControl>
-                        </div>
-                    </Toolbar>
-                    <div>
-                        <div className="row tiltle-user">
-                            <div className="col-sm-4">
-                                <Typography variant="subtitle1">
-                                    <Box fontWeight="fontWeightBold">
-                                        Chi tiết
-                                    </Box>
                                 </Typography>
                             </div>
-                            <div className="col-sm-4">
-                                <Typography variant="subtitle1">
-                                    <Box fontWeight="fontWeightBold">
-                                        Tên rạp
-                                    </Box>
-                                </Typography>
+                            <div className="content-form">
+                                <FormControl className="item-form">
+                                    <TextField onChange={e => this.setState({ keyword: e.target.value })} placeholder="Search" InputProps={{
+                                        startAdornment: <InputAdornment position="start">
+                                            <Tooltip title="Search">
+                                                <SearchIcon />
+                                            </Tooltip>
+                                        </InputAdornment>,
+                                    }}>
+                                    </TextField>
+                                </FormControl>
                             </div>
-                            <div className="col-sm-4">
-                                <Typography variant="subtitle1">
-                                    <Box fontWeight="fontWeightBold">
-                                        Logo
+                        </Toolbar>
+                        <div>
+                            <div className="row tiltle-user">
+                                <div className="col-sm-4">
+                                    <Typography variant="subtitle1">
+                                        <Box fontWeight="fontWeightBold">
+                                            Chi tiết
                                     </Box>
-                                </Typography>
+                                    </Typography>
+                                </div>
+                                <div className="col-sm-4">
+                                    <Typography variant="subtitle1">
+                                        <Box fontWeight="fontWeightBold">
+                                            Tên rạp
+                                    </Box>
+                                    </Typography>
+                                </div>
+                                <div className="col-sm-4">
+                                    <Typography variant="subtitle1">
+                                        <Box fontWeight="fontWeightBold">
+                                            Logo
+                                    </Box>
+                                    </Typography>
+                                </div>
                             </div>
                         </div>
+                    </Paper>
+                    <div className="content-user">
+                        {this.renderListCinema()}
                     </div>
-                </Paper>
-                <div className="content-user">
-                    {this.renderListCinema()}
                 </div>
             </div>
+    }
+    scrollHeaderCinema = event => {
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            document.getElementById("cinema-search").classList.add("header-cinema-animation")
+        }
+        else {
+            document.getElementById("cinema-search").classList.remove("header-cinema-animation")
+        }
     }
 
     render() {
@@ -176,9 +187,11 @@ class CinemaAdmin extends Component {
         );
     }
     componentDidMount() {
+        // window.addEventListener('scroll', this.scrollHeaderCinema)
         this.props.getListCinema()
     }
     componentWillUnmount() {
+        // window.removeEventListener('scroll', this.scrollHeaderCinema)
         this.props.editIsValidUser(true)
     }
 }

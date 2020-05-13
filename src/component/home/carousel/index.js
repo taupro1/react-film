@@ -1,31 +1,26 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
-import CarouselItem from './carouselItem';
 // import "react-flex-slider/assets/index.css";
 // import Slider from "react-flex-slider";
 // import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
+import ModalTrailer from '../../../shared/Modal/modalTrailer'
+import * as action from "../../../redux/action/action-redux/index"
 
 class Carousel extends Component {
 
     renderCarousel = () => {
         return this.props.listImgCarousel.map((item, index) => {
             return (
-                <CarouselItem item={item} key={index} />
+                <figure onClick={() => this.props.getTrailer("https://www.youtube.com/embed/j8U06veqxdU")} data-toggle="modal" data-target="#modalTrailer" className="shadow">
+                    <img alt="" src={item.img} />
+                </figure>
             )
         })
 
     }
     render() {
-        // const settings = {
-        //     infinite: true,
-        //     speed: 500,
-        //     slidesToShow: 1,
-        //     slidesToScroll: 1,
-        //     // autoplay: true,
-        //     autoplaySpeed: 3000
-        // };
         return (
             <section id="carousel">
                 <div className="content-carousel">
@@ -33,12 +28,16 @@ class Carousel extends Component {
                         {this.renderCarousel()}
                     </div>
                 </div>
-                {/* <Slider {...settings} className="my-carousel">
-                    {this.renderCarousel()}
-                </Slider> */}
+                <ModalTrailer />
             </section >
 
         )
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        getTrailer: data => dispatch(action.actGetUser("GET-LINK-TRAILER", data))
     }
 }
 
@@ -48,4 +47,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, null)(Carousel);
+export default connect(mapStateToProps, mapDispatchToProps)(Carousel);

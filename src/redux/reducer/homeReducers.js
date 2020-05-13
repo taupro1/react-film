@@ -85,6 +85,7 @@ const initalState = {
     ],
     statusLogin: false,
     listDetailFilm: {},
+    trailer: "",
 }
 
 const homeReducers = (state = initalState, action) => {
@@ -101,7 +102,6 @@ const homeReducers = (state = initalState, action) => {
         case "GET-LIST-DETAIL-HOME":
             state.listDetailFilm = action.data;
             return { ...state }
-
         default:
             return { ...state };
     }

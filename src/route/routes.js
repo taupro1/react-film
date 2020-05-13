@@ -4,7 +4,7 @@ import { lazy } from "react"
 import Register from "../component/home/register";
 import SeatBooking from "../component/seat-select";
 import Login from "../component/home/login";
-import Dashboard from "../component/admin/dashboard";
+import Dashboard from "../component/admin/dashboard/dashboard";
 import UserAdmin from "../component/admin/users/user";
 import CinemaAdmin from "../component/admin/cinema/cinema";
 import TicketAdmin from "../component/admin/ticket";

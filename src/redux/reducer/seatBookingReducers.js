@@ -6,6 +6,8 @@ const initalState = {
     seatSelect: [],
     isValid: true,
     tongTien: "",
+    isValidClose: false,
+    isValidOverplay: false,
 }
 const seatBookingReducers = (state = initalState, action) => {
     switch (action.type) {
@@ -20,6 +22,14 @@ const seatBookingReducers = (state = initalState, action) => {
             return { ...state }
         case "GET-TONG-TIEN":
             state.tongTien = action.data;
+            return { ...state }
+        case "EDIT-ISVALID-CLOSE-DETAIL":
+            console.log(action.data);
+
+            state.isValidClose = action.data
+            return { ...state }
+        case 'EDIT-ISVALID-OVERLAY':
+            state.isValidOverplay = action.data
             return { ...state }
         default:
             return { ...state }
