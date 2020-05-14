@@ -21,7 +21,7 @@ const ContentDetail = styled.div`
     color:black;
     right: ${props => props.right ? "-100%" : "25%"};
     transition:right .6s;
-    z-index:4
+    z-index:10
 `
 const ModalHeader = styled.div`
     display: block;

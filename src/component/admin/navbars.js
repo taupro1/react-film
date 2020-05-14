@@ -29,8 +29,8 @@ function Navbars(props) {
     const [left, setLeft] = React.useState(false)
     const handleOnclickSignOut = () => {
         localStorage.removeItem("userAdmin");
-        this.props.history.push("/admin")
-        this.props.getIslogin()
+        props.history.push("/admin")
+        props.getIslogin()
     }
     const renderAccount = () => {
         if (localStorage.getItem("userAdmin") || props.isLogin) {
