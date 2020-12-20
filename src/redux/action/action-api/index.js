@@ -57,7 +57,8 @@ export const actGetListUser = () => {
             })
     }
 }
-const admin = JSON.parse(localStorage.getItem("login"))
+const admin = JSON.parse(localStorage.getItem("userAdmin"))
+
 export const actEditUser = data => {
     return dispatch => {
         Axios({
@@ -113,7 +114,7 @@ export const actDeleteUser = data => {
     return dispatch => {
         Axios({
             method: "DELETE",
-            url: `http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${data}`,
+            url: `https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${data}`,
             headers: {
                 Authorization: `Bearer ${admin.accessToken}`
             }
@@ -157,13 +158,12 @@ export const actEditMovieAdmin = data => {
     return dispatch => {
         Axios({
             method: "POST",
-            url: "http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/CapNhatPhim",
+            url: "https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/CapNhatPhim",
             data,
             headers: {
                 Authorization: `Bearer ${admin.accessToken}`
             }
-        })
-            .then(rs => {
+        }).then(rs => {
                 callApi.callApiQuanLiPhim("GET", `LayDanhSachPhim?maNhom=GP01`, null)
                     .then((rs) => {
                         dispatch(action.actGetListMovie("GET-LIST-MOVIE-ADMIN", rs.data))
@@ -183,7 +183,7 @@ export const actAddMovieAdmin = data => {
     return dispatch => {
         Axios({
             method: "POST",
-            url: "http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/ThemPhim",
+            url: "https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/ThemPhim",
             data,
             headers: {
                 Authorization: `Bearer ${admin.accessToken}`
@@ -202,7 +202,7 @@ export const actDeleteMoviesAdmin = data => {
     return dispatch => {
         Axios({
             method: "DELETE",
-            url: `http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/XoaPhim?MaPhim=${data}`,
+            url: `https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/XoaPhim?MaPhim=${data}`,
             headers: {
                 Authorization: `Bearer ${admin.accessToken}`
             }
@@ -218,14 +218,13 @@ export const actDeleteMoviesAdmin = data => {
                     })
             })
             .catch(er => {
-                console.log(er.response.data);
-
+               alert(er.response.data);
             })
     }
 }
 export const actUploadHinh = data => {
     return dispatch => {
-        console.log(data.name);
+        // console.log(data.name);
         // if (img.name) {
         //     let imgUpload = new FormData();
         //     imgUpload.append("File", data.hinhAnh, img.name)

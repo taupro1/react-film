@@ -47,7 +47,7 @@ function Register(props) {
         event.preventDefault();
         Axios({
             method: "POST",
-            url: "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangKy",
+            url: "https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangKy",
             data: state
         })
             .then(rs => {

@@ -44,7 +44,7 @@ function Login(props) {
         event.preventDefault();
         Axios({
             method: "POST",
-            url: "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap",
+            url: "https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap",
             data: { taiKhoan, matKhau }
         })
             .then(rs => {
