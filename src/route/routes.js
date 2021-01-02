@@ -7,9 +7,10 @@ import Login from "../component/home/login";
 import Dashboard from "../component/admin/dashboard/dashboard";
 import UserAdmin from "../component/admin/users/user";
 import CinemaAdmin from "../component/admin/cinema/cinema";
-import TicketAdmin from "../component/admin/ticket";
+// import TicketAdmin from "../component/admin/ticket";
 import AccountAdmin from "../component/admin/account"
 import MoviesAdmin from "../component/admin/movies/film"
+import showTimeMovie from '../component/admin/showTimeMovie'
 
 
 const HomePage = lazy(() => import("../pages/home"));
@@ -78,7 +79,7 @@ const routesAdmin = [
     {
         path: "/admin/ticket",
         exact: false,
-        component: TicketAdmin
+        component: showTimeMovie
     }
 ]
 

@@ -342,7 +342,34 @@ export const actGetListDetailBooking = id => {
                 dispatch(action.actGetListDetailBooking(false, "GET-SEAT-ISVALID"))
             })
             .catch(() => {
-
+                //
             })
     }
 }
+
+export function postBookingRequest(maLichChieu, danhSachVe) {
+    return async function (dispatch) {
+      try {
+        // getlocal
+        const user = JSON.parse(localStorage.getItem("login"));
+        // call api
+        const res = await Axios({
+          method: "POST",
+          url: "https://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/DatVe",
+          data: {
+            maLichChieu,
+            danhSachVe,
+            taiKhoanNguoiDung: user.taiKhoan,
+          },
+          headers: {
+            Authorization: `Bearer ${user.accessToken}`,
+          },
+        });
+  
+        if (res.status === 200 || res.status === 201) {
+          alert("Thành công");
+        //   history.push('/')
+        }
+      } catch (error) {}
+    };
+  }

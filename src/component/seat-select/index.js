@@ -16,6 +16,10 @@ const DivOverlay = styled.div`
 `
 
 class SeatBooking extends Component {
+
+    id = this.props.match.params.id;
+
+
     hanleOnclickOverplay = () => {
         this.props.editIsvalidClose(false)
         this.props.editIsvalidOverplay(false)
@@ -25,6 +29,7 @@ class SeatBooking extends Component {
             return <LottieAnimation />
         }
         if (!this.props.isValid) {
+            /* console.log(this.id) */
             return (
                 <section className="row" id="dat-ve-film">
                     <DivOverlay display={this.props.isValidOverplay} className="overplay" onClick={this.hanleOnclickOverplay}></DivOverlay>
@@ -47,19 +52,20 @@ class SeatBooking extends Component {
                         <div className="container chon-ghe">
                             <div className="row">
                                 <TypeSeat />
-                                <SelectSeat />
+                                <SelectSeat  />
                             </div>
                         </div>
                     </div>
                     <div className="col-12 col-sm-12 col-lg-4 content-right">
-                        <DetailBooking />
+                        <DetailBooking id={this.id} />
                     </div>
                 </section>
             )
         }
     }
 
-    render() {
+    render(props) {
+        
         return (
             <div>
                 {this.renderHtml()}

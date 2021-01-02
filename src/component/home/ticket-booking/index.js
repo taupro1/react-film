@@ -106,12 +106,8 @@ class TicketBooking extends Component {
         }
     }
     renderRap = () => {
-        console.log(this.props.listDetailFilm);
-
         if (this.props.listDetailFilm.heThongRapChieu && this.state.statusFilm) {
             return this.props.listDetailFilm.heThongRapChieu.map((item, index) => {
-                console.log("2");
-
                 return (
                     <option key={index} value={item.maHeThongRap}>{item.tenHeThongRap}</option>
                 )
@@ -142,7 +138,8 @@ class TicketBooking extends Component {
         if (this.state.statusButton) {
             if (localStorage.getItem("login") || this.props.statusLogin) {
                 return (
-                    <button type="submit" className="btn-dat-ve">
+                    <button type="submit" className="btn-dat-ve" onClick={()=>console.log(this.state.maLichChieu)}>
+                        
                         <Link to={`/booking/${this.state.maLichChieu}`}>Mua vé</Link>
                     </button>
                 )

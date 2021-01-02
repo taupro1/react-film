@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import {useParams} from 'react-router-dom'
 import { connect } from "react-redux"
 import styled from "styled-components"
 import { NotificationContainer } from "react-notifications"
@@ -7,6 +8,7 @@ import { Button } from '@material-ui/core'
 import variable from "../../scss/_variable.scss"
 import * as action from "../../redux/action/action-redux/index"
 import { Typography } from "@material-ui/core"
+import { postBookingRequest } from '../../redux/action/action-api'
 
 const WidthImg = styled.img`
     width:30%
@@ -149,7 +151,6 @@ class DetailBooking extends Component {
             }
         }
     }
-
     renderTongTien = () => {
         let tongTien = this.renderTienGhe() + this.renderTienCombo()
         this.props.getTongtien(tongTien)
@@ -158,6 +159,14 @@ class DetailBooking extends Component {
     hanleClickCombo = () => {
         this.props.editIsvalidOverplay(true)
         this.props.isValidClose ? this.props.editIsvalidClose(false) : this.props.editIsvalidClose(true)
+    }
+    handleBooking = () =>{
+        let maLichChieu = this.props.id;
+        let danhSachVe = this.props.seatSelect.map((ghe) => ({
+          maGhe: ghe.maGhe,
+          giaVe: ghe.giaVe,
+        }));
+        this.props.getBooking(maLichChieu,danhSachVe)
     }
     render() {
         return (
@@ -182,7 +191,7 @@ class DetailBooking extends Component {
                         <Typography variant="body2" className="gia-tien-combo">{this.renderTienCombo()}<span>đ</span></Typography>
                     </div>
                     <div className="btn-dat-ve">
-                        <button data-toggle="modal" data-target="#myModal">
+                        <button data-toggle="modal" data-target="#myModal" onClick={()=>this.handleBooking()}>
                             <Typography variant="button" className="btn-dat-ve-button" >Đặt vé</Typography>
                         </button>
                     </div>
@@ -216,9 +225,13 @@ class DetailBooking extends Component {
             </Fragment>
         )
     }
+    /* componentDidMount() {
+            let { maLichChieu } = useParams();
+    } */
     componentWillUnmount() {
         this.props.getSeatSelect([])
     }
+
 }
 
 const mapStateToProps = state => {
@@ -231,6 +244,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
+        getBooking: (maLichChieu,danhSachVe) =>{
+            dispatch(postBookingRequest(maLichChieu,danhSachVe))
+        },
+
         getSeatSelect: data => {
             let action = {
                 type: "GET-SEAT-SELECT",
