@@ -14,7 +14,7 @@ class ListCinema extends Component {
         return (
             <li>
                 <a href>
-                    <img alt="" src={item.logo} className={this.props.className} onClick={() => { this.handleOnclick(item.maHeThongRap) }} />
+                    <img alt="" src={item.logo} className={this.props.className,item.maHeThongRap} onClick={() => { this.handleOnclick(item.maHeThongRap) }} />
                 </a>
             </li>
         )

@@ -78,7 +78,7 @@ class TicketBooking extends Component {
         if (this.props.listFilm.length !== 0) {
             return this.props.listFilm.map((item, index) => {
                 return (
-                    <option value={item.maPhim} key={index}>{item.tenPhim}</option>
+                    <option className={`phim-${item.maPhim}`} value={item.maPhim} key={index}>{item.tenPhim}</option>
                 )
             })
         }

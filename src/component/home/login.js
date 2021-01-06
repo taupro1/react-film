@@ -69,6 +69,7 @@ function Login(props) {
         </Typography>
                 <form className={classes.form} noValidate>
                     <TextField
+                        className='taiKhoan'
                         variant="outlined"
                         margin="normal"
                         required
@@ -81,6 +82,7 @@ function Login(props) {
                         onChange={handleOnchange}
                     />
                     <TextField
+                        className='matKhau'
                         variant="outlined"
                         margin="normal"
                         required
@@ -98,7 +100,7 @@ function Login(props) {
                         fullWidth
                         variant="contained"
                         color="primary"
-                        className={classes.submit}
+                        className={classes.submit,'submit'}
                     >
                         Đăng nhập
           </Button>

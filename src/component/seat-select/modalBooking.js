@@ -55,8 +55,8 @@ class ModalBooking extends Component {
                             <Typography variant="subtitle1">Chúc quý khách xem phim vui vẻ bên gấu (-_-)</Typography>
                             <Typography variant="subtitle1">Chúc các bạn FA sớm có gấu ! Fighting</Typography>
                         </div>
-                        <div className="modal-footer">
-                            <Button color="primary" data-dismiss="modal" variant="contained" onClick={() => this.setState({ right: false })}>
+                        <div className="xemChiTiet modal-footer">
+                            <Button className='xemChiTiet' color="primary" data-dismiss="modal" variant="contained" onClick={() => this.setState({ right: false })}>
                                 Xem chi tiết đặt vé
                             </Button>
                         </div>
@@ -157,7 +157,7 @@ class ModalBooking extends Component {
                                     </Typography>
                                 </Button>
                             </div>
-                            <div>
+                            <div className='backHome'>
                                 <Button variant="contained" color="primary">
                                     <Typography variant="button">
                                         <Link to="/">Quay về trang chủ</Link>

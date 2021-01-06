@@ -85,13 +85,13 @@ class SelectSeat extends Component {
                 if (this.handleBackgroundSeatSelect(item)) {
                     return (
                         <SeatDiv key={index} style={{ backgroundColor: variable.colorOne }} onClick={() => this.handleOnclick(item)} className="col-lg-1 col-sm-2 col-3">
-                            <span>{item.stt}</span>
+                            <span className={item.stt}>{item.stt}</span>
                         </SeatDiv>
                     )
                 }
                 else {
                     return (
-                        <SeatDiv key={index} style={{ backgroundColor: this.handleBackgroundSeat(item) }} onClick={() => this.handleOnclick(item)} className="col-lg-1 col-sm-2 col-3">
+                        <SeatDiv key={index} style={{ backgroundColor: this.handleBackgroundSeat(item) }} onClick={() => this.handleOnclick(item)} className="ghe col-lg-1 col-sm-2 col-3">
                             <span>{item.stt}</span>
                         </SeatDiv>
                     )
