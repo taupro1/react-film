@@ -73,6 +73,8 @@
     ]
   },
   "devDependencies": {
-    "eslint-plugin-react-hooks": "^4.2.0"
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "1.7.0"
   }
 }
