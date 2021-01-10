@@ -79,7 +79,7 @@ class ModalDanhGia extends Component {
     renderStar = () => {
         return this.props.listStar.map((item, index) => {
             return (
-                <Star icon="star" key={item.id} style={{ opacity: this.renderOpacity(item.id, index) }} onClick={() => this.handOnclick(item.id)}></Star>
+                <Star className='star' icon="star" key={item.id} style={{ opacity: this.renderOpacity(item.id, index) }} onClick={() => this.handOnclick(item.id)}></Star>
             )
         })
     }
@@ -138,13 +138,13 @@ class ModalDanhGia extends Component {
                             <ContentFirstStar>
                                 {this.renderStar()}
                             </ContentFirstStar>
-                            <button type="button" className="close" data-dismiss="modal">×</button>
+                            <button type="button" className="close btn-close" data-dismiss="modal">×</button>
                         </ModalHeader>
                         <div className="modal-body">
-                            <Textarea value={this.state.value} onChange={this.handleOnchange} placeholder="Comment cảm xúc về phim đi nào :)"></Textarea>
+                            <Textarea className='danh-gia-phim' value={this.state.value} onChange={this.handleOnchange} placeholder="Comment cảm xúc về phim đi nào :)"></Textarea>
                         </div>
                         <ModalFooter className="modal-footer">
-                            <Button onClick={this.handleOnsubmit} variant="contained" color="primary" style={{ outline: "none" }} type="submit">Đăng</Button>
+                            <Button className='dang-binhluan' onClick={this.handleOnsubmit} variant="contained" color="primary" style={{ outline: "none" }} type="submit">Đăng</Button>
                         </ModalFooter>
                     </div>
                 </div>

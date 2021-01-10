@@ -108,7 +108,7 @@ class DanhGiaPhim extends Component {
             <div className="container-fluid">
                 <div className="row justify-content-center">
                     <ContentFirstInput data-toggle="modal" data-target="#myModal">
-                        <FirstInput type="text" placeholder="Bạn đánh giá phim này như thế nào" readOnly>
+                        <FirstInput className='input-danhgia' type="text" placeholder="Bạn đánh giá phim này như thế nào" readOnly>
                         </FirstInput>
                         <ContentFirstStar>
                             <Star icon="star" />
