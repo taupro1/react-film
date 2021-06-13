@@ -100,7 +100,7 @@ function Login(props) {
                         fullWidth
                         variant="contained"
                         color="primary"
-                        className={classes.submit,'submit'}
+                        className={classes.submit || 'submit'}
                     >
                         Đăng nhập
           </Button>
